@@ -1,0 +1,30 @@
+---------------------------------------------TEAM 2---------------------------------------------------------
+
+Puneeth Kashyap -- Backend
+Vishnuvardhan   -- Backend
+Eswara Surya    -- Backend
+Sivateja        -- Frontend
+Surya Vamshi    -- Frontend
+
+-----------------------------------------  FINAL IDEA ------------------------------------------------------
+
+
+-------------------------------A Webapp to aid Startups-----------------------------------
+
+-- page to obtain funding for startup,manage their finances,check for potential revenue generators,shows investments & acquisitions.--- surya,puneeth,siva
+-- platform to connect Startups to corporates,outsourcing and Mentors(platform to connect,not exactly social media).---surya,vamsi,vishnu
+-- Forum.--- Puneeth & Vishnu
+-- Dashboard.--- vamsi & siva
+-- homepage(final)-- ???
+
+FrameWorks Used:
+
+Frontend:
+- HTML,CSS
+- JavaScript
+- Bootstrap
+- JQuery
+
+Backend:
+- Django
+- Rest Api
