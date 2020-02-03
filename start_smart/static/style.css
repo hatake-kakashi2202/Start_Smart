@@ -1,0 +1,172 @@
+.survey
+            {
+          float: left;
+          padding: 20px;
+         width: 40%;
+         background-color: #f1f1f1;
+         height: 340px;
+         }
+         .abc
+         {
+            background-color:#404040;
+            padding: 10px;
+            height:340px;
+           text-align: center;
+           color: #cccccc;
+         }
+         .img
+         {
+            float:right;
+
+         }
+*{
+  padding:0;
+  margin:0;
+}
+ 
+html{
+  background-color: #eaf0f2;
+}
+ 
+body{
+  font:16px/1.6 Arial,  sans-serif;
+}
+
+
+
+
+ 
+
+ 
+/* The footer is fixed to the bottom of the page */
+ 
+footer{
+  position: fixed;
+  bottom: 0;
+}
+ 
+@media (max-height:800px){
+  footer { position: static; }
+  header { padding-top:40px; }
+}
+ 
+ 
+.foot{
+  background-color:#333333;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: bold 16px sans-serif;
+  padding: 50px 50px 60px 50px;
+  margin-top: 80px;
+}
+ 
+.foot .left,.foot .center,.foot .right{
+  display: inline-block;
+  vertical-align: top;
+}
+ 
+/* Footer left */
+ 
+.foot .left{
+  width: 30%;
+}
+.foot .abcd{
+  color:  #8f9296;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+ 
+/* Footer Center */
+ 
+.foot .center{
+  width: 35%;
+}
+ 
+.foot .center i{
+  background-color:  #33383b;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+ 
+.foot .center i.fa-envelope{
+  font-size: 17px;
+  line-height: 38px;
+}
+ 
+.foot .center p{
+  display: inline-block;
+  color: #ffffff;
+  vertical-align: middle;
+  margin:0;
+}
+ 
+.foot .center p span{
+  display:block;
+  font-weight: normal;
+  font-size:14px;
+  line-height:2;
+}
+ 
+.foot .center p a{
+  color:  #e0ac1c;
+  text-decoration: none;;
+}
+ 
+ 
+/* Footer Right */
+ 
+.foot .right{
+  width: 30%;
+}
+
+.foot .right img{
+    width: 150px;
+    height:150px;
+}
+ 
+.foot .icons{
+  margin-top: 25px;
+}
+ 
+.foot .icons a{
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color:  #33383b;
+  border-radius: 2px;
+ 
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+ 
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+ 
+@media (max-width: 880px) {
+ 
+  .foot .left,
+  .foot .center,
+  .foot .right{
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+ 
+  .foot .center i{
+    margin-left: 0;
+  }
+ 
+}
