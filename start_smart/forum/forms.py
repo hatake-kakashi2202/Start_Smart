@@ -1,10 +1,15 @@
-from django.db import models
+from django import forms
 from django.contrib.auth.models import User
-# Create your models here.
-class UserProfileInfo(models.Model):
-	user=models.OneToOneField(User,on_delete=models.CASCADE)
-	site = models.URLField(blank=True)
-	profile_pic = models.ImageField(upload_to='profile_pics',blank=True)
+from basic_app.models import UserProfileInfo
 
-	def __str__(self):
-		return self.user.username
+class UserProfileForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput())
+
+	class Meta():
+		model=User
+		fields = ('username','email','password')
+
+class UserInfo(forms.ModelForm):
+	class Meta():
+		model = UserProfileInfo
+		fields = ('site','profile_pic')
