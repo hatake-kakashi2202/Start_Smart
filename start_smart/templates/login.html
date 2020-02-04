@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body_block %}
-<body class="text-center">
-<div class="login">
+<body class="text-center"  style="background-image: url('/static/background.jpg'); background-size: cover;">
+<div class="login" >
   <div class="container">
     <br>
     <div class="jumbotron">
       <h1>Please Login</h1>
       <div class="login_img">
-         <img src="{% static 'Capture.png' %}" class=" mb-4 img-fluid img-thumbnail rounded float-left" alt="Responsive image" width="200" height="200">
+         <img src="{% static 'logo.png' %}" class=" mb-4 img-fluid img-thumbnail rounded float-left" alt="Responsive image" width="200" height="200">
     </div>
         <form  class="form-signin" method="post" action="{% url 'user_login' %}">
           {% csrf_token %}
