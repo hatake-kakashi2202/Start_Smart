@@ -8,6 +8,9 @@ from django.contrib.auth import authenticate,login,logout
 def index(request):
 	return render(request,'index.html',{})
 
+def forum(request):
+	return render(request,'forum.html',{})
+
 @login_required
 def special(request):
 	return HttpResponse("You are logged in")

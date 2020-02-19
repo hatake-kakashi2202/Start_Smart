@@ -1,24 +1,25 @@
 .survey
-            {
-          float: left;
-          padding: 20px;
-         width: 40%;
-         background-color: #f1f1f1;
-         height: 340px;
-         }
-         .abc
-         {
-            background-color:#404040;
-            padding: 10px;
-            height:340px;
-           text-align: center;
-           color: #cccccc;
-         }
-         .img
-         {
-            float:right;
+{
+   float: left;
+   padding: 20px;
+   width: 40%;
+   background-color: #f1f1f1;
+   height: 340px;
+}
+.abc
+{
+  background-color:#404040;
+  padding: 10px;
+  height:340px;
+  text-align: center;
+  color: #cccccc;
+}
+.img
+{
+  float:right;
 
-         }
+}
+
 *{
   padding:0;
   margin:0;
@@ -36,13 +37,12 @@ body{
 
 
  
-
- 
 /* The footer is fixed to the bottom of the page */
  
 footer{
   position: fixed;
   bottom: 0;
+  background-color: #343a40;
 }
  
 @media (max-height:800px){
@@ -52,7 +52,7 @@ footer{
  
  
 .foot{
-  background-color:#333333;
+  background-color:#343a40;
   box-sizing: border-box;
   width: 100%;
   text-align: left;
@@ -85,7 +85,7 @@ footer{
 }
  
 .foot .center i{
-  background-color:  #33383b;
+  background-color:  #343a40;
   color: #ffffff;
   font-size: 25px;
   width: 38px;

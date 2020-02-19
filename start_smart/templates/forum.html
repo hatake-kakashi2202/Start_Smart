@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<body class="text-center" style="background-image: url('/static/main-bg.jpg'); background-size: cover;">
+    <nav class="navbar navbar-dark bg-dark" aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background-color:#343a40;">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Forum</li>
+        </ol>
+    </nav>
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand"><h1>Forum</h1></a>
+</nav>
+<div class="buttons">
+    <div class="row" style="padding: 1vw;">
+        <nav class="navbar navbar-light bg-light" id="left">
+            <a class="navbar-brand"><h3>Threads</h3></a>
+            <a href=#><button class="btn btn-outline-secondary">Ask Now</button></a>
+        </nav>
+        <nav class="navbar navbar-light bg-light mr-auto" id="right">
+            <form class="form-inline" id="searchbar">
+                <input class="form-control mr-sm-2 float-left" id="searchforum" type="search" placeholder="Search Forum" aria-label="Search Forum">
+                <button class="btn btn-outline-secondary float-left" type="submit" id="btn">Search</button>
+            </form>
+        </nav>
+    </div>
+    <style>
+        #searchbar{
+            float:right;
+            margin-left:45%;
+        }
+        #left {
+        background-color:#2196F3;
+        padding:20px;
+        float:left;
+        width:52.5%; /* The width is 20%, by default */
+        }
+
+        #right {
+        background-color:#4CAF50;
+        padding:20px;
+        margin-left:5%;
+        float:right;
+        width:42.5%; /* The width is 20%, by default */
+        }
+
+        /* Use a media query to add a break point at 800px: */
+        @media screen and (max-width:800px) {
+        #searchbar{
+            margin-left:0%;
+            width:100%;
+        }
+        #searchforum{
+            width:78%;
+        }
+        #btn{
+            width: 20%;
+            font-size: small;
+        }
+        #left, #right {
+            width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+            margin-left: 0%;
+        }
+        }
+    </style>
+</div>
+</body>
+{% endblock %}
