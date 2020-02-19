@@ -1,6 +1,67 @@
 {% extends "base.html" %}
 {% load static %}
 {% block body_block %}
+
+
+    <style>
+        #searchbar {
+            float: right;
+            width: max-content;
+        }
+
+        #searchforum {
+                width: 32vw;
+            }
+        #left {
+            padding: 20px;
+            float: left;
+            width: 52.5%;
+            /* The width is 20%, by default */
+        }
+    
+        #right {
+            padding: 20px;
+            margin-left: 5%;
+            float: right;
+            width: 42.5%;
+            /* The width is 20%, by default */
+        }
+        #trending
+        {
+            padding: 20px;
+            margin-left: 5%;
+            float: right;
+            padding-right: 0%;
+            width: 43.8%;
+        }
+        /* Use a media query to add a break point at 800px: */
+        @media screen and (max-width:800px) {
+            #searchbar {
+                margin-left: 0%;
+                width: 100%;
+            }
+    
+            #searchforum {
+                width: 78%;
+            }
+    
+            #btn {
+                width: 20%;
+                font-size: small;
+            }
+    
+            #left,
+            #right {
+                width: 100%;
+                /* The width is 100%, when the viewport is 800px or smaller */
+                margin-left: 0%;
+            }
+        }
+    </style>
+
+
+
+
 <body class="text-center" style="background-image: url('/static/main-bg.jpg'); background-size: cover;">
     <nav class="navbar navbar-dark bg-dark" aria-label="breadcrumb">
         <ol class="breadcrumb" style="background-color:#343a40;">
@@ -13,8 +74,8 @@
 </nav>
 <div class="buttons">
     <div class="row" style="padding: 1vw;">
-        <nav class="navbar navbar-light bg-light" id="left">
-            <a class="navbar-brand"><h3>Threads</h3></a>
+        <nav class="navbar navbar-light bg-light " id="left">
+            <a class="navbar-brand pl-3"><h3>Threads</h3></a>
             <a href=#><button class="btn btn-outline-secondary">Ask Now</button></a>
         </nav>
         <nav class="navbar navbar-light bg-light mr-auto" id="right">
@@ -23,46 +84,27 @@
                 <button class="btn btn-outline-secondary float-left" type="submit" id="btn">Search</button>
             </form>
         </nav>
+</div>
+</div>
+<div class="row">
+    <div id="left">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
     </div>
-    <style>
-        #searchbar{
-            float:right;
-            margin-left:45%;
-        }
-        #left {
-        background-color:#2196F3;
-        padding:20px;
-        float:left;
-        width:52.5%; /* The width is 20%, by default */
-        }
-
-        #right {
-        background-color:#4CAF50;
-        padding:20px;
-        margin-left:5%;
-        float:right;
-        width:42.5%; /* The width is 20%, by default */
-        }
-
-        /* Use a media query to add a break point at 800px: */
-        @media screen and (max-width:800px) {
-        #searchbar{
-            margin-left:0%;
-            width:100%;
-        }
-        #searchforum{
-            width:78%;
-        }
-        #btn{
-            width: 20%;
-            font-size: small;
-        }
-        #left, #right {
-            width:100%; /* The width is 100%, when the viewport is 800px or smaller */
-            margin-left: 0%;
-        }
-        }
-    </style>
+    <div id="right">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 {% endblock %}
