@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from forum import views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name="index"),
@@ -23,4 +25,8 @@ urlpatterns = [
     path('user_login/',views.user_login,name="user_login"),
     path('logout/',views.user_logout,name='logout'),
     path('forum/',views.forum,name='forum'),
-]
+    path('finances/<user_name>/', views.finances, name='finances_sp'),
+    path('finances/', views.finances, name='finances'),
+    path('forum_details/<int:forum_id>/', views.forum_details, name='forum_details_sp'),
+    path('forum_details/', views.forum_details, name='forum_details'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

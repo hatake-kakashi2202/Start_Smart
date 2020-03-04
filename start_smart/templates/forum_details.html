@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% block body_block %}
 
-<head>
+
 <style>
     #searchbar {
         float: right;
@@ -90,27 +90,29 @@
 
     }
 </style>
-</head>
-<body class="text-center" style="background-image: url('/static/bg-main.jpg'); background-size: cover;">
+
+
+
+
+<body class="text-center" style="background-image: url('/static/main-bg.jpg'); background-size: cover;" data-media-url="{% get_media_prefix %}">
     <nav class="navbar navbar-dark bg-dark" aria-label="breadcrumb">
         <ol class="breadcrumb" style="background-color:#343a40;">
             <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Forum</li>
+            <li class="breadcrumb-item"><a href="{% url 'forum' %}">forum</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Forum Details</li>
         </ol>
     </nav>
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand">
-            <h1>Forum</h1>
+            <h1>Forum Details</h1>
         </a>
     </nav>
     <div class="buttons">
         <div class="row" style="padding: 1vw;">
             <nav class="navbar navbar-light bg-light " id="left">
                 <a class="navbar-brand pl-3">
-                    <h3>Threads</h3>
+                    <h3>Query</h3>
                 </a>
-                <a href=#><button class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">Ask
-                        Now</button></a>
             </nav>
             <nav class="navbar navbar-light bg-light mr-auto" id="right">
                 <form class="form-inline" id="searchbar">
@@ -121,38 +123,18 @@
             </nav>
         </div>
     </div>
-
-
-    <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title" style="text-align: center;">Queries</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <form method="POST" action="{% url 'forum' %}">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <!-- Modal footer -->
-                    <input type="submit" value="ask">
-                </form>
-
-            </div>
-        </div>
-    </div>
-
     <div class="row">
         <div class="row">
             <div id="left1">
                 {% for data in model %}
                 <div class="card border-light">
-                    <div class="card-header">user:{{data.user}} created_at:{{data.created_at}}<a
-                            href="{% url 'forum_details_sp' forum_id=data.id %}"><button>Reply</button></a></div>
+                    {% ifequal data.id forum_id %}
+                    {{pic}}
+                    {% if data.user.profile_pic == pic %}
+                    <img src="">
+                    {% endif %}
+
+                    <div class="card-header"> user:{{data.user}} created_at:{{data.created_at}}</div>
                     <div class="card-body">
                         <h5 class="card-title">
                             <div class="sub">subject:{{data.subject}}</div>
@@ -160,9 +142,28 @@
                         <p class="card-text">
                             <div class="quer">query:{{data.query}}</div>
                         </p>
+                        <h5 class="card-title">
+                            comments:
+                        </h5>
+                        {% for comment in mode %}
+                        {% if comment.forum|stringformat:"i" == data.subject|stringformat:"i" %}
+                        <h5 class="card-title">
+                            <div class="sub">{{comment.user}} says:</div>
+                        </h5>
+                        <p class="card-text">
+                            <div class="quer">{{comment.desc}}</div>
+                        </p>
+                        {% endif %}
+                        {% endfor %}
                     </div>
+                    {% endifequal %}
                 </div>
                 {% endfor %}
+                <form method="POST">
+                {% csrf_token %}
+                <div class="comment-box">{{ form|crispy }}</div>
+                <input type="submit" value="comment">
+                </form>
             </div>
 
         <div id="right1">

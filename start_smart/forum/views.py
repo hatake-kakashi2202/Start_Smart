@@ -1,15 +1,58 @@
 from django.shortcuts import render
-from forum.forms import UserProfileForm,UserInfo
+from forum.forms import UserProfileForm,UserInfo,forumForm,comment_box
+from forum.models import forum_text,UserProfileInfo,Comment
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth import authenticate,login,logout
+import uuid
+from django.contrib.auth.models import User
+from copy import deepcopy
 # Create your views here.
 def index(request):
 	return render(request,'index.html',{})
 
+def finances(request,user_name='pkashyap'):
+	return render(request,'finances.html',{'user_name':user_name})
+
 def forum(request):
-	return render(request,'forum.html',{})
+    form=forumForm()
+    mod = forum_text.objects.all()
+    pic = UserProfileInfo.objects.all()
+    if request.method == 'POST':
+        if request.POST.get('subject') and request.POST.get('query'):
+            model=forum_text()
+            model.user=request.user.userprofileinfo
+            model.subject = request.POST.get('subject')
+            model.query = request.POST.get('query')
+            model.save()
+            return HttpResponseRedirect(reverse('forum'))
+        else:
+            return render(request, 'index.html', {})
+    else:
+        return render(request, 'forum.html', {'form': form, 'model': mod,'pic': pic})
+
+# def forum_details(request):
+
+def forum_details(request,forum_id=37):
+    form = comment_box()
+    mod = forum_text.objects.all()
+    pic = UserProfileInfo.objects.all()
+    num=deepcopy(forum_id)
+    mode = Comment.objects.all()
+    if request.method == 'POST':
+        if request.POST.get('desc'):
+            model = Comment()
+            model.user = request.user.userprofileinfo
+            temp=forum_text.objects.get(id=forum_id)
+            model.forum = temp
+            model.desc = request.POST.get('desc')
+            model.save()
+            return HttpResponseRedirect(reverse(forum_details, args=(forum_id,)))
+        else:
+            return render(request, 'index.html', {})
+    else:
+        return render(request, 'forum_details.html', {'forum_id': forum_id, 'form': form, 'model': mod, 'pic': pic,'mode':mode})
 
 @login_required
 def special(request):
