@@ -79,7 +79,7 @@ def user_login(request):
 			print("someone tried to login and failed")
 			print("username: {} and password {}".format(username,password))
 			return HttpResponse("invalid login details supplied")
-	else:	
+	else:
 		return render(request,'login.html',{})
 
 def register(request):

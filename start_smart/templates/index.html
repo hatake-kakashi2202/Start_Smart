@@ -1,15 +1,565 @@
-{% extends "base.html" %}
-{% block body_block %}
-<br><br><br>
-<div class="container" id="main">
-  <div class="jumbotron">
-    <h1>HOME PAGE</h1>
-    {% if user.is_authenticated %}
-        <h2>Welcome {{ user.username }}!</h2>
-    {% else %}
-        <h2>Welcome to the site!</h2>
-    {% endif %}
-  </div>
-</div>
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% endblock %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<style>
+header{
+  overflow-y: hidden
+}
+*
+{
+  overflow-x : hidden;
+}
+
+.navbar {
+    transition: all 0.4s;
+}
+
+.navbar .nav-link {
+    color: #fff;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+}
+
+
+/* Change navbar styling on scroll */
+.navbar.active {
+    background: white;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.active .nav-link {
+    color: #555;
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    color: #555;
+    text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+    color: #555;
+}
+
+
+/* Change navbar styling on small viewports */
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #fff;
+    }
+
+    .navbar .navbar-brand, .navbar .nav-link {
+        color: #555;
+    }
+}
+
+
+.text-small {
+    font-size: 0.9rem !important;
+}
+
+
+body {
+
+    font-family: "Helvetica Neue",sans-serif;
+      font-weight: lighter;;
+
+}
+
+#button-addon1 {
+  color: #ffc371;
+}
+
+i {
+  color: #ffc371;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.form-control.shadow-0:focus {
+  box-shadow: none;
+}
+html { font-size: 0.5rem; }
+
+@media (min-width: 576px) {
+    html { font-size: 0.75rem; }
+}
+@media (min-width: 768px) {
+    html { font-size: 1rem; }
+}
+@media (min-width: 992px) {
+    html { font-size: 1.10rem; }
+}
+@media (min-width: 1200px) {
+    html { font-size: 1.10rem; }
+}
+
+.custom-scrollbar-js,
+.custom-scrollbar-css {
+  height: 500px;
+}
+
+
+/* Custom Scrollbar using CSS */
+.custom-scrollbar-css {
+  overflow-y: scroll;
+}
+
+/* scrollbar width */
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #00d2ff;
+  background-image: linear-gradient(to top, #00d2ff 0%, #3a7bd5 100%);
+}
+
+
+.accordion-section .panel-default .panel-title a {
+    display: block;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+.accordion-section .panel-default .panel-title a:after {
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-size: 1rem;
+    content: "\f068";
+    color: #1f7de2;
+    float: right;
+    margin-top: -12px;
+}
+.accordion-section .panel-default .panel-title a.collapsed:after {
+    content: "\f067";
+}
+.accordion-section .panel-default .panel-body {
+    font-size: 1rem;
+}
+
+
+.carousel-indicators li {
+    border: none;
+    background: #ccc;
+}
+
+.carousel-indicators li.active {
+    background: #28a745;
+}
+header{
+    width: 100%;
+      height: 100vh;
+      background: url({% static 'land.jpg' %}) no-repeat 50% 50%;
+      background-size: cover;
+}
+        </style>
+    <title>Start_smart</title>
+  </head>
+  <body>
+
+
+
+    <header >
+    <nav class="navbar navbar-expand-lg fixed-top py-3" >
+        <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">StartSmart</a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link scroll-link" href="#one">Forum <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="#two">Finances</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="#three">Networking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="#four">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="font-weight-bolder display-1 text-align-centre" style="padding-top:20vw;color:#F2F3F3">
+  </div>
+</header>
+
+<body style=" overflow-x: hidden; background: url({% static 'pattern2.png'%})">
+   <section class="py-5 d-flex align-items-center" id="one">
+       <div class="overlay-dark bg-cover bg-center p-5 mb-5" style="background-image:url({% static 'a10.jpg'%}); width: 100% ;height:500px;">
+                <div class="overlay-content text-white text-wrap p-5" id="texts" data-aos="fade-up"  data-aos-duration="4000">
+                    <h2 style="" >Dark transparent overlay</h2>
+                     <p class="lead demo-text mb-1" >Wrap your content inside a relative parent </p>
+                    <p class="lead demo-text mb-1" >Using pseudo elements apply a full dimensioned cover with a dark transparent overlay.</p>
+                    <p class="lead demo-text mb-4" >Put all your content inside a child div that has higher than the overlay. i.e. </p>
+                    <a class="btn btn-outline-light rounded-0 px-5" href="{% url 'forum' %}" >Forum</a>
+                </div>
+            </div>
+</section>
+
+<!-- Demo section 2-->
+<section style="margin-top:-75px;" id="two">
+
+            <div class="overlay-dark bg-cover bg-center p-5 mb-5" style="background-image:url({% static 'a12.jpg'%}); width: 100%;height:500px;">
+                <div class="overlay-content text-white text-center p-5" data-aos="fade-up"  data-aos-duration="3000">
+                    <h2>Dark transparent overlay</h2>
+                     <p class="lead demo-text mb-1">Wrap your content inside a relative parent </p>
+                    <p class="lead demo-text mb-1">Using pseudo elements apply a full dimensioned cover with a dark transparent overlay.</p>
+                    <p class="lead demo-text mb-4">Put all your content inside a child div that has higher than the overlay. i.e. </p>
+                    <a class="btn btn-outline-light rounded-0 px-5" href="{% url 'finances' %}" >Finances</a>
+                </div>
+            </div>
+</section>
+
+<!-- Demo section 3 -->
+<section style="margin-top:-28px;" id="three">
+      <div class="overlay-dark bg-cover bg-center p-5 mb-5" style="background-image:url({% static 'a11.jpg'%}); width: 100%;height:500px;">
+                <div class="overlay-content text-white text-center p-5" data-aos="fade-up"  data-aos-duration="3000">
+                    <h2>Dark transparent overlay</h2>
+                     <p class="lead demo-text mb-1">Wrap your content inside a relative parent </p>
+                    <p class="lead demo-text mb-1">Using pseudo elements apply a full dimensioned cover with a dark transparent overlay.</p>
+                    <p class="lead demo-text mb-4">Put all your content inside a child div that has higher than the overlay. i.e. </p>
+                    <a class="btn btn-outline-light rounded-0 px-5" href="#">Network</a>
+                </div>
+            </div>
+</section>
+
+<div style="background: url({% static 'pattern1.png'%})">
+<div class="container" style="margin-top:-45px;">
+  <div class="py-5">
+    <h3 class="font-weight-bold mb-0">Demo 3</h3>
+    <p class="font-italic text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <div class="row">
+      <!-- DEMO 3 Item-->
+      <div class="col-lg-4 mb-3 mb-lg-0">
+        <div class="hover hover-3 text-white rounded"><img src="{% static 'a13.jpg' %}" alt="">
+          <div class="hover-overlay"></div>
+          <div class="hover-3-content px-5 py-4">
+            <h3 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">Image </span>Caption</h3>
+            <p class="hover-3-description small text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
+          </div>
+        </div>
+      </div>
+      <!-- DEMO 3 Item    -->
+      <div class="col-lg-4">
+        <div class="hover hover-3 text-white rounded"><img src="{% static 'a14.jpg' %}" alt="">
+          <div class="hover-overlay"></div>
+          <div class="hover-3-content px-5 py-4">
+            <h3 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">Image </span>Caption</h3>
+            <p class="hover-3-description small text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="hover hover-3 text-white rounded"><img src="{% static 'a15.jpg' %}" alt="">
+          <div class="hover-overlay"></div>
+          <div class="hover-3-content px-5 py-4">
+            <h3 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">Image </span>Caption</h3>
+            <p class="hover-3-description small text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+<div style="background: url({% static 'a18.png' %}) ">
+  <br><br>
+<h3 style="text-align: center">Review</h3>
+<section class="pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-8 mx-auto">
+                <div class="p-5 bg-white shadow rounded">
+                    <!-- Bootstrap carousel-->
+                    <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel" data-interval="2000">
+                        <!-- Bootstrap carousel indicators [nav] -->
+                        <ol class="carousel-indicators mb-0">
+                            <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+
+
+                        <!-- Bootstrap inner [slides]-->
+                        <div class="carousel-inner px-5 pb-4">
+                            <!-- Carousel slide-->
+                            <div class="carousel-item active">
+                                <div class="media"><img class="rounded-circle img-thumbnail" src="{% static 'p6.jpg'%}" alt="" width="75">
+                                    <div class="media-body ml-3">
+                                        <blockquote class="blockquote border-0 p-0">
+                                            <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 text-success"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            <footer class="blockquote-footer">Someone famous in
+                                                <cite title="Source Title">Source Title</cite>
+                                            </footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Carousel slide-->
+                            <div class="carousel-item">
+                                <div class="media"><img class="rounded-circle img-thumbnail" src="{% static 'p1.webp' %}" alt="" width="75">
+                                    <div class="media-body ml-3">
+                                        <blockquote class="blockquote border-0 p-0">
+                                            <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 text-success"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            <footer class="blockquote-footer">Someone famous in
+                                                <cite title="Source Title">Source Title</cite>
+                                            </footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Carousel slide-->
+                            <div class="carousel-item">
+                                <div class="media"><img class="rounded-circle img-thumbnail" src="{% static 'p3.jpg' %}" alt="" width="75">
+                                    <div class="media-body ml-3">
+                                        <blockquote class="blockquote border-0 p-0">
+                                            <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 text-success"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            <footer class="blockquote-footer">Someone famous in
+                                                <cite title="Source Title">Source Title</cite>
+                                            </footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Bootstrap controls [dots]-->
+                        <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <i class="fa fa-angle-left text-dark text-lg"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next width-auto" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <i class="fa fa-angle-right text-dark text-lg"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+<div style="background: url({% static 'a20.jpg' %})">
+                <div class="container">
+<div data-aos="fade-up" data-aos-duration="1000" >
+  <br><br>
+<h2 style="text-align: center;">Queries? Ask Us</h2>
+<h6 style="text-align: center; columns: lightgray;">address all your startup related queries here.</h6>
+</div>
+<div class="row py-5">
+    <div class="col-lg-8 mx-auto" >
+
+      <div class="card mb-4"  style="height:400px;">
+
+
+        <div class="custom-scrollbar-css p-2">
+          <section class="accordion-section clearfix mt-3" aria-label="Question Accordions" >
+              <div class="container" >
+
+
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                      What are the benefits of Solodev CMS?
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                    <div class="panel-body px-3 mb-4">
+                    <p>With Solodev CMS, you and your visitors will benefit from a finely-tuned technology stack that drives the highest levels of site performance, speed and engagement - and contributes more to your bottom line. Our users fell in love with:</p>
+                    <ul>
+                      <li>Light speed deployment on the most secure and stable cloud infrastructure available on the market.</li>
+                      <li>Scalability – pay for what you need today and add-on options as you grow.</li>
+                      <li>All of the bells and whistles of other enterprise CMS options but without the design limitations - this CMS simply lets you realize your creative visions.</li>
+                      <li>Amazing support backed by a team of Solodev pros – here when you need them.</li>
+                    </ul>
+                    </div>
+                  </div>
+                  </div>
+
+                  <hr>
+                  <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading1">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                      How easy is it to build a website with Solodev CMS?
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                    <div class="panel-body px-3 mb-4">
+                    <p>Building a website is extremely easy. With a working knowledge of HTML and CSS you will be able to have a site up and running in no time.</p>
+                    </div>
+                  </div>
+                  </div>
+
+                  <hr>
+                  <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading2">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                      What is the uptime for Solodev CMS?
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                    <div class="panel-body px-3 mb-4">
+                    <p>Using Amazon AWS technology which is an industry leader for reliability you will be able to experience an uptime in the vicinity of 99.95%.</p>
+                    </div>
+                  </div>
+                  </div>
+                  <hr>
+                  <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading3">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                      Can Solodev CMS handle multiple websites for my company?
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                    <div class="panel-body px-3 mb-4">
+                    <p>Yes, Solodev CMS is built to handle the needs of any size company. With our Multi-Site Management, you will be able to easily manage all of your websites.</p>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              <hr>
+               <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                      What are the benefits of Solodev CMS?
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                    <div class="panel-body px-3 mb-4">
+                    <p>With Solodev CMS, you and your visitors will benefit from a finely-tuned technology stack that drives the highest levels of site performance, speed and engagement - and contributes more to your bottom line. Our users fell in love with:</p>
+                    <ul>
+                      <li>Light speed deployment on the most secure and stable cloud infrastructure available on the market.</li>
+                      <li>Scalability – pay for what you need today and add-on options as you grow.</li>
+                      <li>All of the bells and whistles of other enterprise CMS options but without the design limitations - this CMS simply lets you realize your creative visions.</li>
+                      <li>Amazing support backed by a team of Solodev pros – here when you need them.</li>
+                    </ul>
+                    </div>
+                  </div>
+                  </div>
+
+                  <hr>
+              </div>
+              </section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+          </body>
+  <!-- Footer -->
+  <footer  style="
+  background: linear-gradient(to bottom right ,#19181A ,#2F4454 );
+">
+    <div class="container py-5">
+      <div class="row py-4">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3">
+          <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+          <ul class="list-inline mt-4">
+            <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
+            <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+            <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase font-weight-bold mb-4">Shop</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="#" class="text-muted">For Women</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">For Men</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">Stores</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">Our Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="#" class="text-muted">Login</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">Register</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">Wishlist</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">Our Products</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Copyrights -->
+    <div >
+      <div class="container text-center">
+        <p class="text-muted mb-0 py-2">© 2019 StartSmart All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- End -->
+    <script>
+        $(function () {
+    $(window).on('scroll', function () {
+        if ( $(window).scrollTop() > 10 ) {
+            $('.navbar').addClass('active');
+        } else {
+            $('.navbar').removeClass('active');
+        }
+    });
+});
+
+    </script>
+
+  </body>
+</html>
+<!---
+
+-->

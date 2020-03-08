@@ -1,108 +1,103 @@
-{% extends "base.html" %}
-{% load static %}
-{% load crispy_forms_tags %}
-{% block body_block %}
-
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %} {% block body_block %}
 <head>
-<style>
-    #searchbar {
-        float: right;
-        width: max-content;
-    }
-
-    #searchforum {
-        width: 32vw;
-    }
-
-    #left {
-        padding: 20px;
-        float: left;
-        width: 52.5%;
-        /* The width is 20%, by default */
-    }
-
-    #right {
-        padding: 20px;
-        margin-left: 5%;
-        float: right;
-        width: 42.5%;
-        /* The width is 20%, by default */
-    }
-
-    #left1 {
-        float: left;
-        margin-left: 2%;
-        width: 50%;
-        /* The width is 20%, by default */
-    }
-
-    #right1 {
-        padding-top: 0vx;
-        margin-left: 6%;
-        float: right;
-        width: 40%;
-        /* The width is 20%, by default */
-    }
-
-    #trending {
-        padding: 20px;
-        margin-left: 5%;
-        float: right;
-        padding-right: 0%;
-        width: 43.8%;
-    }
-
-    /* Use a media query to add a break point at 800px: */
-    @media screen and (max-width:800px) {
+    <style>
+      header
+      {
+          width: 100%;
+            height: 100vh;
+            background: url({% static 'a10.jpg' %}) no-repeat 50% 50%;
+            background-size: cover;
+      }
         #searchbar {
-            margin-left: 0%;
-            width: 100%;
+            float: right;
+            width: max-content;
         }
 
         #searchforum {
-            width: 78%;
+            width: 32vw;
         }
 
-        #btn {
-            width: 20%;
-            font-size: small;
+        #left {
+            padding: 20px;
+            float: left;
+            width: 52.5%;
+            style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+            /* The width is 20%, by default */
         }
 
-        #left,
         #right {
-            width: 100%;
-            /* The width is 100%, when the viewport is 800px or smaller */
-            margin-left: 0%;
+            padding: 20px;
+            margin-left: 5%;
+            float: right;
+            width: 42.5%;
+            style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+            /* The width is 20%, by default */
         }
 
         #left1 {
-            width: 100%;
-            /* The width is 100%, when the viewport is 800px or smaller */
-            margin-left: 0%;
-            margin-bottom: 5%;
+            float: left;
+            margin-left: 2%;
+            width: 50%;
+            style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+            /* The width is 20%, by default */
         }
 
         #right1 {
-            width: 100%;
-            /* The width is 100%, when the viewport is 800px or smaller */
-            margin-left: 0%;
+            padding-top: 0vx;
+            margin-left: 6%;
+            float: right;
+            width: 40%;
+
+            /* The width is 20%, by default */
         }
 
-    }
-</style>
+        #trending {
+            padding: 20px;
+            margin-left: 5%;
+            float: right;
+            padding-right: 0%;
+            width: 43.8%;
+            style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+        }
+        /* Use a media query to add a break point at 800px: */
+
+        @media screen and (max-width:800px) {
+            #searchbar {
+                margin-left: 0%;
+                width: 100%;
+            }
+            #searchforum {
+                width: 78%;
+            }
+            #btn {
+                width: 20%;
+                font-size: small;
+            }
+            #left,
+            #right {
+                width: 100%;
+                /* The width is 100%, when the viewport is 800px or smaller */
+                margin-left: 0%;
+            }
+            #left1 {
+                width: 100%;
+                /* The width is 100%, when the viewport is 800px or smaller */
+                margin-left: 0%;
+                margin-bottom: 5%;
+            }
+            #right1 {
+                width: 100%;
+                /* The width is 100%, when the viewport is 800px or smaller */
+                margin-left: 0%;
+            }
+        }
+        .bg-cover {
+    background-size: cover !important;
+}
+    </style>
+    {% block forum %}FORUM{% endblock forum %}
 </head>
-<body class="text-center" style="background-image: url('/static/bg-main.jpg'); background-size: cover;">
-    <nav class="navbar navbar-dark bg-dark" aria-label="breadcrumb">
-        <ol class="breadcrumb" style="background-color:#343a40;">
-            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Forum</li>
-        </ol>
-    </nav>
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand">
-            <h1>Forum</h1>
-        </a>
-    </nav>
+<body class="text-center" style="background-image:url({% static 'forum-bg.jpg' %});background-size:100% 100%">
     <div class="buttons">
         <div class="row" style="padding: 1vw;">
             <nav class="navbar navbar-light bg-light " id="left">
@@ -114,8 +109,7 @@
             </nav>
             <nav class="navbar navbar-light bg-light mr-auto" id="right">
                 <form class="form-inline" id="searchbar">
-                    <input class="form-control mr-sm-2 float-left" id="searchforum" type="search"
-                        placeholder="Search Forum" aria-label="Search Forum">
+                    <input class="form-control mr-sm-2 float-left" id="searchforum" type="search" placeholder="Search Forum" aria-label="Search Forum">
                     <button class="btn btn-outline-secondary float-left" type="submit" id="btn">Search</button>
                 </form>
             </nav>
@@ -136,8 +130,7 @@
 
                 <!-- Modal body -->
                 <form method="POST" action="{% url 'forum' %}">
-                    {% csrf_token %}
-                    {{ form|crispy }}
+                    {% csrf_token %} {{ form|crispy }}
                     <!-- Modal footer -->
                     <input type="submit" value="ask">
                 </form>
@@ -147,27 +140,55 @@
     </div>
 
     <div class="row">
-        <div class="row">
-            <div id="left1">
-                {% for data in model %}
-                <div class="card border-light">
-                    <div class="card-header">user:{{data.user}} created_at:{{data.created_at}}<a
-                            href="{% url 'forum_details_sp' forum_id=data.id %}"><button>Reply</button></a></div>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <div class="sub">subject:{{data.subject}}</div>
-                        </h5>
-                        <p class="card-text">
-                            <div class="quer">query:{{data.query}}</div>
-                        </p>
+        <div id="left1">
+            {% for data in model %}
+            <div class="card border-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div class="row">
+                    <div class="col-lg-10 forum-body" style="padding-right: 0px;">
+                        <div class="card-header">
+                          <a href="#" class="pull-left">
+                              <img src="{{ data.user.profile_pic.url }}"  alt="" class="img-fluid img-thumbnail rounded-circle" style="width:50px;height:50px;">
+                          </a>
+                          <strong class="text-success float-left" style="padding-left:1vw;padding-top:1vw;">{{data.user}}</strong>
+                          <span class="text-muted pull-right">
+                            <small class="text-muted">{{data.created_at}}</small>
+                        </span>
+                      </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <div class="sub">subject:{{data.subject}}</div>
+                            </h5>
+                            <p class="card-text">
+                                <div class="quer">query:{{data.query}}</div>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2" style="padding-left: 1px;">
+                        <ul class="list-group" style="padding-left: 0%;">
+                            <li class="list-group-item list-group-item-action">
+                                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                                <br> comments
+                            </li>
+                            <li class="list-group-item list-group-item-action">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                <br> views
+                            </li>
+                            <a href="{% url 'forum_details_sp' forum_id=data.id %}">
+                                <li class="list-group-item list-group-item-action">
+                                    <i class="fa fa-reply" aria-hidden="true"></i>
+                                    <br> Reply
+                                </li>
+                            </a>
+                        </ul>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            <br> {% endfor %}
+        </div>
 
         <div id="right1">
-            <div class="card border-light">
-                <div class="card-header">Header</div>
+            <div class="card border-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div class="card-header">Trending Discussions</div>
                 <div class="card-body">
                     <h5 class="card-title"></h5>
                     <p class="card-text left"></p>
@@ -175,9 +196,9 @@
             </div>
         </div>
 
-
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="{% static 'forum.js' %}"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{% static 'forum.js' %}"></script>
 
 </body>
 {% endblock %}
