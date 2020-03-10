@@ -7,8 +7,13 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth import authenticate,login,logout
 import uuid
 from django.contrib.auth.models import User
-from copy import deepcopy
+
+from django.db.models import Q
+from django.views.generic import TemplateView, ListView
+
 # Create your views here.
+
+
 def index(request):
 	return render(request,'index.html',{})
 
@@ -38,7 +43,6 @@ def forum_details(request,forum_id=37):
     form = comment_box()
     mod = forum_text.objects.all()
     pic = UserProfileInfo.objects.all()
-    num=deepcopy(forum_id)
     mode = Comment.objects.all()
     if request.method == 'POST':
         if request.POST.get('desc'):
@@ -53,6 +57,29 @@ def forum_details(request,forum_id=37):
             return render(request, 'index.html', {})
     else:
         return render(request, 'forum_details.html', {'forum_id': forum_id, 'form': form, 'model': mod, 'pic': pic,'mode':mode})
+
+
+
+
+
+
+class HomePageView(TemplateView):
+    template_name = 'forum.html'
+
+class SearchResultsView(ListView):
+    model = forum_text
+    template_name = 'forumsearch.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = forum_text.objects.filter(
+            Q(subject__icontains=query)
+        )
+        return object_list
+
+
+
+
 
 @login_required
 def special(request):
