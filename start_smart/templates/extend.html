@@ -1,0 +1,133 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/377fe889c9.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="extend.css">
+    <style>
+      html{ 
+        overflow-x: hidden;
+      }
+      .card{
+        background-color: #c79500;
+      }
+      .card:hover{
+        transition: all 0.2s ease-out;
+        box-shadow: 0px 4px 8px rgba(255,0,0,0.3);
+        top: -2px;
+      }
+      .boxi{
+          height: 180px ;
+          background-color: #fefefe;
+          border: 0.5px solid grey;
+          
+      }
+   
+      #i1,#i2,#i3,#i4,#i5,#i6{
+          margin-top: 10px;
+          margin-left: 5%;
+          margin-right: 5%;
+          background-color: #fefefe;
+      }
+      #di{
+          height: 80%;
+          width: 60%;
+          border: 0.5px solid black;
+          margin-left: 5%;
+      }
+      #para1,#para2,#para3,#para4,#para5,#para6{
+          padding-left: 20%;
+      }
+      #im{
+          background-image: url({% static 'companyBackground.jpg' %});
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          height: 100%;
+      }
+      #fin{
+          padding-left: 7.664%;
+          padding-top: 7%;          
+          font-size: 100px;
+      }
+      body{
+        background-image: url({% static 'dashmainback.jpg' %});
+                background-repeat: no-repeat;
+                  background-size: 100% 100%;
+      }
+      .boxi{
+        background-color: rgba(200,200,200,1)!important;
+      }
+      @media only screen and (max-width: 600px) {
+      #fin {
+          font-size: 30px;
+      }
+      #im{
+          width: 100%;
+          height: 60%;
+        }
+      }
+  </style>
+
+    <title>Start_smart</title>
+  </head>
+  <body>
+   
+  <div id="im">
+    <p id="fin"><img src="{% static 'user.png' %}" height="70px" width="70px"><span style="font-family: 'Roboto Slab';font-size:80px; color: black;">Company Name</span></span></p>
+</div>
+<div class="container" style="margin-top: 30px; margin-bottom: 30px;">
+  <div class="row">
+  <div class="col-lg-9 col-md-12 col-sm-12">
+  <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-4 boxi" style="border-radius: 15px 0px 0px 0px!important;">
+          <img id="i1" src="{% static 'focusIndustry.jpg' %}" alt="" width="30px" height="30px"/><b>FOCUS INDUSTRY</b>
+          <div class="container"><p id="para1">Logistics</p></div>
+
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-4 boxi">
+          <img id="i2" src="{% static 'serviceAreas.jpg' %}" alt="" width="30px" height="30px"/><b>SERVICE AREAS</b>
+          <div class="container"><p id="para2">E-commerce</p></div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-4 boxi" style="border-radius: 0px 15px 0px 0px!important;" >
+          <img id="i3" src="{% static 'NoOfActiveYears.jpg' %}" alt="" width="30px" height="30px"/><b>N0. OF ACTIVE YEARS</b>
+          <div class="container"><p id="para3">-</p></div>
+      </div>
+  </div>
+  
+  <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-4 boxi" style="border-radius: 0px 0px 0px 15px!important;">
+          <img id="i4" src="{% static 'NetMRR.jpg' %}" alt="" width="30px" height="30px"/><b>Net MRR</b>
+          <p id="para4">$0.1 million</p>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-4 boxi">
+          <img id="i5" src="{% static 'revenueYTD.png' %}" alt="" width="30px" height="30px"/><b>REVENUE YTD</b>
+          <p id="para5">$8.6 million</p>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-4 boxi" style="border-radius: 0px 0px 15px 0px!important;">
+          <img id="i6" src="{% static 'NetProfitMargin.jpg' %}" alt="" width="30px" height="30px"/><b>NET PROFIT MARGIN</b>
+          <p id="para6">70%</p>
+            </div>
+      </div>
+    </div>
+      <div class="col-sm-12 col-md-12 col-lg-3" style="margin-top: 100px;">
+        <div class="card text-white mb-3" onclick="myFunction()">
+          <div class="card-header" style="font-size: 30px; text-align:center"><img src="{% static 'star.png' %}" height=50px width=50px />RATING</div>
+            <div class="card-body" style="background-color: #ffa700; ; text-align:center">
+        <span style="font-size:100%;color:yellow;">&starf;</span>
+        <span style="font-size:100%;color:yellow;">&starf;</span>
+        &star;
+        &star;
+        &star;
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

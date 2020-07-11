@@ -1,0 +1,67 @@
+{% if error %}
+{{ error }}
+<br>
+<br>
+{% endif %}
+<!-- Enter OTP
+<form method="POST">
+	{% csrf_token %}
+	OTP:
+	<br>
+	<br>
+	<input type="text" name="otp">
+	<br>
+	<input class="btn btn-primary" type="submit" value="Continue">
+</form> -->
+
+
+<!doctype html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/377fe889c9.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/lobster" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="blogs.css">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <title>OTP</title>
+    <style>
+     .card{
+             background-color: rgb(230,230,230);
+             box-shadow: 0px 4px 8px rgba(20,20,20,1); 
+             border-radius: 20px;
+             display: block;
+             margin-left: auto;
+             margin-right: auto;
+             width: 25rem;
+             margin-bottom: 30px; 
+             margin-top: 30px;
+           }
+      .card:hover{
+        transition: all 0.5s ease-out;
+        top: 0px;  
+      }
+      .a{
+        display: inline!important;
+      }
+    </style>
+  </head>
+  <body style="background-color: rgba(200, 162, 200);">
+      <div class="container">
+        <div class="card">
+          <div class="card-header" style="background-color: blueviolet!important;border-radius: 20px 20px 0px 0px;font-size: 40px;text-align: center;color: white;">
+            ENTER OTP
+          </div>
+          <form method="POST">
+	{% csrf_token %}
+          <div class="card-body">
+            
+            <p class="card-text"><input type="text" name="otp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter OTP here"></p>
+            <button type="submit" class="btn btn-primary">Next →</button>
+          </div>
+      </form>
+        </div>
+      </div>
+  </body>

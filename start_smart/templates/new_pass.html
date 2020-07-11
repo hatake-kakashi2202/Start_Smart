@@ -1,0 +1,80 @@
+{% if error %}
+{{ error }}
+<br>
+<br>
+{% endif %}
+
+<!-- <form method="POST" >
+	{% csrf_token %}
+	
+	Password:
+	<br>
+	<input type="password" name="password1">
+	<br>
+	Confirm Password:
+	<br>
+	<input type="password" name="password2">
+	<br>
+	<br>
+	<input class="btn btn-primary" type="submit" value="Change Password">
+</form> -->
+
+
+<!doctype html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/377fe889c9.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/lobster" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="blogs.css">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <title>ChangePassword</title>
+    <style>
+     .card{
+             background-color: rgb(230,230,230);
+             box-shadow: 0px 4px 8px rgba(20,20,20,1); 
+             border-radius: 20px;
+             
+             display: block;
+             margin-left: auto;
+             margin-right: auto;
+             width: 35rem;
+             margin-bottom: 30px; 
+             margin-top: 30px;
+
+           }
+      .card:hover{
+        transition: all 0.5s ease-out;
+        top: 0px;  
+      }
+
+      .a{
+        display: inline!important;
+      }
+    </style>
+  </head>
+  <body style="background-image: url(update.jpg); background-repeat: no-repeat;background-attachment: fixed;
+  background-size: 100% 100%;">
+      <div class="container">
+        <div class="card">
+          <div class="card-header" style="background-color:rgba(180, 142, 180)!important;border-radius: 20px 20px 0px 0px;font-size: 50px;text-align: center;color: white;">
+            CHANGE PASSWORD
+          </div>
+          <form method="POST" >
+	{% csrf_token %}
+          <div class="card-body">
+            <label for="exampleInput1" style="font-size: 20px;"><b>Enter Password:</b></label>
+            <p class="card-text"><input type="password" name="password1" class="form-control" id="exampleInput1" aria-describedby="emailHelp" placeholder="Enter password"></p>
+            <label for="exampleInput2" style="font-size: 20px;"><b>Confirm Password:</b></label>
+            <p class="card-text"><input type="password" name="password2" class="form-control" id="exampleInput2" aria-describedby="emailHelp" placeholder="Confirm password"></p>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+          </div>
+      </form>
+        </div>
+      </div>
+  </body>
+
+

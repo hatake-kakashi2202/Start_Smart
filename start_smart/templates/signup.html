@@ -1,0 +1,452 @@
+	{% load static %}
+	{% load crispy_forms_tags %}
+	<!-- Navbar-->
+	<head>
+	  <!-- Required meta tags -->
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <!-- Bootstrap CSS -->
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<style>
+	*
+	{
+	    overflow-x:hidden;
+	}
+	.border-md {
+	    border-width: 2px;
+	}
+
+	.btn-facebook {
+	    background: #405D9D;
+	    border: none;
+	}
+
+	.btn-facebook:hover, .btn-facebook:focus {
+	    background: #314879;
+	}
+
+	.btn-twitter {
+	    background: #42AEEC;
+	    border: none;
+	}
+
+	.btn-twitter:hover, .btn-twitter:focus {
+	    background: #1799e4;
+	}
+	body {
+	    min-height: 100vh;
+	}
+
+	.form-control:not(select) {
+	    padding: 1.5rem 0.5rem;
+	}
+
+	select.form-control {
+	    height: 52px;
+	    padding-left: 0.5rem;
+	}
+
+	.form-control::placeholder {
+	    color: #ccc;
+	    font-weight: bold;
+	    font-size: 0.9rem;
+	}
+	.form-control:focus {
+	    box-shadow: none;
+	}
+
+	.navbar {
+	    transition: all 0.4s;
+	    background-color: white;
+	    color: black;
+	}
+
+	.navbar .nav-link {
+	    color: black;
+	}
+
+	.navbar .nav-link:hover,
+	.navbar .nav-link:focus {
+	    color: black;
+	    text-decoration: none;
+	}
+
+	.navbar .navbar-brand {
+	    color: black;
+	}
+
+
+	/* Change navbar styling on scroll */
+	.navbar.active {
+	    background: black;
+	    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+	}
+
+	.navbar.active .nav-link {
+	    color: white;
+	}
+
+	.navbar.active .nav-link:hover,
+	.navbar.active .nav-link:focus {
+	    color: black;
+	    text-decoration: none;
+	}
+
+	.navbar.active .navbar-brand {
+	    color: black;
+	}
+
+
+	/* Change navbar styling on small viewports */
+	@media (max-width: 991.98px) {
+	    .navbar {
+	        background: black;
+	    }
+
+	    .navbar .navbar-brand, .navbar .nav-link {
+	        color: black;
+	    }
+	}
+
+
+	</style>
+	<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+	    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
+
+	    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	</head>
+	<nav class="navbar navbar-expand-lg fixed-top py-3" >
+	        <div class="container"><a href="{% url 'index' %}" class="navbar-brand text-uppercase font-weight-bold">StartSmart</a>
+	            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+
+	            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+	                <ul class="navbar-nav ml-auto">
+	                    <li class="nav-item active">
+	                        <a class="nav-link scroll-link" href="{% url 'forum' %}">Forum <span class="sr-only">(current)</span></a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link scroll-link" href="{% url 'finance' %}">Finances</a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link scroll-link" href="#three">Networking</a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link scroll-link" href="#four">Dashboard</a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </nav>
+	    <br>
+	<body>
+	  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	  <script src="https://kit.fontawesome.com/377fe889c9.js" crossorigin="anonymous"></script>
+	<div class="container">
+	    <div class="row py-5 mt-4 align-items-center">
+	        <!-- For Demo Purpose -->
+
+	        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+	            <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+	            <h1>Create an Account</h1>
+	        </div>
+
+	        <!-- Registeration Form -->
+	        <div class="col-md-7 col-lg-6 ml-auto">
+	        	        {% if error %}
+	{{ error }}
+	<br>
+	<br>
+	{% endif %}
+	            <form role="form" method="POST" action="{% url 'signup' %}">
+	            	{% csrf_token %}
+	                <div class="row">
+	                    <!-- First Name -->
+	                    <div class="input-group col-lg-6 mb-4">
+	                        <div class="input-group-prepend">
+	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                <i class="fa fa-user text-muted"></i>
+	                            </span>
+	                        </div>
+	                        <input id="firstName" type="text" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md">
+	                    </div>
+
+	                    <!-- Last Name -->
+	                    <div class="input-group col-lg-6 mb-4">
+	                        <div class="input-group-prepend">
+	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                <i class="fa fa-user text-muted"></i>
+	                            </span>
+	                        </div>
+	                        <input id="lastName" type="text" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md">
+	                    </div>
+
+	                    <!-- Email Address -->
+	                    <div class="input-group col-lg-12 mb-4">
+	                        <div class="input-group-prepend">
+	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                <i class="fa fa-envelope text-muted"></i>
+	                            </span>
+	                        </div>
+	                        <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
+	                    </div>
+
+	                    <!-- Username -->
+	                    <div class="input-group col-lg-12 mb-4">
+	                        <div class="input-group-prepend">
+	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                <i class="fa fa-user text-muted"></i>
+	                            </span>
+	                        </div>
+	                        <input id="username" type="text" name="username" placeholder="Username" class="form-control bg-white border-left-0 border-md">
+	                    </div>
+	                   
+	                    <!-- Job -->
+	                    <div class="input-group col-lg-12 mb-4">
+	                        <div class="input-group-prepend">
+	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                <i class="fas fa-toolbox"></i>
+	                            </span>
+	                        </div>
+	                        <select id="job" name="type" class="form-control custom-select bg-white border-left-0 border-md job">
+	                            <option value="-1">Choose your Title</option>
+	                            <option value="0">Startup</option>
+	                            <option value="3">Corporate</option>
+	                            <option value="2">Individual</option>
+	                            <option value="1">Mentor</option>
+	                        </select>
+	                    </div>
+	                    <div id="tbhidden">
+	                      <div class="input-group col-lg-12 mb-4">
+	                          <div class="input-group-prepend">
+	                              <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                  <i class="far fa-building text-muted"></i>
+	                              </span>
+	                          </div>
+	                          <input id="company" type="text" name="company_name" placeholder="Company" class="form-control bg-white border-left-0 border-md">
+	                      </div>
+	                      <div class="row p-3">
+	                      <div class="input-group col-lg-6 mb-4">
+	                          <div class="input-group-prepend">
+	                              <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                  <i class="fas fa-angle-double-up text-muted"></i> 
+	                              </span>
+	                          </div>
+	                          <input id="headq" type="text" name="head_quarters" placeholder="headquarters" class="form-control bg-white border-left-0 border-md">
+	                      </div>
+	                      <div class="input-group col-lg-6 mb-4">
+	                          <div class="input-group-prepend">
+	                              <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                  <i class="fas fa-users text-muted"></i>
+	                              </span>
+	                          </div>
+	                          <input id="noemp" type="number" name="emp_no" placeholder="No of Employees" class="form-control bg-white border-left-0 border-md">
+	                      </div>
+	                      </div>
+	                      <div class="input-group col-lg-12 mb-4">
+	                          <div class="input-group-prepend">
+	                              <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                  <i class="fas fa-hat-wizard text-muted"></i>
+	                              </span>
+	                          </div>
+	                          <input id="ceo" type="textarea" name="founder" placeholder="current CEO" class="form-control bg-white border-left-0 border-md">
+	                      </div>
+	                      <div class="input-group col-lg-12 mb-4">
+	                          <div class="input-group-prepend">
+	                              <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                  <i class="far fa-comment-alt text-muted"></i>
+	                              </span>
+	                          </div>
+	                          <input id="sdesc" type="textarea" name="company_desc" placeholder="Short description" class="form-control bg-white border-left-0 border-md">
+	                      </div>
+	                    </div>
+	                    <p id="loc"></p>
+	                    <!-- Password -->
+	                    <div class="input-group col-lg-6 mb-4">
+	                        <div class="input-group-prepend">
+	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                <i class="fa fa-lock text-muted"></i>
+	                            </span>
+	                        </div>
+	                        <input id="password" type="password" name="password1" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+	                    </div>
+
+	                    <!-- Password Confirmation -->
+	                    <div class="input-group col-lg-6 mb-4">
+	                        <div class="input-group-prepend">
+	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                <i class="fa fa-lock text-muted"></i>
+	                            </span>
+	                        </div>
+	                        <input id="passwordConfirmation" type="password" name="password2" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+	                    </div>
+
+	                    <!-- Submit Button -->
+	                    <div class="form-group col-lg-12 mx-auto mb-0">
+	                        <button id="othsub" type="submit" class="btn btn-success font-weight-bold">Create your account</button>
+	                    </div>
+	                    <br>
+	                    <div id="stpsub" class="form-group col-lg-12 mx-auto mb-0">
+	                            <button id="stpsub" type="submit" class="btn btn-success font-weight-bold">Create your account as a Startup</button>
+	                    </div>
+
+	                    <!-- Divider Text -->
+	                    <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+	                        <div class="border-bottom w-100 ml-5"></div>
+	                        <span class="px-2 small text-muted font-weight-bold text-muted" style="padding-right:10px;">OR</span>
+	                        <div class="border-bottom w-100 mr-5"></div>
+	                    </div>
+
+	                    <!-- Already Registered -->
+	                    <div class="text-center w-100">
+	                        <p class="text-muted font-weight-bold">Already Registered? <a href="{% url 'login' %}" class="text-primary ml-2">Login</a></p>
+	                    </div>
+	 					</form>
+	                </div>
+	           
+	        </div>
+	    </div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+	  $(function () {
+	    $('input, select').on('focus', function () {
+	        $(this).parent().find('.input-group-text').css('border-color', '#80bdff');
+	    });
+	    $('input, select').on('blur', function () {
+	        $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
+	    });
+	});
+	// $(function(){
+	//   $(".stup").click(function(){
+	//     $(".stbtn").show(1000);
+	//   });
+	//   $(".others").click(function(){
+	//     $(".otrbtn").hide(1000);
+	//   });
+	// });
+	// (function(){
+	//   $(".others").click(function(){
+	//     $(".stbtn").hide(1000);
+	//   });
+	// });
+	</script>
+	<script>
+	$( "#job" ).change(function () {
+	var selectedOption = $(this).find(":selected").text();
+	var st = "Startup";
+	console.log(selectedOption)
+	if (selectedOption !== st)
+	{
+	  $("#tbhidden").hide(1000);
+	  $("#stpsub").hide(1000);
+	  $("#othsub").show(1000)
+	}
+	else {
+	 $("#tbhidden").show(1000);
+	 $("#stpsub").show(1000);
+	 $("#othsub").hide(1000);
+	 $()
+	}
+	});
+	$(document).ready(function() {
+	   $('#tbhidden').hide();
+	   $("#stpsub").hide();
+	});
+	</script>
+	</body>
+	<!-- <body style="background-image: url('/static/background.jpg'); background-size: cover;">
+	  <div class="container">
+	    <div class="jumbotron">
+	      {% if registered %}
+	        <h1>Thank you for registering!</h1>
+	      {% else %}
+	        <h1 class="text-center">Register Here</h1>
+	        <h3 class="text-center">Just fill out the form.</h3>
+
+	        <form enctype="multipart/form-data" method="POST">
+	          {% csrf_token %}
+	          {{ user_form|crispy }}
+	          {{ profile_form|crispy }}
+	          <input type="submit" name="" value="Register">
+	        </form>
+
+	      {% endif %}
+
+	    </div>
+	  </div>
+	  </body> -->
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <!DOCTYPE html>
+	<html>
+	<head>
+		<title>sign Up</title>
+	</head>
+
+	{% if error %}
+	{{ error }}
+	<br>
+	<br>
+	{% endif %}
+
+	<body>
+	<h2>Sign up</h2>
+	<form method="POST" action="{% url 'signup' %}">
+		{% csrf_token %}
+		First Name:
+		<br>
+		<input type="text" name="firstname">
+		<br>
+		Last Name:
+		<br>
+		<input type="text" name="lastname">
+		<br>
+		username:
+		<br>
+		<input type="text" name="username">
+		<br>
+		email:
+		<br>
+		<input type="email" name="email">
+		<br>
+		Enter type of account:
+		<br>
+		<input type="Number" name="type">
+		<br>
+		Password:
+		<br>
+		<input type="password" name="password1">
+		<br>
+		Confirm Password:
+		<br>
+		<input type="password" name="password2">
+		<br>
+		<br>
+		<input class="btn btn-primary" type="submit" value="Sign Up">
+	</form>
+	</body>
+	</html> -->

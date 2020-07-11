@@ -1,0 +1,64 @@
+<!doctype html>
+{% load static %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'blogs.css' %}">
+<h1 style="font-family: 'Anton', sans-serif;font-style: normal;font-size: 80px;padding: 20px;" class="container">BLOGS</h1>
+
+<div class="row" style="margin-bottom: 20px;">
+<div style="float: right;position:relative; left: 68%; top:2px;">
+<form class="form-inline " id="searchbar"  action="{% url 'blogsearch' %}" method="get" style="">
+                    <input name="q" class="form-control " id="searchblog" type="search" placeholder="Search blog" aria-label="Search blog">
+                    <button class="btn btn-outline-secondary" type="submit" id="btn">Search</button>
+                </form>
+               </div>
+        </div>
+   
+  
+
+{% for abc in all_blogs %}
+
+<body>
+
+<div class="container">
+	
+	<div class="col s12">
+		<div class="card" >
+			<div class="card-header"><span style="font-size:30px;  padding-top: 20px; font-color:#5FECC4;">{{ abc.0.title }}</span></div>
+			<div class="card-body">
+				<p style="text-align: right;"><i><b>By: </b>{{ abc.0.writer }}<br><b>Published Date:</b>{{ abc.0.pub_date_pretty }}</i></p>
+				{{ abc.0.body }}
+				{% if  abc.0.inter == ' ' %}	
+				<p><b>Be the first to show interest</b></p>
+				{% else %}
+
+				<p><b>Interested by {{abc.1}} </b></p>
+				{% endif %}
+				<a href="{% url 'interest'  abc.0.id  %}"><button type="button" class="btn btn-primary" data-toggle="modal">
+					Interested
+				</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br>
+
+{% endfor %}
+<br>
+
+<div class="container">
+
+<a href="{% url 'create' %}" >click here</a>
+to create a blog
+<br>
+<a href="{% url 'myblogs' %}">click here</a>
+to view your blogs
+</div>
+<br>
+</body>

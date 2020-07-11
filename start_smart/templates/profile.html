@@ -1,0 +1,219 @@
+<!doctype html>
+{% load static %}
+<!-- <h2>Your Info</h2>
+<br>
+<br>
+<b>First Name:</b>
+{{user.first_name}}
+<br>
+<b>Last Name:</b>
+{{user.last_name}}
+<br>
+<b>Company:</b>
+{{user.client.company_name}}
+<br>
+
+<b>Email:</b>
+{{user.email}}
+<br>
+<b>Username:</b>
+{{user.username}}
+<br> -->
+
+
+{% if is_startup %}
+
+<!-- <h2>Your Startup Info</h2>
+<b>First Name:</b>
+{{user.first_name}}
+<br>
+<b>Last Name:</b>
+{{user.last_name}}
+<br>
+<b>Email:</b>
+{{user.email}}
+<br>
+<b>Username:</b>
+{{user.username}}
+<br>
+<br>
+<b>Company Name:</b>
+{{user.startup.company_name}}
+<br>
+{% if user.startup.emp_no != 0 %}
+	<br>
+	<b>Number of Employees:</b>
+	{{user.startup.emp_no}}
+	<br>
+{% endif %}
+{% if  user.startup.Founder is not None %}
+	<br>
+	<b>Founder:</b>
+	{{user.startup.Founder}}
+	<br>
+{% endif %}
+<br>
+{% if  user.startup.company_desc != '' %}
+	<b>Company Description:</b>
+	{{user.startup.company_desc}}
+	<br>
+{% endif %}
+<br>
+
+{% if  user.startup.head_quarters != '' %}
+	<b>Company Headquarters:</b>
+	{{user.startup.head_quarters}}
+	<br>
+{% endif %} -->
+
+
+<html>
+  <head>
+    <title>Startup Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body style="background-image: url({% static 'update.jpg'%});">
+        <style>
+            *
+            {
+                overflow-x: hidden;
+            }
+            .card{
+             background-color: rgb(255,255,255);
+             box-shadow: 0px 4px 8px rgba(20,20,20,1); 
+             border-radius: 20px;
+             
+             display: block;
+             margin-left: auto;
+             margin-right: auto;
+           }
+        
+        </style>
+        <!-- <h1 style="font-size: 150px; text-align: center; margin-top: 30px; margin-bottom: 50px; background-color: rgba(240,128,128,0.5); width: 100%;height: 25%;">USER PROFILE</h1> -->
+        <div class="row" >
+            <div class="container col-lg-6">
+                <img src="{% static 'Sample.jpg'%}" alt="wipro.com" width="100%" height="100%" />
+            </div> 
+            <div class="container col-lg-6"> 
+          <div class="card" style="width: 35rem; margin-bottom: 30px;margin-top: 30px;;">
+            <div class="card-header"><img src="{% static 'virtusa.jpg'%}" alt="wipro.com" width="100" height="100" />  <span style="font-size:40px; margin-left: 30px;;  padding-top: 20px; text-align: center;">   Startup PROFILE</span></div>
+            <div class="card-body">
+                <div class="container">
+                <form>
+                      <p><b>User name:  </b>{{user.username}}</p>
+                      
+                      <p><b>Company name:  </b>{{user.startup.company_name}}</p>
+                      <p><b>Email address:  </b>{{user.email}}</p>
+                      <p><b>First Name:  </b>{{user.first_name}}</p>
+                      <p><b>Last Name:  </b>{{user.last_name}}</p>
+                      {% if user.startup.emp_no != 0 %}
+                      <p><b>Number of employees:</b>{{user.startup.emp_no}}</p>
+                      {% endif %}
+                      {% if  user.startup.founder != '' %}
+                      <p><b>CEO: </b>{{user.startup.founder}}</p>
+                      {% endif %}
+                      {% if  user.startup.company_desc != '' %}
+                      <p><b>Description:</b></p>
+                      <p style="margin-left: 80px;
+                      width: 350px;
+                      height: 150px;">{{user.startup.company_desc}}</p>
+                      {% endif %}
+                      {% if  user.startup.head_quarters != '' %}
+                      <p><b>Headquarters: </b>{{user.startup.head_quarters}}</p>
+                      
+                      {% endif %}
+                  </form>
+                <a href="{% url 'update_info' %}" class="btn btn-primary" style="margin-left: 150px;">Update Information</a>
+                </div>
+            </div>
+          </div>
+        </div>
+          </div>   
+    </body>
+
+
+
+{% else %}
+<!-- {% if user.mentor.person == 1 %}
+<h2>Mentor</h2>
+{% elif user.mentor.person == 2 %}
+<h2>Indivudal Profile</h2>
+{% elif user.mentor.person == 3 %}
+<h2>Corporate Profile</h2>
+{% endif %}
+<br>
+<br>
+<b>First Name:</b>
+{{user.first_name}}
+<br>
+<b>Last Name:</b>
+{{user.last_name}}
+<br>
+
+<b>Email:</b>
+{{user.email}}
+<br>
+<b>Username:</b>
+{{user.username}}
+<br> -->
+
+<!doctype html>
+<html>
+  <head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body style="background-image: url({% static 'update.jpg'%});">
+        <style>
+            *
+            {
+                overflow-x: hidden;
+            }
+            .card{
+             background-color: rgb(255,255,255);
+             box-shadow: 0px 4px 8px rgba(20,20,20,1); 
+             border-radius: 20px;
+             margin-top:150px!important;
+             /*display: block;*/
+             margin-left: auto;
+             margin-right: auto;
+           }
+           
+        </style>
+        <!-- <h1 style="font-size: 150px; text-align: center; margin-top: 30px; margin-bottom: 50px; background-color: rgba(240,128,128,0.5); width: 100%;height: 25%;">USER PROFILE</h1> -->
+        <div class="row" >
+            <div class="container col-lg-6">
+                <img src="{% static 'Sample.jpg'%}" alt="wipro.com" width="100%" height="100%" />
+            </div>
+            <div class="container col-lg-6">   
+                <div class="card" style="width: 35rem; margin-bottom: 30px; margin-top: 30px;">
+                    <div class="card-header"><img src="{% static 'virtusa.jpg'%}" alt="wipro.com" width="100" height="100" />  <span style="font-size:40px; margin-left: 35px;;  padding-top: 20px; text-align: center;"> {% if user.mentor.person == 1 %}
+Mentor
+{% elif user.mentor.person == 2 %}
+INDIVIDUAL PROFILE
+{% elif user.mentor.person == 3 %}
+CORPORATE PROFILE
+{% endif %} </span></div>
+                    <div class="card-body">
+                        <div class="container">
+                        <form>
+                            <p><span style="font-size: 15px; font-weight: bold; margin-right: 40px; margin-bottom: 10px;">User name:</span>{{user.username}}</p>
+                            <p><span style="font-size: 15px; font-weight: bold;margin-right: 20px; margin-bottom: 10px;">Email address:</span>{{user.email}}</p>
+                            <p><span style="font-size: 15px; font-weight: bold;margin-right: 40px; margin-bottom: 10px;">First Name:</span>{{user.first_name}}</p>
+                            <p><span style="font-size: 15px; font-weight: bold;margin-right: 40px; margin-bottom: 10px;">Last Name:</span>{{user.last_name}}</p>
+                        </form>
+                        <a href="{% url 'update_info' %}" class="btn btn-primary" style="margin-left: 150px;">Update Information</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+          </div>
+          
+    </body>
+
+{% endif %}
+<!-- <br>
+<br>
+<a href="{% url 'update_info' %}">click here</a>
+to Update your Information: -->

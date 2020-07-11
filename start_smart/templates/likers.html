@@ -1,0 +1,193 @@
+
+<!doctype html>
+{% load static %}
+<html>
+<head>
+	<title>Interested People</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body style="background-image: url({% static 'intback.jpg'%}); background-repeat: no-repeat;background-attachment: fixed;
+background-size: 100% 100%;">
+<style>
+	.card{
+		background-color: rgb(255,255,255);
+		box-shadow: 0px 4px 8px rgba(20,20,20,1); 
+		border-radius: 20px;
+		display: block;
+		margin-left: auto;
+		margin-top: 20px;
+		margin-bottom: 10px;
+		margin-right: auto;
+	}
+	.card:hover{
+		transition: all 0.5s ease-out;
+		box-shadow: 0px 4px 8px rgba(0,0,0,1);
+		top: -4px;
+		border: 1px solid #cccccc;
+	}
+	#rcorners2{
+		margin-left: 10px;
+	}
+</style>
+<div class="container">
+	<div class="row" style="margin-top: 30px; margin-bottom: 20px;">
+		<div class="col-lg-6 col-md-6 col-xs-12 boxy">
+			<h1 style="font-size: 60px; color: black;">INTERESTED PEOPLE</h1>
+		</div>
+		<div class="col-lg-6 col-md-6 col-xs-12 boxy">
+			<div class="input-group md-form form-sm form-2 pl-0" style="margin-top: 20px;">
+				<input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
+				<div class="input-group-append">
+					<span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+						aria-hidden="true"></i></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		{% for user in like %}
+		<div class="row">
+			{% if user.1 %}
+			<div class="col s12 l6">
+				<div class="card">
+					<div class="card-header">
+						<div class="row">
+							<div class="wrapper-image person"><img src="{% static 'user.png' %}" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
+							<div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">Startup</span>
+
+							</div>
+						</div>
+					</div>
+					<div class="card-body">  
+						<div class="container">
+							<form>
+
+								<p><b>Username:</b><span id="rcorners2">{{user.0.username}}</span></p>
+
+								<p><b>Email address:</b><span id="rcorners2">{{user.0.email}}</span></p>
+
+								<p><b>Company name:</b><span id="rcorners2">{{user.0.startup.company_name}}</span></p>
+
+								<p><b>Headquarters:</b><span id="rcorners2">{% if user.0.startup.head_quarters != '' %}
+									{{user.0.startup.head_quarters}}
+									{% endif %}
+								</span></p>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% else%}
+			<div class="col s12 m6 l3">
+				<div class="card">
+					<div class="card-header">
+						<div class="row">
+							<div class="wrapper-image person"><img src="user.png" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
+							<div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">User
+							</div>
+						</div>
+					</div>
+					<div class="card-body"> 
+						<form>
+							<p><b>Username:</b><span id="rcorners2">{{user.0.username}}</span></p>
+
+							<p><b>First Name:</b><span id="rcorners2">{{user.0.first_name}}</span></p>
+
+							<p><b>Last Name:</b><span id="rcorners2">{{user.0.last_name}}</span></p>
+
+							<p><b>email:</b><span id="rcorners2">{{user.0.email}}</span></p>
+
+						</form>                        
+					</div>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+		
+		{% endfor %}
+	</div> 
+
+</body>
+</html>
+
+
+
+
+
+<!-- 
+<h2>details of likers of your blog</h2>
+<br>
+{% for user in like %}
+
+{% if user.1 %}
+
+<h2>Startup</h2>
+<b>First Name:</b>
+{{user.0.first_name}}
+<br>
+<b>Last Name:</b>
+{{user.0.last_name}}
+<br>
+<b>Email:</b>
+{{user.0.email}}
+<br>
+<b>Username:</b>
+{{user.0.username}}
+<br>
+<br>
+<b>Company Name:</b>
+{{user.0.startup.company_name}}
+<br>
+{% if user.0.startup.emp_no != 0 %}
+	<br>
+	<b>Number of Employees:</b>
+	{{user.0.startup.emp_no}}
+	<br>
+{% endif %}
+{% if  user.0.startup.Founder is not None %}
+	<br>
+	<b>Founder:</b>
+	{{user.0.startup.Founder}}
+	<br>
+{% endif %}
+<br>
+{% if  user.0.startup.company_desc != '' %}
+	<b>Company Description:</b>
+	{{user.0.startup.company_desc}}
+	<br>
+{% endif %}
+<br>
+
+{% if  user.0.startup.head_quarters != '' %}
+	<b>Company Headquarters:</b>
+	{{user.0.startup.head_quarters}}
+	<br>
+{% endif %}
+
+
+
+{% else%}
+
+<h2>Financer</h2>
+
+<b>First Name:</b>
+{{user.0.first_name}}
+<br>
+<b>Last Name:</b>
+{{user.0.last_name}}
+<br>
+
+<b>Email:</b>
+{{user.0.email}}
+<br>
+<b>Username:</b>
+{{user.0.username}}
+<br>
+
+{% endif %}
+
+
+{% endfor %}
+
+ -->

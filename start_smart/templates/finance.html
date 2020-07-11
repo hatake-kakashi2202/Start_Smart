@@ -1,0 +1,218 @@
+{% load static %}
+<html>
+
+    <head>
+        <title>Finances</title>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Equipment', 397601],
+  ['Insurance', 56973],
+  ['Employees', 270320],
+  ['Loans', 320020],
+  ['Travel', 38790],
+  ['Property',124890]
+]);
+
+  var options = {'title':'Expenditure', 'width':400, 'height':350};
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+        <style>
+            html {
+                overflow-x: hidden;
+            }
+            #im{
+                background-image: url({% static 'b12.jpeg' %});
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                height: 100%;
+            }
+            #bo{
+                background-image: url({% static 'bg2.jpg' %});
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                height: 100%;
+            }
+            #fin{
+                padding-left: 40%;
+                padding-top: 20%;
+                color: darkmagenta;
+                
+                font-size: 100px;
+
+            }
+            #c1{
+                margin-left: 35%;
+                color: black;
+            }
+            #con1{
+                margin-left: 35%;
+                width: 40%;
+                color: black;
+            }
+            .boxy{
+                width: 40%;
+                margin-left: 10%;
+                margin-top: 5%;
+                border-radius: 5px;
+            }
+             #he2{
+                 padding-top: 5%;
+             }
+             #piechart{
+                 margin-left: 3%;
+                 
+             }
+             #but{
+                 margin-top: 5%;
+                 margin-left: 40%;
+                 
+             }
+             #but1{
+                background-color: lightcoral;
+                 border-radius: 5px;
+             }
+             
+             @media only screen and (max-width: 600px) {
+  #fin {
+    font-size: 30px;
+    padding-top: 48%;
+  }
+  #im{
+      width: 100%;
+      height: 60%;
+  }
+  #bo{
+      
+      width: 100%;
+      height: 200%;
+  }
+  #he2{
+        font-size: 15px;
+  }
+  #con1{
+        font-size: 10px;
+  }
+  #but11{
+      padding-left: 05%;
+  }
+  
+}
+
+        </style>
+        <script>
+
+        </script>
+    </head>
+    <body>
+    
+        <div id="im">
+            <p id="fin">FINANCES</p>
+            
+
+        </div>
+        <div id="bo">
+        <div id="c1" class=container>
+            <h2 id="he2">Welcome Customer</h2>
+        </div>
+        <div id="con1" class="container">
+            
+            <p>Financial Management is an important part
+            for your Startups.It helps you to stabilize your condition and also promote the growth of your Startup</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+        <table class="table table-dark boxy">
+            <tbody>
+                <tr>
+                    <td>Net Worth</td>
+                    <td>70,353,000</td>
+                </tr>
+                <tr>
+                    <td>Budgets</td>
+                    <td>761,000</td>
+                </tr>
+                <tr>
+                <td>Income</td>
+                <td>2,742,000</td>
+                </tr>
+                <tr>
+                    <td>Investments</td>
+                    <td>478,000</td>
+                </tr>
+                <tr>
+                    <td>Expenditure</td>
+                    <td>1,212,200</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6">
+
+        
+            <div id="piechart"></div>
+
+
+        
+    </div>
+    </div>
+    <div id="but">
+        <button type="button" id="but11" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            Update your Finances
+          </button>
+          <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Update your Finances</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="container">
+          Net Worth&nbsp;&nbsp; : <input type="number" id="networth"><br><br>
+          Budgets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="budget"><br><br>
+          Income&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="income"><br><br>
+          Investments : <input type="number" id="inv"><br><br>
+          Equipment&nbsp;&nbsp; : <input type="number" id="equip"><br><br>
+          Insurance&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="ins"><br><br>
+          Employee&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="emp"><br><br>
+          Loans&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="loans"><br><br>
+          Travel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="travel"><br><br>
+          Property&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="prop">
+          </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Update</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+    </div>
+    </div>
+    
+    </body>
+</html>

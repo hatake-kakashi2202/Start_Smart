@@ -1,0 +1,190 @@
+<!doctype html>
+{% load static %}
+
+{% if is_startup %}
+<!-- username:
+	<br>
+	{{user.username}}
+	<br>
+<form method="POST" action="{% url 'update_startup' %}">
+	{% csrf_token %}
+	First Name:
+	<br>
+	<input type="text" name="first_name" value="{{ user.first_name }}">
+	<br>
+	Last Name:
+	<br>
+	<input type="text" name="last_name"  value="{{ user.last_name }}">
+	<br>
+	Company Name:
+	<br>
+	<input type="text" name="company_name" value="{{ user.startup.company_name }}">
+	<br>
+	
+	email:
+	<br>
+	<input type="email" name="email" value="{{ user.email }}">
+	<br>
+	Number of employees:
+	<br>
+	<input type="Number" name="emp_no" value="{{ user.startup.emp_no }}">
+	<br>
+	Name of founder:
+	<br>
+	<input type="text" name="founder" value="{{ user.startup.founder }}">
+	<br>
+	Company Head quarters:
+	<br>
+	<input type="text" name="head_quarters" value="{{ user.startup.head_quarters }}">
+	<br>
+	Describe your company:
+	<br>
+	<input type="text" name="company_desc" value="{{ user.startup.company_desc }}">
+	<br>
+	<input class="btn btn-primary" type="submit" value="update">
+</form> -->
+
+<html>
+  <head>
+    <title>Update Startup Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body style="background-image: url({% static 'update.jpg'%});">
+        <style>
+            .card{
+             background-color: rgb(255,255,255);
+             box-shadow: 0px 4px 8px rgba(20,20,20,1); 
+             border-radius: 20px;
+             
+             display: block;
+             margin-left: auto;
+             margin-right: auto;
+           }
+        </style>
+        <h1></h1>
+        <!-- <h1 style="font-size: 75px; text-align: center; margin-top: 30px; margin-bottom: 50px; background-color: rgba(240,128,128,0.5); width: 100%;height: 25%;">UPDATE PROFILE</h1> -->
+        <div class="container">   
+          <div class="card" style="width: 40rem; margin-bottom: 10px;">
+            <div class="card-header"><img src="{% static 'virtusa.jpg'%}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px; margin-left: 50px;;  padding-top: 20px; text-align: center;">   UPDATE PROFILE</span></div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'update_startup' %}">
+					{% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address:</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="{{ user.email }}" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Startup Name:</label>
+                      <input type="text" name="company_name" value="{{ user.startup.company_name }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="{{ user.email }}" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">First Name:</label>
+                        <input type="text" class="form-control" name="first_name" value="{{ user.first_name }}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Last Name:</label>
+                        <input type="text" name="last_name"  value="{{ user.last_name }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Number of employees:</label>
+                        <input type="Number" name="emp_no" value="{{ user.startup.emp_no }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">CEO:</label>
+                        <input type="text" name="founder" value="{{ user.startup.founder }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter CEO">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Description:</label>
+                        <input type="text" name="company_desc" value="{{ user.startup.company_desc }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Headquarters:</label>
+                        <input type="text" name="head_quarters" value="{{ user.startup.head_quarters }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      </div>
+                      <input class="btn btn-primary" type="submit" value="update">
+                  </form>
+                  
+            </div>
+          </div>
+          </div>
+          
+          
+    </body>
+
+{% else%}
+
+<!-- username:
+	<br>
+	{{user.username}}
+	<br>
+<form method="POST" action="{% url 'update_user' %}">
+	{% csrf_token %}
+	First Name:
+	<br>
+	<input type="text" name="first_name" value="{{ user.first_name }}">
+	<br>
+	Last Name:
+	<br>
+	<input type="text" name="last_name"  value="{{ user.last_name }}">
+	<br>
+	email:
+	<br>
+	<input type="email" name="email" value="{{ user.email }}">
+	<br>
+	<input class="btn btn-primary" type="submit" value="update">
+</form> -->
+
+<html>
+  <head>
+    <title>Update User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body style="background-image: url({% static 'update.jpg'%});">
+        <style>
+            .card{
+             background-color: rgb(255,255,255);
+             box-shadow: 0px 4px 8px rgba(20,20,20,1); 
+             border-radius: 20px;
+             
+             display: block;
+             margin-left: auto;
+             margin-right: auto;
+           }
+        </style>
+        <h1></h1>
+        <!-- <h1 style="font-size: 150px; text-align: center; margin-top: 30px; margin-bottom: 50px; background-color: rgba(240,128,128,0.5); width: 100%;height: 25%;">UPDATE PROFILE</h1> -->
+
+        <div class="container">   
+          <div class="card" style="width: 40rem; margin-bottom: 30px; margin-top: 50px;">
+            <div class="card-header"><img src="{% static 'virtusa.jpg'%}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px; margin-left: 50px;;  padding-top: 20px; text-align: center;">   UPDATE PROFILE</span></div>
+
+            <div class="card-body">
+            	<b>Username:</b><br>
+            	{{user.username}}
+                <form method="POST" action="{% url 'update_user' %}">
+                	{% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputEmail1"><b>Email address:</b></label>
+                      <input type="text" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ user.email }}">
+                      
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>First Name:</b></label>
+                        <input type="text"  class="form-control" name="first_name" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ user.first_name }}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Last Name:</b></label>
+                        <input type="text" class="form-control" name="last_name" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ user.last_name }}">
+                      </div>
+                  
+                  <input class="btn btn-primary" type="submit" value="update">
+                  </form>
+            </div>
+          </div>
+          </div>
+          
+          
+    </body>
+
+
+{% endif %}
