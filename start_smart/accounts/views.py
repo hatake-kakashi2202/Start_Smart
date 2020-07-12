@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.contrib import messages
 from .models import  Startup, Mentor
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -35,7 +36,7 @@ def signup_sub(request):
 					return email_auth(request)
 				else:
 					return render(request, 'signup.html', {'error':'Invalid account type'})
-		else: return render(request, 'signup.html', {'error':'passwords doesnot match'})
+		else: return render(request, 'signup.html', {'error':'passwords does not match'})
 	else:
 		return render(request, 'signup.html')
 

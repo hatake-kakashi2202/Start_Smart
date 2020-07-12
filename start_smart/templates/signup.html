@@ -2,6 +2,7 @@
 	{% load crispy_forms_tags %}
 	<!-- Navbar-->
 	<head>
+		<link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
 	  <!-- Required meta tags -->
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -113,6 +114,11 @@
 
 
 	</style>
+	{% if messages %}
+	{% for message in messages %}
+	{{ message }}
+	{% endfor %}
+	{% endif %}
 	<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -167,8 +173,13 @@
 
 	        <!-- Registeration Form -->
 	        <div class="col-md-7 col-lg-6 ml-auto">
-	        	        {% if error %}
-	{{ error }}
+						{% if error %}
+						<div class="alert alert-warning alert-dismissible fade show" role="alert">
+							{{ error }}
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							  <span aria-hidden="true">&times;</span>
+							</button>
+						  </div>
 	<br>
 	<br>
 	{% endif %}

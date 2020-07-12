@@ -3,7 +3,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <h1 style="font-family: 'LobsterRegular';font-weight: normal;font-style: normal;font-size: 80px;padding: 20px;" class="container">B<span style="color: blue">l</span><span style="color: green">o</span><span style="color: yellow">g</span><span style="color: red">s</span></h1>
-
+<link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
 <form class="form-inline" id="searchbar"  action="{% url 'blogsearch' %}" method="get">
                     <input name="q" class="form-control mr-sm-2 float-left" id="searchblog" type="search" placeholder="Search blog" aria-label="Search blog">
                     <button class="btn btn-outline-secondary float-left" type="submit" id="btn">Search</button>
