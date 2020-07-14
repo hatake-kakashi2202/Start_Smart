@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+<link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
+<link href="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.1.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.1.1.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.1.1.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    {{div1| safe}}
+</body>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.1.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.1.1.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.1.1.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.1.1.min.js"></script>
+{{script1 | safe}}
+</html>

@@ -21,7 +21,7 @@ def signup_sub(request):
 		if(request.POST['password1'] == request.POST['password2']):
 			try:
 				user = User.objects.get(username = request.POST['username'])
-				return render(request, 'signup.html', {'error':'username name already exists'})
+				return render(request, 'signup.html', {'error':'username already exists'})
 			except User.DoesNotExist:
 				# print(type(request.POST['type']))
 				if request.POST['type'] == '1' or request.POST['type'] == '2' or request.POST['type'] == '3':

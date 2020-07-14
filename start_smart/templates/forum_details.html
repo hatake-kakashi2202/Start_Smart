@@ -11,7 +11,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <style>
-
+  button:hover, input[type="button"]:focus {
+    outline: none;
+}
   .vertical-nav {
     min-width: 17rem;
     width: 17rem;
@@ -64,7 +66,6 @@
     min-height: 100vh;
     overflow-x: hidden;
     background-image : url("{% static 'forum-details.jpg' %}");
-    background-repeat-y: no-repeat;
     background-size: 100% 100%;
     background-blend-mode: multiply;
     background-blend-mode: multiply;
@@ -215,9 +216,9 @@
                       {% csrf_token %}
                       <input type='hidden' name='post_id' value="{{forum_id}}">
                       {% if user not in data.liked.all %}
-                      <button type="submit" class="btn btn-light col-lg-1"><i class="fa fa-thumbs-up"  aria-hidden="true" style="padding: 5px;"></i></button>
+                      <button type="submit" class="btn btn-light col-lg-2"><i class="fa fa-thumbs-up"  aria-hidden="true" style="padding: 5px;size:10px;"></i></button>
                       {% else %}
-                      <button type="submit" class="btn btn-light col-lg-1"><i class="fa fa-thumbs-down"  aria-hidden="true" style="padding: 5px;"></i></button>
+                      <button type="submit" class="btn btn-light col-lg-2"><i class="fa fa-thumbs-down"  aria-hidden="true" style="padding: 5px;"></i></button>
                       {% endif %}
                     </form><strong style="padding-top:8px">{{ data.liked.all.count }} likes</strong>&nbsp;&nbsp;&nbsp;<strong style="padding-top:8px">Comment:</strong>
                   </div>
@@ -227,7 +228,7 @@
                                 {% csrf_token %}
                                 <label for="text" class="sr-only">Comment:</label>
                                 <div class="row">
-                                <input type="text" id="cbox" class="form-control col-lg-10" name="desc" style="margin-right=5px;margin-left: 50px;">
+                                <input type="text" id="cbox" class="form-control col-lg-10" name="desc" style="margin-right:5px;margin-left: 50px;">
                                 <button type="submit" class="btn btn-light col-lg-1"><i class="fa fa-paper-plane" aria-hidden="true" style="padding-right: 20px;"></i></button>
                                 </div>
                           </form>

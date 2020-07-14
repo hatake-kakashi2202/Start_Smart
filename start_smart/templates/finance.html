@@ -1,219 +1,753 @@
 {% load static %}
-<html>
-
-    <head>
-        <link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
-        <title>Finances</title>
-        
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-<script type="text/javascript">
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-  ['Task', 'Hours per Day'],
-  ['Equipment', 397601],
-  ['Insurance', 56973],
-  ['Employees', 270320],
-  ['Loans', 320020],
-  ['Travel', 38790],
-  ['Property',124890]
-]);
-
-  var options = {'title':'Expenditure', 'width':400, 'height':350};
-
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
-}
-</script>
-        <style>
-            html {
-                overflow-x: hidden;
-            }
-            #im{
-                background-image: url({% static 'b12.jpeg' %});
-                background-size: 100% 100%;
-                background-repeat: no-repeat;
-                height: 100%;
-            }
-            #bo{
-                background-image: url({% static 'bg2.jpg' %});
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-                height: 100%;
-            }
-            #fin{
-                padding-left: 40%;
-                padding-top: 20%;
-                color: darkmagenta;
-                
-                font-size: 100px;
-
-            }
-            #c1{
-                margin-left: 35%;
-                color: black;
-            }
-            #con1{
-                margin-left: 35%;
-                width: 40%;
-                color: black;
-            }
-            .boxy{
-                width: 40%;
-                margin-left: 10%;
-                margin-top: 5%;
-                border-radius: 5px;
-            }
-             #he2{
-                 padding-top: 5%;
-             }
-             #piechart{
-                 margin-left: 3%;
-                 
-             }
-             #but{
-                 margin-top: 5%;
-                 margin-left: 40%;
-                 
-             }
-             #but1{
-                background-color: lightcoral;
-                 border-radius: 5px;
-             }
-             
-             @media only screen and (max-width: 600px) {
-  #fin {
-    font-size: 30px;
-    padding-top: 48%;
-  }
-  #im{
-      width: 100%;
-      height: 60%;
-  }
-  #bo{
-      
-      width: 100%;
-      height: 200%;
-  }
-  #he2{
-        font-size: 15px;
-  }
-  #con1{
-        font-size: 10px;
-  }
-  #but11{
-      padding-left: 05%;
-  }
-  
-}
-
-        </style>
-        <script>
-
-        </script>
-    </head>
-    <body>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     
-        <div id="im">
-            <p id="fin">FINANCES</p>
-            
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
 
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
+
+
+<style>
+footer
+{
+    overflow-y: hidden;  
+}
+.bg-cover {
+    background-size: cover !important;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+header{
+  overflow-y: hidden
+}
+*
+{
+  overflow-x : hidden;
+}
+
+.navbar {
+    transition: all 0.4s;
+}
+
+.navbar .nav-link {
+    color: #000000;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #000000;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand {
+    color: #000000;
+}
+
+
+
+.navbar.active {
+    background: #ffffff;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.active .nav-link {
+    color: #555;
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    color: #555;
+    text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+    color: #555;
+}
+
+
+
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #000000;
+    }
+
+    .navbar .navbar-brand, .navbar .nav-link {
+        color: #555;
+    }
+}
+
+
+.text-small {
+    font-size: 0.9rem !important;
+}
+
+
+body {
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: lighter;
+}
+
+.caption-1 figcaption {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.caption-2 figcaption {
+  width: 80%;
+  position: absolute;
+  bottom: 1rem;
+  left: 10%;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.caption-3 figcaption {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+
+.border-md {
+  border-width: 2px !important;
+}
+
+.separator {
+  border-bottom: 1px dashed #aaa;
+}
+
+.text-small {
+  font-size: 0.85rem;
+}
+.datepicker td, .datepicker th {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.85rem;
+}
+
+.datepicker {
+    margin-bottom: 3rem;
+}
+
+.input-group {
+    border-radius: 30rem;
+}
+
+input.form-control {
+    border-radius: 30rem 0 0 30rem;
+    border: none;
+}
+
+input.form-control:focus {
+    box-shadow: none;
+}
+
+input.form-control::placeholder {
+    font-style: italic;
+}
+
+.input-group-text {
+    border-radius: 0 30rem 30rem 0;
+    border: none;
+}
+
+.datepicker-dropdown {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.bg-gray-100 {
+    background-color: #ecf1fa;
+}
+
+@media (min-width: 768px){
+.section-1 {
+    padding: 60px 0 80px;
+}}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+#button-addon1 {
+  color: #ffc371;
+}
+
+i {
+  color: #ffc371;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.form-control.shadow-0:focus {
+  box-shadow: none;
+}
+html { font-size: 0.5rem; }
+
+@media (min-width: 576px) {
+    html { font-size: 0.75rem; }
+}
+@media (min-width: 768px) {
+    html { font-size: 1rem; }
+}
+@media (min-width: 992px) {
+    html { font-size: 1.10rem; }
+}
+@media (min-width: 1200px) {
+    html { font-size: 1.10rem; }
+}
+.datepicker td, .datepicker th {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.85rem;
+}
+
+.datepicker {
+    margin-bottom: 3rem;
+}
+
+.input-group {
+    border-radius: 30rem;
+}
+
+input.form-control {
+    border-radius: 30rem 0 0 30rem;
+    border: none;
+}
+
+input.form-control:focus {
+    box-shadow: none;
+}
+
+input.form-control::placeholder {
+    font-style: italic;
+}
+
+.input-group-text {
+    border-radius: 0 30rem 30rem 0;
+    border: none;
+}
+
+.datepicker-dropdown {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+</style>
+    <title>Start_smart</title>
+  </head>
+    <header >
+        <nav class="navbar navbar-expand-lg fixed-top py-3" >
+            <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">StartSmart</a>
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+    
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link scroll-link" href="{% url 'forum' %}">Forum <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'finance' %}">Finances</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'mentor' %}">Networking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'dashboard' %}">Dashboard</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'profile' %}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
+    
+                            <form id="logout" method="POST" action="{% url 'logout' %}">
+                              {% csrf_token %}
+      <input type="hidden">
+    </form>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'signup' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            
+                        </li>
+                        
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div style="background: url({% static 'b121.jpeg' %})" class="jumbotron bg-cover text-white img-fluid" alt="Responsive image">
+            <div class="container py-5 text-center">
+            </div>
         </div>
-        <div id="bo">
-        <div id="c1" class=container>
-            <h2 id="he2">Welcome Customer</h2>
-        </div>
-        <div id="con1" class="container">
-            
-            <p>Financial Management is an important part
-            for your Startups.It helps you to stabilize your condition and also promote the growth of your Startup</p>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-6">
-        <table class="table table-dark boxy">
-            <tbody>
-                <tr>
-                    <td>Net Worth</td>
-                    <td>70,353,000</td>
-                </tr>
-                <tr>
-                    <td>Budgets</td>
-                    <td>761,000</td>
-                </tr>
-                <tr>
-                <td>Income</td>
-                <td>2,742,000</td>
-                </tr>
-                <tr>
-                    <td>Investments</td>
-                    <td>478,000</td>
-                </tr>
-                <tr>
-                    <td>Expenditure</td>
-                    <td>1,212,200</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-6">
+</header>
+<body style="background-image:url({% static 'bg34.jpeg' %});">
+    <div class="container-fluid" style="
+    margin-left: 30px;
+    margin-right: 80px;
+">
+        <div class="row" style=" margin-right: 30px;">
+          <div class="col-lg-4 rounded">
+            <span class="text-white badge badge-dark p-3">WHAT WE OFFER</span>
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col mb-4">
+                    <br>
+                    <figure class="rounded caption-1">
+                        <img src="{% static 's1.jpeg' %}" alt="" class="w-100 card-img-top border border-white border-md bg-white">
+                        <figcaption class="px-5 py-4 text-right text-light">
+                          <h2 class="h5 font-weight-bold mb-0">Financial Planning</h2>
+                          <p class="text-small">We provide quality financial planning solutions.</p>
+                        </figcaption>
+                      </figure>
+                </div>
+                <div class="col mb-4">
+                    <br>
+                    <figure class="rounded caption-1">
+                        <img src="{% static 's3.jpeg' %}" alt="" class="w-100 card-img-top border border-white border-md">
+                        <figcaption class="px-5 py-4 text-right text-light">
+                          <h2 class="h5 font-weight-bold mb-0">Business Modelling</h2>
+                          <p class="text-small">Delivering the best financial modelling solutions.</p>
+                        </figcaption>
+                      </figure>
+                </div>
+                <div class="col mb-4">
+                    <figure class="rounded caption-1">
+                        <img src="{% static 'd4.jpeg' %}" alt="" class="w-100 card-img-top border border-white border-md">
+                        <figcaption class="px-5 py-4 text-right text-light">
+                          <h2 class="h5 font-weight-bold mb-0">
+                            Investment Management</h2>
+                          <p class="text-small">Ensuring that all your assets are put to the best use.</p>
+                        </figcaption>
+                      </figure>
+                </div>
+                <div class="col mb-4">
+                    <figure class="rounded caption-1">
+                        <img src="{% static 'd6.jpeg' %}" alt="" class="w-100 card-img-top border border-white border-md">
+                        <figcaption class="px-5 py-4 text-right text-light">
+                          <h2 class="h5 font-weight-bold mb-0">Strategic Planning</h2>
+                          <p class="text-small">Creating a suitable financial strategy for your business.</p>
+                        </figcaption>
+                      </figure>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-4">
+            <br><br><br>
+            <div class=" rounded-lg shadow-sm p-5 bg-white">
+                <div class="tab-content">
+                  <div id="nav-tab-card" class="tab-pane fade show active">
+                      <br>
+                    <p class="text-center font-weight-bold">Contact Us</p>
+                    <br>
+                    <form role="form">
+                      <div class="form-group shadow-sm">
+                        <label for="username">Full name</label>
+                        <br>
+                        <input type="text" name="name" placeholder="Your Name" required class="form-control">
+                      </div>
+                      <br>
+                      <div class="form-group shadow-sm ">
+                        <label for="username">Email</label>
+                        <br>
+                        <input type="text" name="email" placeholder="Your Email" required class="form-control">
+                      </div>
+                      <br>
+                      <div class="form-group shadow-sm ">
+                        <label for="pnumber">Phone number</label>
+                        <br>
+                        <div class="input-group">
+                          <input type="text" name="pnumber" placeholder="Your phone number" class="form-control" required>
+                        </div>
+                        <br>
+                      </div>
+                      <br>
+                      <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">Send Request</button>
+                      <br>
+                    </form>
+                    <br>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-4">
+            <br><br><br>
+            <div class="rounded-lg shadow-sm p-5 bg-white">
+                <div class="tab-content">
+                  <div id="nav-tab-card" class="tab-pane fade show active">
+                    <br>
+                    <p class="text-center  font-weight-bold"><strong>Book An Appointment with our Executive</strong></p>
+                    <br>
+            <div class="py-4 text-center"><i class="fa fa-calendar fa-5x"></i></div>
 
-        
-            <div id="piechart"></div>
-
-
-        
-    </div>
-    </div>
-    <div id="but">
-        <button type="button" id="but11" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Update your Finances
-          </button>
-          <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Update your Finances</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="container">
-          Net Worth&nbsp;&nbsp; : <input type="number" id="networth"><br><br>
-          Budgets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="budget"><br><br>
-          Income&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="income"><br><br>
-          Investments : <input type="number" id="inv"><br><br>
-          Equipment&nbsp;&nbsp; : <input type="number" id="equip"><br><br>
-          Insurance&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="ins"><br><br>
-          Employee&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="emp"><br><br>
-          Loans&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="loans"><br><br>
-          Travel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="travel"><br><br>
-          Property&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <input type="number" id="prop">
+            <!-- Date Picker Input -->
+            <div class="form-group mb-4 shadow-sm ">
+                <div class="input-group p-0 shadow-sm">
+                    <input type="date" placeholder="Choose a reservation date" required class="form-control" id="datePicker">
+                    <div class="input-group-append"><span class="input-group-text px-4"><i class="fa fa-clock-o"></i></span></div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <!-- For Demo Purpose -->
+            <div class="text-center">
+                <p class="font-italic text-muted mb-0">Your reservation day is</p>
+                <br>
+                <h4 id="pickedDate" class="font-weight-bold text-uppercase mb-3">Not set yet</h4>
+                <br>
+                <a href="#" class="btn btn-primary btn-sm px-4 rounded-pill text-uppercase font-weight-bold shadow-sm">Confirm Reservation</a>
+            </div>
+            <br>
+            <br>
           </div>
         </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Update</button>
         </div>
+        </div>
+        </div>
+      </div>
+      <section class="section section-1 bg-gray-100">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-lg-8">
+              <h3 class="text-center text-sm-left">Business Insights & Consulting Tips</h3>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="{% static 's1.jpeg' %}" class="card-img" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">The CEO’s Guide to Corporate Finance in Modern Business</h5>
+                      <p class="card-text">When an organization’s senior leaders have a strong financial compass, it’s easier for them to resist the siren songs of financial engineering, excessive leverage, and the idea...</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="{% static 's3.jpeg' %}" class="card-img" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Your Company’s Way to Better Financial Strategy</h5>
+                      <p class="card-text">Viewing strategy choices through four lenses—financial performance, markets, competitive advantage, and operating model—can help companies debias their strategic dialogues...</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="{% static 'd6.jpeg' %}" class="card-img" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Choosing the Right Path for Your Business Growth</h5>
+                      <p class="card-text">Innovation and growth are often lumped together as management concepts, for good reason: it’s self-evident that innovation drives growth, and conspicuous fast growers ...</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+                <br><br>
+              <div class="row row-30 row-md-50 row-xxl-80">
+                <div class="col-md-6 col-lg-12">
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        Our services
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="single-service.html"><span class="list-pricing-title">Corporate Finance</span><span class="icon-sm icon mdi mdi-chevron-left"></span></a></li>
+                        <li class="list-group-item"><a href="single-service.html"><span class="list-pricing-title">Audit and Assurance</span><span class="icon-sm icon mdi mdi-chevron-left"></span></a></li>
+                        <li class="list-group-item"><a href="single-service.html"><span class="list-pricing-title">Risk Management</span><span class="icon-sm icon mdi mdi-chevron-left"></span></a></li>
+                        <li class="list-group-item"><a href="single-service.html"><span class="list-pricing-title">Financial Consulting</span><span class="icon-sm icon mdi mdi-chevron-left"></span></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-12">
+                    <br>
+                  <h3 class="text-center text-sm-left wow fadeIn offset-top-20">Why Choose Us</h3>
+                  <ul class="row list-group-2 row-20 row-md-30 mt-30 mt-xl-50">
+                    <li class=" wow fadeIn" data-wow-delay=".05s">
+                      <article class="lg-2-item">
+                        <div class="lg-2-item-aside col-md-4"><img src="{% static 'rb.png' %}" alt="" width="70" height="70"/>
+                        </div>
+                        <div class="lg-2-item-main col-md-8">
+                          <h5 class="lg-2-item-title">Result-Based</h5>
+                          <p>We are dedicated to provide the best results to any company.</p>
+                        </div>
+                      </article>
+                    </li>
+                    <li class="col-sm-6 col-md-12 wow fadeIn" data-wow-delay=".1s">
+                      <article class="lg-2-item">
+                        <div class="lg-2-item-aside"><img src="{% static 'dr.png' %}" alt="" width="70" height="70"/></div>
+                        <div class="lg-2-item-main">
+                          <h5 class="lg-2-item-title">Detailed Reports</h5>
+                          <p>Our team prepares the most detailed reports for our clients.</p>
+                        </div>
+                      </article>
+                    </li>
+                    <li class="col-sm-6 col-md-12 wow fadeIn" data-wow-delay=".15s">
+                      <article class="lg-2-item">
+                        <div class="lg-2-item-aside"><img src="{% static 'da.png' %}" alt="" width="70" height="70"/>
+                        </div>
+                        <div class="lg-2-item-main">
+                          <h5 class="lg-2-item-title">Diverse Approach</h5>
+                          <p>Our unique approach allows us to solve any business issues quickly.</p>
+                        </div>
+                      </article>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-1">      
+        <h3 class="text-center text-sm-center">Today's Market Data </h3>
+<div class="tradingview-widget-container p-5">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Market Data</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+    {
+    "width": "100%",
+    "height": "100%",
+    "symbolsGroups": [
+      {
+        "name": "Indices",
+        "originalName": "Indices",
+        "symbols": [
+          {
+            "name": "FOREXCOM:SPXUSD",
+            "displayName": "S&P 500"
+          },
+          {
+            "name": "FOREXCOM:NSXUSD",
+            "displayName": "Nasdaq 100"
+          },
+          {
+            "name": "FOREXCOM:DJI",
+            "displayName": "Dow 30"
+          },
+          {
+            "name": "INDEX:NKY",
+            "displayName": "Nikkei 225"
+          },
+          {
+            "name": "INDEX:DEU30",
+            "displayName": "DAX Index"
+          },
+          {
+            "name": "FOREXCOM:UKXGBP",
+            "displayName": "FTSE 100"
+          }
+        ]
+      },
+      {
+        "name": "Commodities",
+        "originalName": "Commodities",
+        "symbols": [
+          {
+            "name": "CME_MINI:ES1!",
+            "displayName": "E-Mini S&P"
+          },
+          {
+            "name": "CME:6E1!",
+            "displayName": "Euro"
+          },
+          {
+            "name": "COMEX:GC1!",
+            "displayName": "Gold"
+          },
+          {
+            "name": "NYMEX:CL1!",
+            "displayName": "Crude Oil"
+          },
+          {
+            "name": "NYMEX:NG1!",
+            "displayName": "Natural Gas"
+          },
+          {
+            "name": "CBOT:ZC1!",
+            "displayName": "Corn"
+          }
+        ]
+      },
+      {
+        "name": "Bonds",
+        "originalName": "Bonds",
+        "symbols": [
+          {
+            "name": "CME:GE1!",
+            "displayName": "Eurodollar"
+          },
+          {
+            "name": "CBOT:ZB1!",
+            "displayName": "T-Bond"
+          },
+          {
+            "name": "CBOT:UB1!",
+            "displayName": "Ultra T-Bond"
+          },
+          {
+            "name": "EUREX:FGBL1!",
+            "displayName": "Euro Bund"
+          },
+          {
+            "name": "EUREX:FBTP1!",
+            "displayName": "Euro BTP"
+          },
+          {
+            "name": "EUREX:FGBM1!",
+            "displayName": "Euro BOBL"
+          }
+        ]
+      },
+      {
+        "name": "Forex",
+        "originalName": "Forex",
+        "symbols": [
+          {
+            "name": "FX:EURUSD"
+          },
+          {
+            "name": "FX:GBPUSD"
+          },
+          {
+            "name": "FX:USDJPY"
+          },
+          {
+            "name": "FX:USDCHF"
+          },
+          {
+            "name": "FX:AUDUSD"
+          },
+          {
+            "name": "FX:USDCAD"
+          }
+        ]
+      }
+    ],
+    "colorTheme": "light",
+    "isTransparent": false,
+    "locale": "in"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+</section>
+    <script>
+        $(function () {
+    $(window).on('scroll', function () {
+        if ( $(window).scrollTop() > 10 ) {
+            $('.navbar').addClass('active');
+        } else {
+            $('.navbar').removeClass('active');
+        }
+    });
+});
+
+    </script>
+    <script>
+$(document).ready( function() {
+    let now = new Date();
+ 
+    let day = ("0" + now.getDate()).slice(-2);
+    let month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    let today = (day)+"-"+(month)+"-"+ now.getFullYear();
+
+
+   $('#datePicker').val(today);
+    
+   $('#datePicker').on('change', function (){
         
+        testClicked();
+        
+    });
+});
+function testClicked()
+{
+  $('#pickedDate').html($('#datePicker').val());
+}
+</script>
+  </body>
+  <footer  style="
+  background: linear-gradient(to bottom right ,#19181A ,#2F4454 );
+">
+    <div class="container py-5">
+      <div class="row py-4">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="{% static 'logo.PNG' %}" alt="" width="180" class="mb-3">
+          <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+          <ul class="list-inline mt-4">
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase font-weight-bold mb-4">Website</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="#" class="text-muted">For Startups</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">For Corporates</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">For Individuals</a></li>
+            <li class="mb-2"><a href="{% url 'allblogs' %}" class="text-muted">Our Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="{% url 'login' %}" class="text-muted">Login</a></li>
+            <li class="mb-2"><a href="{% url 'signup' %}" class="text-muted">Register</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">About</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">Our Team</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
+    <!-- Copyrights -->
+    <div >
+      <div class="container text-center">
+        <p class="text-muted mb-0 py-2">© 2019 StartSmart All rights reserved.</p>
+      </div>
     </div>
-    </div>
-    
-    </body>
+  </footer>
 </html>
