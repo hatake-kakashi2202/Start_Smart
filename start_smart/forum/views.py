@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth import authenticate,login,logout
 import uuid
+from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from accounts.models import Startup,Mentor
 from django.db.models import Q
@@ -22,9 +23,15 @@ def finances(request,user_name='pkashyap'):
 	return render(request,'finances.html',{'user_name':user_name})
 
 def forum(request):
-    form=forumForm()
-    mod = forum_text.objects.all()
+    mod_list = forum_text.objects.all().order_by('-id')
+    paginator = Paginator(mod_list, 5)
+    page_number = request.GET.get('page')
+    mod = paginator.get_page(page_number)
     pic = User.objects.all()
+    trend_list = forum_text.objects.all().order_by('-views')
+    paginator1 = Paginator(trend_list, 5)
+    page_number1 = request.GET.get('page1')
+    trend = paginator1.get_page(page_number1)
     if request.method == 'POST':
         if request.POST.get('subject') and request.POST.get('query'):
             model=forum_text()
@@ -36,14 +43,16 @@ def forum(request):
         else:
             return render(request, 'index.html', {})
     else:
-        return render(request, 'forum.html', {'form': form, 'model': mod,'pic': pic})
+        return render(request, 'forum.html', {'model': mod,'pic': pic,'trend':trend})
 
 # def forum_details(request):
 def forum_details(request,forum_id):
     if request.user.is_authenticated:
         form = comment_box()
         mod = forum_text.objects.all()
-        print('fourm text objects', mod)
+        mod1 = forum_text.objects.get(id=forum_id)
+        mod1.views = mod1.views+1
+        mod1.save()
         pic = User.objects.all()
         num=deepcopy(forum_id)
         mode = Comment.objects.all()
@@ -85,7 +94,6 @@ def like_post(request):
         like.save()
     return HttpResponseRedirect(reverse(forum_details,args=(post_id,)))
 
-
 class HomePageView(TemplateView):
     template_name = 'forum.html'
 
@@ -99,9 +107,6 @@ class SearchResultsView(ListView):
             Q(subject__icontains=query)
         )
         return object_list
-
-
-
 
 
 @login_required

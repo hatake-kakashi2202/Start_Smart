@@ -44,9 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    'poll.apps.PollConfig',
     'forum',
     'crispy_forms',
+    'hitcount',
     ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

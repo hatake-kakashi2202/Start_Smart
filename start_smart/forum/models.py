@@ -17,6 +17,7 @@ class forum_text(models.Model):
 	query=models.TextField()
 	liked = models.ManyToManyField(User,default=None,blank=True,related_name='liked')
 	created_at = models.DateTimeField(auto_now_add=True)
+	views = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.subject

@@ -44,6 +44,7 @@ urlpatterns = [
     path('forum_details/', views.forum_details, name='forum_details'),
     path('search/', SearchResultsView.as_view(), name='forumsearch'),
     path('forum/', HomePageView.as_view(), name='forum'),
+    path('poll/',include('poll.urls')),
 
    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

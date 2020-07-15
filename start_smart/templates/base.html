@@ -11,7 +11,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Bebas Neue">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Saira Semi Condensed">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -198,8 +199,55 @@ html { font-size: 0.5rem; }
 </header>
    {% block body_block %}
     {% endblock %}
-
-
+    <footer  style="background: linear-gradient(to bottom right ,#19181A ,#2F4454 );
+  ">
+      <div class="container py-5">
+        <div class="row py-4">
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3">
+            <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+            <ul class="list-inline mt-4">
+              <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
+              <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
+              <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+              <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h6 class="text-uppercase font-weight-bold mb-4 text-warning">Website</h6>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2"><a href="#" class="text-muted">For Startups</a></li>
+              <li class="mb-2"><a href="#" class="text-muted">For Corporates</a></li>
+              <li class="mb-2"><a href="#" class="text-muted">For Individuals</a></li>
+              <li class="mb-2"><a href="{% url 'allblogs' %}" class="text-muted">Our Blog</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h6 class="text-uppercase font-weight-bold mb-4 text-warning">Company</h6>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2"><a href="{% url 'login' %}" class="text-muted">Login</a></li>
+              <li class="mb-2"><a href="{% url 'signup' %}" class="text-muted">Register</a></li>
+              <li class="mb-2"><a href="#" class="text-muted">About</a></li>
+              <li class="mb-2"><a href="#" class="text-muted">Our Team</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 text-warning">
+            <h6 class="text-uppercase font-weight-bold mb-4" style="color:lightorange">Survey</h6>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2"><p class="text-muted">Please give 5 minutes to give survey</p></li>
+             <a  href="{% url 'home' %}"><button type="button" class="btn btn-outline-warning">Click Here</button></a>
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Copyrights -->
+      <div >
+        <div class="container text-center">
+          <p class="text-muted mb-0 py-2">© 2019 StartSmart All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
   <!-- For demo purpose -->
 

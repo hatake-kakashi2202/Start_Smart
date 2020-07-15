@@ -6,9 +6,144 @@
       {
           width: 100%;
             height: 100vh;
-            background: url({% static 'a10.jpg' %}) no-repeat 50% 50%;
+            background: url({% static 'for3.jpeg' %}) no-repeat 50% 50%;
             background-size: cover;
       }
+      :root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group input {
+  height: auto;
+  border-radius: 2rem;
+}
+
+.form-label-group>input,
+.form-label-group>label {
+  padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group>label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::placeholder {
+  color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.form-label-group input:not(:placeholder-shown)~label {
+  padding-top: calc(var(--input-padding-y) / 3);
+  padding-bottom: calc(var(--input-padding-y) / 3);
+  font-size: 12px;
+  color: #777;
+}
+
+.btn-google {
+  color: white;
+  background-color: #ea4335;
+}
+
+.btn-facebook {
+  color: white;
+  background-color: #3b5998;
+}
+
+/* Fallback for Edge
+-------------------------------------------------- */
+
+@supports (-ms-ime-align: auto) {
+  .form-label-group>label {
+    display: none;
+  }
+  .form-label-group input::-ms-input-placeholder {
+    color: #777;
+  }
+}
+
+/* Fallback for IE
+-------------------------------------------------- */
+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+  .form-label-group>label {
+    display: none;
+  }
+  .form-label-group input:-ms-input-placeholder {
+    color: #777;
+  }
+}
         #searchbar {
             float: right;
             width: max-content;
@@ -96,9 +231,8 @@
     background-size: cover !important;
 }
     </style>
-    {% block forum %}<Strong style="color:'white';">Forum</Strong>{% endblock forum %}
 </head>
-<body class="text-center" style="background-image:url({% static 'b3.jpeg' %});background-size:100% 100%">
+<body class="text-center" style="background-image:url({% static 'fbg1.png' %});">
     <div class="buttons">
         <div class="row" style="padding: 1vw;">
             <nav class="navbar navbar-light bg-light " id="left">
@@ -125,16 +259,33 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title" style="text-align: center;">Queries</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <!-- Modal body -->
-                <form method="POST" action="{% url 'forum' %}">
-                    {% csrf_token %} {{ form|crispy }}
-                    <!-- Modal footer -->
-                    <input type="submit" value="ask">
-                </form>
+                <div class="container">
+                    <div class="row">
+                      <div class="col-lg-12 mx-auto">
+                        <div class="card card-signin my-5">
+                          <div class="card-body">
+                            <h5 class="card-title text-center">Ask Your Doubt</h5>
+                            <form class="form-signin" method="POST" action="{% url 'forum' %}">
+                                {% csrf_token %}
+                              <div class="form-label-group">
+                                <input type="text" id="inputEmail" class="form-control" placeholder="Subject" required autofocus name="subject">
+                                <label for="inputEmail">Subject</label>
+                              </div>
+                
+                              <div class="form-label-group">
+                                <input type="text" id="inputPassword" class="form-control" placeholder="query" required name="query">
+                                <label for="inputPassword">query</label>
+                              </div>
+                              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Ask</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
             </div>
         </div>
@@ -155,27 +306,29 @@
                             <small class="text-muted">{{data.created_at}}</small>
                         </span>
                       </div>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <div class="sub">subject:{{data.subject}}</div>
+                        <div class="card-body text-left pl-5">
+                            <h5 class="card-title text-left">
+                                <div class="sub h1" style="overflow-y: hidden;font-family: 'Font Name', 'Bebas Neue';">{{data.subject}}</div>
                             </h5>
-                            <p class="card-text">
-                                <div class="quer">query:{{data.query}}</div>
+                            <p class="card-text text-left">
+                                <div class="quer h4" style="overflow-y: hidden;font-family: 'Font Name', Saira Semi Condensed">{{data.query}}</div>
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-2" style="padding-left: 1px;">
                         <ul class="list-group" style="padding-left: 0%;">
                             <li class="list-group-item list-group-item-action">
+                                <br>
                                 <i class="fa fa-comments-o" aria-hidden="true"></i>
                                 <br> comments
                             </li>
                             <li class="list-group-item list-group-item-action">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
-                                <br> views
+                                <br> views:{{data.views}}
                             </li>
                             <a href="{% url 'forum_details_sp' forum_id=data.id %}">
                                 <li class="list-group-item list-group-item-action">
+                                    <br>
                                     <i class="fa fa-reply" aria-hidden="true"></i>
                                     <br> Reply
                                 </li>
@@ -185,21 +338,63 @@
                 </div>
             </div>
             <br> {% endfor %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-left pr-5">
+                  {% if model.has_previous %}
+                  <li class="page-item active"><a class="page-link" href="?page={{ model.previous_page_number }}">Previous</a></li>
+                  {% else %}
+                  <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                  {% endif %}
+                  <li class="page-item"><a class="page-link" href="#">Page {{ model.number }} of {{ model.paginator.num_pages }}<span class="sr-only">(current)</span></a></li>
+                  {% if model.has_next %}
+                  <li class="page-item active"><a class="page-link" href="?page={{ model.next_page_number }}">Next</a></li>
+                  {% else %}
+                  <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
         </div>
 
         <div id="right1">
+            <div class="card-header bg-light h1" style="overflow-y: hidden;font-family: 'Font Name', Saira Semi Condensed">Trending Discussions</div>
+            {% for data in trend %}
             <div class="card border-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                <div class="card-header">Trending Discussions</div>
                 <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text left"></p>
+                    <h5 class="card-title  text-left" style="overflow-y: hidden;font-family: 'Font Name', 'Bebas Neue';">{{data.subject}}<button type="button" class="btn btn-outline-secondary float-right">
+                        views&nbsp;<span class="badge badge-light" style="overflow-y: hidden;font-family: 'Font Name',  Saira Semi Condensed;">{{data.views}}</span>
+                      </button></h5>
+                    <p class="card-text text-left">query:{{data.query}}</p>
+                    <a href="{% url 'forum_details_sp' forum_id=data.id %}">
+                        <li class="list-group-item list-group-item-action">
+                            <i class="fa fa-reply" aria-hidden="true"></i>
+                            <br> Reply
+                        </li>
+                    </a>
                 </div>
+                <br>
+                {% endfor %}
             </div>
-        </div>
-
+            <br>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                      {% if trend.has_previous %}
+                      <li class="page-item active"><a class="page-link" href="?page1={{ trend.previous_page_number }}">Previous</a></li>
+                      {% else %}
+                      <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                      {% endif %}
+                      <li class="page-item"><a class="page-link" href="#">Page {{ trend.number }} of {{ trend.paginator.num_pages }}<span class="sr-only">(current)</span></a></li>
+                      {% if trend.has_next %}
+                      <li class="page-item active"><a class="page-link" href="?page1={{ trend.next_page_number }}">Next</a></li>
+                      {% else %}
+                      <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                      {% endif %}
+                    </ul>
+                  </nav>
+        </div></div></div></div>
+</div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="{% static 'forum.js' %}"></script>
-
 </body>
 {% endblock %}
+

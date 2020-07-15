@@ -2,6 +2,8 @@
 {% load static %}
 <head>
   <link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Bebas Neue">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Saira Semi Condensed">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -200,11 +202,11 @@
                 <!-- Accordion item 1 -->
                 <div class="card">
                     <div id="headingOne" class="card-header bg-white shadow-sm border-0">
-                      <div class="text-success float-left">subject:{{data.subject}}</div>
-                      <div class="text-muted float-right">created_at:{{data.created_at}}</div>
+                      <div class="text-success float-left h1" style="overflow-y: hidden;font-family: 'Font Name', 'Bebas Neue';" >subject:{{data.subject}}</div>
+                      <div class="text-muted float-right" style="overflow-y: hidden;font-family: 'Font Name', 'Bebas Neue';">created_at:{{data.created_at}}</div>
                     </div>
-                    <div class="card-body p-5">
-                        <p class="font-weight-light m-0"><div class="quer">query:{{data.query}}</div></p>
+                    <div class="card-body p-5 text-left">
+                      <div class="quer h4" style="overflow-y: hidden;font-family: 'Font Name', Saira Semi Condensed">{{data.query}}</div>
                     </div>
                 </div><!-- End -->
 
@@ -216,9 +218,9 @@
                       {% csrf_token %}
                       <input type='hidden' name='post_id' value="{{forum_id}}">
                       {% if user not in data.liked.all %}
-                      <button type="submit" class="btn btn-light col-lg-2"><i class="fa fa-thumbs-up"  aria-hidden="true" style="padding: 5px;size:10px;"></i></button>
+                      <button type="submit" class="btn btn-light"><i class="fa fa-thumbs-up"  aria-hidden="true" style="padding: 5px;size:10px;"></i></button>
                       {% else %}
-                      <button type="submit" class="btn btn-light col-lg-2"><i class="fa fa-thumbs-down"  aria-hidden="true" style="padding: 5px;"></i></button>
+                      <button type="submit" class="btn btn-light"><i class="fa fa-thumbs-down"  aria-hidden="true" style="padding: 5px;"></i></button>
                       {% endif %}
                     </form><strong style="padding-top:8px">{{ data.liked.all.count }} likes</strong>&nbsp;&nbsp;&nbsp;<strong style="padding-top:8px">Comment:</strong>
                   </div>
