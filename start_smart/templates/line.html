@@ -1,1 +1,619 @@
 {% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lexend Zetta">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Saira Semi Condensed">
+    <link href="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.1.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.1.1.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.1.1.min.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
+
+
+<style>
+footer
+{
+    overflow-y: hidden;  
+}
+.bg-cover {
+    background-size: cover !important;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+header{
+  overflow-y: hidden
+}
+*
+{
+  overflow-x : hidden;
+}
+
+.navbar {
+    transition: all 0.4s;
+    background-color: #ffffff;
+}
+
+.navbar .nav-link {
+    color: #000000;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #000000;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand {
+    color: #000000;
+}
+
+
+
+.navbar.active {
+    background: #ffffff;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.active .nav-link {
+    color: #555;
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    color: #555;
+    text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+    color: #555;
+}
+
+
+
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #ffffff;
+    }
+
+    .navbar .navbar-brand, .navbar .nav-link {
+        color: #555;
+    }
+}
+
+
+.text-small {
+    font-size: 0.9rem !important;
+}
+
+
+body {
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: lighter;
+}
+
+html { font-size: 0.5rem; }
+
+@media (min-width: 576px) {
+    html { font-size: 0.75rem; }
+}
+@media (min-width: 768px) {
+    html { font-size: 1rem; }
+}
+@media (min-width: 992px) {
+    html { font-size: 1.10rem; }
+}
+@media (min-width: 1200px) {
+    html { font-size: 1.10rem; }
+}
+.border-md {
+    border-width: 2px;
+}
+.form-control:not(select) {
+    padding: 1.5rem 0.5rem;
+}
+
+select.form-control {
+    height: 52px;
+    padding-left: 0.5rem;
+}
+
+.form-control::placeholder {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.form-control:focus {
+    box-shadow: none;
+}
+.list-group{
+      display:inline-block;
+ }
+ .collapsible-link::before {
+  content: '';
+  width: 14px;
+  height: 2px;
+  background: #333;
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 1rem;
+  display: block;
+  transition: all 0.3s;
+}
+
+/* Vertical line */
+.collapsible-link::after {
+  content: '';
+  width: 2px;
+  height: 14px;
+  background: #333;
+  position: absolute;
+  top: calc(50% - 7px);
+  right: calc(1rem + 6px);
+  display: block;
+  transition: all 0.3s;
+}
+
+.collapsible-link[aria-expanded='true']::after {
+  transform: rotate(90deg) translateX(-1px);
+}
+
+.collapsible-link[aria-expanded='true']::before {
+  transform: rotate(180deg);
+}
+</style>
+    <title>Start_smart</title>
+  </head>
+    <header >
+        <nav class="navbar navbar-expand-lg fixed-top py-3" >
+            <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">StartSmart</a>
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+    
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link scroll-link" href="{% url 'forum' %}">Forum <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'finance' %}">Finances</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'mentor' %}">Networking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'dashboard' %}">Dashboard</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'profile' %}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
+    
+                            <form id="logout" method="POST" action="{% url 'logout' %}">
+                              {% csrf_token %}
+      <input type="hidden">
+    </form>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'signup' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            
+                        </li>
+                        
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br><br><br>
+        <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Ticker Tape</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+    "symbols": [
+      {
+        "proName": "FOREXCOM:SPXUSD",
+        "title": "S&P 500"
+      },
+      {
+        "proName": "FOREXCOM:NSXUSD",
+        "title": "Nasdaq 100"
+      },
+      {
+        "proName": "FX_IDC:EURUSD",
+        "title": "EUR/USD"
+      },
+      {
+        "proName": "BITSTAMP:BTCUSD",
+        "title": "BTC/USD"
+      },
+      {
+        "proName": "BITSTAMP:ETHUSD",
+        "title": "ETH/USD"
+      },
+      {
+        "description": "USD?INR",
+        "proName": "OANDA:USDINR"
+      }
+    ],
+    "colorTheme": "light",
+    "isTransparent": false,
+    "displayMode": "compact",
+    "locale": "in"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+</header>
+<br><br><br>
+                    {% if messages %}
+                            {% for message in messages %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="alert alert-warning alert-dismissible fade show col-lg-4 mb-4" style="font-family: 'Font Name', 'Saira Semi Condensed';">{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button></div>
+                            {% endif %}
+                            {% endfor %}
+                    {% endif %}
+<body style="background-image:url({% static 'bg34.jpeg' %});">
+    <div class="row" style="margin-right: 15px;margin-left: 15px;">
+        <div class="col-lg-5 rounded p-5 bg-light">
+            <div class="text-center mb-3 h5" style="overflow-y: hidden;font-family: 'Font Name', 'Lexend Zetta';"><strong>YOUR FINANCIAL DETAILS per YEAR</strong></div><br>
+            <div class="alert alert-info" role="alert" style="font-size:medium;">
+                YOUR CURRENT BUDGET IS <i class="fa fa-rupee text-muted"></i> {{mod.Budget}} AND YOUR CURRENT THRESHOLD IS <i class="fa fa-rupee text-muted"></i> {{mod.threshold}}
+            </div>
+                <form method="POST" action="{% url 'upfin' %}">
+                    <div class="row">
+                        {% csrf_token %}
+                        <div class="input-group col-lg-6 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-rupee text-muted"></i>
+                                </span>
+                            </div>
+                            <input type="number" name="threshold" placeholder="threshold" class="form-control bg-white border-left-0 border-md">
+                        </div>
+    
+                        <div class="input-group col-lg-6 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-rupee text-muted"></i>
+                                </span>
+                            </div>
+                            <input type="number" name="budget" placeholder="Budget" class="form-control bg-white border-left-0 border-md">
+                            <button type="button" class="btn btn-secondary disabled" data-toggle="tooltip" data-placement="right" title="provide yearly threshold(the point below which your income should not drop) and budget">
+                                i
+                            </button>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block col-md-12 mb-4">Update Threshold and Budget</button>
+                        <div class="p-3 col-lg-12">
+                            <table class="table table-bordered table-light table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Month</th>
+                                        <th scope="col">Income</th>
+                                        <th scope="col">Expenditure</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i,j,k in details %}
+                                    <tr>
+                                        <th scope="row">{{k}}</th>
+                                        <td>{{j}}</td>
+                                        <td>{{i}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group col-lg-6 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-rupee text-muted"></i>
+                                </span>
+                            </div>
+                            <input type="number" name="income" placeholder="income" class="form-control bg-white border-left-0 border-md">
+                        </div>
+    
+                        <div class="input-group col-lg-6 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-rupee text-muted"></i>
+                                </span>
+                            </div>
+                            <input type="number" name="expenditure" placeholder="expenditure" class="form-control bg-white border-left-0 border-md">
+                            <button type="button" class="btn btn-secondary disabled" data-toggle="tooltip" data-placement="right" title="income and expenditure for the next month">
+                                i
+                            </button>
+                        </div>
+                    <button type="submit" class="btn btn-success btn-block col-md-12 mb-4">Add Income and Expenditure for next month</button>
+                </div>
+                </form>
+                {% if update %}
+                <button type="button" class="btn btn-secondary col-md-12 mb-4" data-toggle="modal" data-target="#exampleModalCenter">
+                    Update Month Fields
+                  </button>
+                  <form method="POST" action="{%url 'update'%}">
+                      {% csrf_token %}
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title text-center" id="exampleModalLongTitle">Update</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Select Month</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="month">
+                                    {% for i in index %}
+                                    <option>{{i}}</option>
+                                    {% endfor %}
+                                </select>
+                              </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Income</label>
+                                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="income" name="income">
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleFormControlInput1">Expenditure</label>
+                                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="expenditure" name="expenditure">
+                              </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                          <button type="submit" class="btn btn-primary">submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                {% endif %}
+        </div>
+        <div class="col-lg-7 rounded" style="padding-left: 5vw;">
+            <div class="row" style="padding-left: 5vw;">
+                <div class="float-right bg-light" style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;"><div class="text-center mb-3 h5" style="overflow-y: hidden;font-family: 'Font Name', 'Lexend Zetta';padding-top: 20px;"><strong>TRENDS OF YOUR INCOME AND EXPENDITURE </strong></div><br>{{div | safe}}</div>
+                <div class="container bg-light" style="padding-left: 57.600;padding-top:3vw;padding-bottom:3vw;width:fit-content;padding-right: 57.600;margin-top: 57.600;margin-right: 166.922;">
+                    <div class="text-center mb-3 h2" style="overflow-y: hidden;font-family: 'Font Name', 'Lexend Zetta';"><strong>ALERTS</strong></div>
+                    {% if messages %}
+                    <ul class="list-group">
+                            {% for message in messages %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                            <li class="list-group-item list-group-item-info" style="font-family: 'Font Name', 'Saira Semi Condensed';">{{ message }}</li>
+                            {% endif %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                            <li class="list-group-item list-group-item-warning" style="font-family: 'Font Name', 'Saira Semi Condensed';">{{ message }}</li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="jumbotron bg-dark rounded-0" style="margin-bottom: 0px;">
+        <div class="row py-5">
+          <div class="col-lg-9 mx-auto text-white text-center">
+            <h1 class="display-4">6 GREAT TIPS FROM OUR EXPERTS TO MANAGE YOUR FINANCES </h1>
+            </p>
+          </div>
+        </div>
+      
+      
+        <div class="row">
+          <div class="col-lg-9 mx-auto">
+            <!-- Accordion -->
+            <div id="accordionExample" class="accordion shadow">
+      
+              <!-- Accordion item 1 -->
+              
+              <div class="card">
+                <div id="headingOne" class="card-header bg-white shadow-sm border-0">
+                  <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">1. Review your strategic plan</a></h6>
+                </div>
+                <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse">
+                  <div class="card-body p-5">
+                    <p class="font-weight-light m-0">Financial planning should start with your company’s strategic plan. You should think about what you want to accomplish at the start of a new year and ask yourself a series of questions:
+                        <ul>
+                        <li>Do I need to expand?</li>
+                        <li>Do I need more equipment?</li>
+                        <li>Do I need to hire more staff?</li>
+                        <li>Do I need other new resources?</li>
+                        <li>How will my plan affect my cash flow?</li>
+                        <li>Will I need financing? If yes, how much?</li>
+                        </ul>
+                        Then, determine the financial impact in the next 12 months, including spending on major projects.
+                    </p>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Accordion item 2 -->
+              <div class="card">
+                <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
+                  <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">2. Develop financial projections</a></h6>
+                </div>
+                <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
+                  <div class="card-body p-5">
+                    <p class="font-weight-light m-0"><p>Create monthly financial projections by recording your anticipated income based on sales forecasts and anticipated expenses for labour, supplies , overhead, etc.. (Businesses with very tight cash flow may want to make weekly projections.) Now, plug in the costs for the projects you identified in the previous step.</p>
+
+                        <p>For this job, you can use simple spreadsheet software or tools available in your accounting software. Don’t assume sales will convert to cash right away. Enter them as cash only when you expect to get paid based on prior experience.</p>
+                        
+                        <p>Also prepare a projected income (profit and loss) statement and a balance sheet projection. It can be useful to include various scenarios—most likely, optimistic and pessimistic—for your projections to help you to anticipate the impacts of each one.</p>
+                        
+                        <p>It may be a good idea to seek advice from your accountant when developing your financial projections. Be sure to go over the plan together, as it is you, and not your accountant, who will be seeking financing and who will be explaining the plan to your banker and investor.</p></p>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Accordion item 3 -->
+              <div class="card">
+                <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+                  <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">3. Arrange financing</a></h6>
+                </div>
+                <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
+                  <div class="card-body p-5">
+                    <p class="font-weight-light m-0">Use your financial projections to determine your financing needs. Approach your financial partners ahead of time to discuss your options. Well-prepared projections will help reassure bankers that your financial management is solid.</p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card">
+                <div id="headingFour" class="card-header bg-white shadow-sm border-0">
+                  <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="falsw" aria-controls="collapseFour" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">4. Plan for contingencies</a></h6>
+                </div>
+                <div id="collapseFour" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse">
+                  <div class="card-body p-5">
+                    <p class="font-weight-light m-0">What would you do if your finances suddenly deteriorated? It’s a good idea to have emergency sources of money before you need them. Possibilities include maintaining a cash reserve or keeping lots of room on your line of credit.</p>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Accordion item 2 -->
+              <div class="card">
+                <div id="headingFive" class="card-header bg-white shadow-sm border-0">
+                  <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">5. Monitor</a></h6>
+                </div>
+                <div id="collapseFive" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
+                  <div class="card-body p-5">
+                    <p class="font-weight-light m-0">Through the year, compare actual results with your projections to see if you’re on target or need to adjust. Monitoring helps you spot financial problems before they get out of hand.</p>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Accordion item 3 -->
+              <div class="card">
+                <div id="headingSix" class="card-header bg-white shadow-sm border-0">
+                  <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">6. Get help</a></h6>
+                </div>
+                <div id="collapseSix" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
+                  <div class="card-body p-5">
+                    <p class="font-weight-light m-0">If you lack expertise, consider hiring an expert to help you put together your financial plan.StartSmart Would Be Your Best Choice.</p>
+                  </div>
+                </div>
+              </div>
+              
+      <br><br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+<script>
+    $(function () {
+$(window).on('scroll', function () {
+    if ( $(window).scrollTop() > -1 ) {
+        $('.navbar').addClass('active');
+    } else {
+        $('.navbar').removeClass('active');
+    }
+});
+});
+</script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.1.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.1.1.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.1.1.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.1.1.min.js"></script>
+<script>
+    $(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
+<script>
+$(function () {
+  $('.example-popover').popover({
+    container: 'body'
+  })
+})
+</script>
+{{ script | safe }}
+<script>
+    $(function () {
+    $('input, select').on('focus', function () {
+        $(this).parent().find('.input-group-text').css('border-color', '#80bdff');
+    });
+    $('input, select').on('blur', function () {
+        $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
+    });
+});
+</script>
+</body>
+<footer  style="
+  background: linear-gradient(to bottom right ,#19181A ,#2F4454 );
+">
+    <div class="container py-5">
+      <div class="row py-4">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="{% static 'logo.PNG' %}" alt="" width="180" class="mb-3">
+          <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+          <ul class="list-inline mt-4">
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+            <li class="list-inline-item" style="overflow-y: hidden;"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase font-weight-bold mb-4">Website</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="#" class="text-muted">For Startups</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">For Corporates</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">For Individuals</a></li>
+            <li class="mb-2"><a href="{% url 'allblogs' %}" class="text-muted">Our Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="{% url 'login' %}" class="text-muted">Login</a></li>
+            <li class="mb-2"><a href="{% url 'signup' %}" class="text-muted">Register</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">About</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">Our Team</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Copyrights -->
+    <div >
+      <div class="container text-center">
+        <p class="text-muted mb-0 py-2">© 2019 StartSmart All rights reserved.</p>
+      </div>
+    </div>
+  </footer>

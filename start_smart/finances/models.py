@@ -8,7 +8,31 @@ class finances(models.Model):
     income = models.TextField(default="0")
     threshold = models.IntegerField(default=0)
     Budget = models.IntegerField(default=0)
-    Surplus =  models.IntegerField(default=0)
-    transactions = models.TextField(default="")
     def __str__(self):
         return self.user.username
+
+class contact_details(models.Model):
+    name = models.CharField(max_length=264)
+    email = models.EmailField(max_length=254)
+    number = models.CharField(max_length=13)
+    STATUS_CHOICES = (
+    ('open','OPEN'),
+    ('waiting', 'WAITING'),
+    ('closed','CLOSED'),
+    )
+    status = models.CharField(max_length = 20, choices=STATUS_CHOICES,default='open')
+    created_at = models.DateTimeField()
+    def __str__(self):
+        return self.name
+
+class appoint_date(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    created_at = models.DateTimeField()
+    slot = models.DateTimeField()
+    STATUS_CHOICES = (
+    ('open','OPEN'),
+    ('closed','CLOSED'),
+    )
+    status = models.CharField(max_length = 20, choices=STATUS_CHOICES,default='open')
+    def __str__(self):
+        return self.user.username+" at " + str(self.slot)

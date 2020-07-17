@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+import finances.views as v
 from forum import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -45,6 +46,11 @@ urlpatterns = [
     path('search/', SearchResultsView.as_view(), name='forumsearch'),
     path('forum/', HomePageView.as_view(), name='forum'),
     path('poll/',include('poll.urls')),
+    path('contact/',v.contact,name="contact"),
+    path('appointment/',v.appointment,name="appointment"),
+    path('advice/',v.graph,name='advice'),
+    path('upfin/',v.update_fin,name='upfin'),
+    path('update/',v.update,name='update'),
 
    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

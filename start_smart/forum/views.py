@@ -71,6 +71,7 @@ def forum_details(request,forum_id):
             return render(request, 'forum_details.html', {'forum_id': forum_id, 'form': form, 'model': mod, 'pic': pic,'mode':mode})
     else:
         return render(request,'login.html',{})
+        
 
 def like_post(request):
     user = request.user

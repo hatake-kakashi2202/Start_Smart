@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'poll.apps.PollConfig',
     'forum',
     'crispy_forms',
-    'hitcount',
     ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
