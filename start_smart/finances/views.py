@@ -14,7 +14,16 @@ from bokeh.palettes import Category20c
 from bokeh.plotting import figure
 from bokeh.transform import cumsum
 from django.shortcuts import redirect
+from django.core.mail import send_mail
+import threading
 # Create your views here.
+
+def send_reg_mail(email):
+	send_mail(email[1],
+		email[2],
+		'iiits.startsmart@gmail.com',
+		[email[0]])
+
 def finance(request):
 	return render(request, 'finance.html')
 

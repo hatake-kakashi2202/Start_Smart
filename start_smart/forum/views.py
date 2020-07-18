@@ -12,6 +12,7 @@ from accounts.models import Startup,Mentor
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView
 from copy import deepcopy
+from django.contrib import messages
 
 # Create your views here.
 
@@ -19,8 +20,8 @@ from copy import deepcopy
 def index(request):
 	return render(request,'index.html',{})
 
-def finances(request,user_name='pkashyap'):
-	return render(request,'finances.html',{'user_name':user_name})
+def soon(request):
+	return render(request,'comingsoon.html')
 
 def forum(request):
     mod_list = forum_text.objects.all().order_by('-id')
@@ -35,11 +36,15 @@ def forum(request):
     if request.method == 'POST':
         if request.POST.get('subject') and request.POST.get('query'):
             model=forum_text()
-            model.user=request.user
-            model.subject = request.POST.get('subject')
-            model.query = request.POST.get('query')
-            model.save()
-            return HttpResponseRedirect(reverse('forum'))
+            if request.user.is_authenticated:
+                model.user=request.user
+                model.subject = request.POST.get('subject')
+                model.query = request.POST.get('query')
+                model.save()
+                return HttpResponseRedirect(reverse('forum'))
+            else :
+                messages.warning(request,"please login before starting a discussion")
+                return HttpResponseRedirect(reverse('forum'))
         else:
             return render(request, 'index.html', {})
     else:
@@ -66,7 +71,8 @@ def forum_details(request,forum_id):
                 model.save()
                 return HttpResponseRedirect(reverse(forum_details, args=(forum_id,)))
             else:
-                return render(request, 'index.html', {})
+                messages.error(request,"User details not found,please login")
+                return HttpResponseRedirectreverse(forum_details,args=(post_id,))
         else:
             return render(request, 'forum_details.html', {'forum_id': forum_id, 'form': form, 'model': mod, 'pic': pic,'mode':mode})
     else:

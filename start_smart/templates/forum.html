@@ -233,6 +233,17 @@ body {
     </style>
 </head>
 <body class="text-center" style="background-image:url({% static 'fbg1.png' %});">
+                  <div style="align-self: center;">
+                    {% if messages %}
+                            {% for message in messages %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                            <div class="alert alert-warning alert-dismissible fade show col-lg-4 mb-4" style="font-family: 'Font Name', 'Saira Semi Condensed';">{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button></div>
+                            {% endif %}
+                            {% endfor %}
+                    {% endif %}
+                  </div>
     <div class="buttons">
         <div class="row" style="padding: 1vw;">
             <nav class="navbar navbar-light bg-light " id="left">
@@ -261,7 +272,6 @@ body {
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-
                 <div class="container">
                     <div class="row">
                       <div class="col-lg-12 mx-auto">
