@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
-from .models import  Startup, Mentor
+from .models import  Startup, Mentor, Fields
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 from django.core.mail import send_mail
-import smtplib
 import random
 from datetime import datetime, timedelta, timezone
 import threading
@@ -30,6 +30,8 @@ def signup_sub(request):
 					user.first_name = request.POST['firstname']
 					user.last_name = request.POST['lastname']
 					new_mentor = Mentor(user = user, person = request.POST['type'])
+					temp_field = Fields(user = user, is_email_verified = False)
+					temp_field.save()
 					new_mentor.save()
 					user.save()
 					auth.login(request,user)
@@ -66,13 +68,15 @@ def logout(request):
 	return redirect('index')
 
 def profile(request):
+	if not request.user.is_authenticated:
+		return render(request, 'login.html')
 	user = User.objects.get(username = request.user.username)
 	try:
 		if user.startup is not None:
 			is_startup = True
 	except:
 		is_startup = False
-	return render(request, 'profile.html', {'user':user, 'is_startup':is_startup})
+	return render(request, 'neouser.html', {'user':user, 'is_startup':is_startup})
 
 def signup_startup(request):
 	if request.method == 'POST':
@@ -91,6 +95,8 @@ def signup_startup(request):
 				except ValueError:
 					k = 0
 				new_startup = Startup(user = user, company_name = request.POST['company_name'], emp_no = k, founder = request.POST['founder'], company_desc = request.POST['company_desc'], head_quarters = request.POST['head_quarters'])
+				temp_field = Fields(user = user)
+				temp_field.save()
 				new_startup.save()
 				user.save()
 				auth.login(request,user)
@@ -100,8 +106,9 @@ def signup_startup(request):
 	else:
 		return render(request, 'signup.html')
 
-@login_required
 def update_info(request):
+	if not request.user.is_authenticated:
+		return render(request, 'login.html')
 	user = User.objects.get(username = request.user.username)
 	try:
 		if user.startup is not None:
@@ -110,13 +117,17 @@ def update_info(request):
 		is_startup = False
 	return render(request, 'update_info.html', {'user':user, 'is_startup':is_startup})
 
-@login_required
 def update_startup(request):
+	if not request.user.is_authenticated:
+		return render(request, 'login.html')
 	u = User.objects.get(username = request.user.username)
 	u.first_name = request.POST['first_name']
 	u.last_name = request.POST['last_name']
 	temp_startup = Startup.objects.get(user = u)
 	temp_startup.company_name = request.POST['company_name']
+	if u.email != request.POST['email']:
+		u.fields.is_email_verified = False
+		u.fields.save()
 	u.email = request.POST['email']
 	try:
 		k = int(request.POST['emp_no'])
@@ -126,27 +137,54 @@ def update_startup(request):
 	temp_startup.founder = request.POST['founder']
 	temp_startup.head_quarters = request.POST['head_quarters']
 	temp_startup.company_desc = request.POST['company_desc']
+	try:
+		myfile = request.FILES['myfile']
+		temp_startup.profile_pic = myfile.name
+		fs = FileSystemStorage()
+		filename = fs.save(myfile.name, myfile)
+	except:
+		# do nothing
+		print('', end='')
 	temp_startup.save()
 	u.save()
 	return redirect('index')
 
-@login_required
 def update_user(request):
+	if not request.user.is_authenticated:
+		return render(request, 'login.html')
 	u = User.objects.get(username = request.user.username)
 	u.first_name = request.POST['first_name']
 	u.last_name = request.POST['last_name']
+	if u.email != request.POST['email']:
+		u.fields.is_email_verified = False
+		u.fields.save()
 	u.email = request.POST['email']
+	try:
+		myfile = request.FILES['myfile']
+		u.mentor.profile_pic = myfile.name
+		# name_temp = u.username + '_pic'
+		# print(os.path.isfile('\media\name_temp\name_temp'))
+		# path_temp = os.getcwd()
+		# os.chdir(path_temp + '\media') 
+		# os.remove(u.username + '_pic')
+		fs = FileSystemStorage()
+		filename = fs.save(myfile.name, myfile)
+		u.mentor.save()
+	except:
+		# do nothing
+		print('', end='')
 	u.save()
 	return redirect('index')
 
 def send_reg_mail(email):
 	send_mail('Congrulations',
 		'You have sucessfully registered for Start Smart',
-		'startsmart.iiits@gmail.com',
+		'iiits.startsmart@gmail.com',
 		[email])
 
-@login_required
 def email_auth(request):
+	if not request.user.is_authenticated:
+		return render(request, 'login.html')
 	u = User.objects.get(username = request.user.username)
 	temp_mail = u.email
 	mail_thread = threading.Thread(target=send_reg_mail, args=[temp_mail])
@@ -159,7 +197,15 @@ def sendmail(list):
 	rand = list[1]
 	send_mail('OTP for reset password',
 		'Your OTP for reset password is : ' + str(rand) + '\n\nThe OTP is valid only for 5 minutes.\nDo not share OTP with anyone.',
-		'startsmart.iiits@gmail.com',
+		'iiits.startsmart@gmail.com',
+		[email])
+
+def verify(val):
+	email = val[0]
+	rand = val[1]
+	send_mail('OTP for Email verification',
+		'Your OTP for Email verification is : ' + str(rand) + '\n\nThe OTP is valid only for 5 minutes.\nDo not share OTP with anyone.',
+		'iiits.startsmart@gmail.com',
 		[email])
 
 def hash_fun(value):
@@ -239,3 +285,49 @@ def new_pass(request, username, password):
 			return redirect('index')
 	else:
 		return render(request, 'new_pass.html' , {'temp_username':username})
+
+
+def email_verification(request):
+	user = User.objects.get(username = request.user.username)
+	try:
+		if user.startup is not None:
+			is_startup = True
+	except:
+		is_startup = False
+	email = user.email
+	if email == '':
+		return render(request, 'neouser.html', {'user':user, 'is_startup':is_startup})
+
+	if user.fields.is_email_verified:
+			return render(request, 'neouser.html', {'user':user, 'is_startup':is_startup, 'message':'Email is already verified'})
+
+	rand = random.randint(10000, 99999)
+	mail_thread = threading.Thread(target=verify, args=[[user.email, rand]])
+	mail_thread.start()		
+
+	time_lim = datetime.now(timezone.utc) + timedelta(seconds=300)
+	time_lim = time_modify(time_lim)
+	rand = hash_fun(rand)
+	return redirect('/accounts/verify_email/' + str(request.user.username)+'/'+ str(time_lim)+ '/' + str(rand) )
+
+
+def verify_email(request, username, time_lim, rand):
+	if request.method == 'POST':
+		otp = request.POST['otp']
+		if otp == '':
+			return render(request, 'verify_email.html', {'error':'OTP cannot be None'})
+		otp = int(otp)
+		curr_time = datetime.now(timezone.utc)
+		curr_time = time_modify(curr_time)
+		if time_compare(curr_time, time_lim):
+			return render(request, 'verify_email.html', {'error':'OTP expired'})
+		otp = hash_fun(otp)
+		if str(otp) == str(rand):
+			user = User.objects.get(username = username)
+			user.fields.is_email_verified = True
+			user.fields.save()
+			return redirect('index')
+		else:
+			return render(request, 'verify_email.html', {'error':'Invalid OTP'})
+	else:
+		return render(request, 'verify_email.html')

@@ -42,7 +42,7 @@ def vote(request,poll_id):
         sel_opt=request.POST['poll']
         model=UserProfile()
         model.user=request.user
-        print(model.user)
+        
         if sel_opt == 'option1' :
             poll.count_opt_1 += 1
         elif sel_opt == 'option2':
@@ -54,10 +54,10 @@ def vote(request,poll_id):
         names=str(model.user)
           
         poll.name +=str(model.user)
-        print(poll.name)
+        
         if  Question.objects.filter(pk=poll_id,name__icontains=names):
             
-            return HttpResponse("<h3>You are already voted for this please go back to answer  the next question .</h3>")
+            return render(request, 'home.html', {'error':'You have already answered the question please go to next question'})
         else:  
             
             poll.name +=names

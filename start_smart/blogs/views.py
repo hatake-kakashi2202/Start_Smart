@@ -9,8 +9,9 @@ from django.db.models import Q
 from django.views.generic import TemplateView, ListView
 
 # Create your views here.
-@login_required
 def allblogs(request):
+	if not request.user.is_authenticated:
+		return render(request, 'login.html')
 	all_blogs = blog.objects
 	all_blogs_temp = blog.objects.all()
 	l = []
@@ -25,11 +26,20 @@ def allblogs(request):
 			l.append(temp[0] + ' and ' + str(count-1) + ' more')
 		else:
 			l.append(x.inter)
-	all_blogs_temp = zip(all_blogs_temp, l)
-	return render(request, 'allblogs.html', {'all_blogs':all_blogs_temp, 'list':l})
+	all_blogs_temp = list(zip(all_blogs_temp, l))
+	page = request.GET.get('page', 1)
+	paginator = Paginator(all_blogs_temp, 10)
+	try:
+		users = paginator.page(page)
+	except PageNotAnInteger:
+		users = paginator.page(1)
+	except EmptyPage:
+		users = paginator.page(paginator.num_pages)
+	return render(request, 'allblogs.html', {'all_blogs':users})
 
-@login_required
 def create(request):
+	if not request.user.is_authenticated:
+		return render(request, 'login.html')
 	if request.method == 'POST':
 		if request.POST['title'] and request.POST['body']:
 			new_blog = blog()
@@ -92,8 +102,10 @@ def likers(request, blog_id):
 
 	return render(request, 'likers.html', {'like':like})
 
-@login_required
+# @login_required
 def delete_blog(request, blog_id):
+	if not request.user.is_authenticated:
+		return render(request, 'login.html')
 	curr_blog = blog.objects.get(pk = blog_id)
 	curr_blog.delete()
 	# return myblogs(request)

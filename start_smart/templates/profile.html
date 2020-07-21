@@ -98,7 +98,13 @@
             </div> 
             <div class="container col-lg-6"> 
           <div class="card" style="width: 35rem; margin-bottom: 30px;margin-top: 30px;;">
-            <div class="card-header"><img src="{% static 'virtusa.jpg'%}" alt="wipro.com" width="100" height="100" />  <span style="font-size:40px; margin-left: 30px;;  padding-top: 20px; text-align: center;">   Startup PROFILE</span></div>
+            <div class="card-header">
+              {% if user.startup.profile_pic %}
+                      <img src="{{user.startup.profile_pic.url}}" alt="wipro.com" width="100" height="100" />
+                        {% else %}
+                        <img src="{% static 'user.png'%}" alt="wipro.com" width="100" height="100" />
+                        {% endif %}
+              <span style="font-size:40px; margin-left: 30px;;  padding-top: 20px; text-align: center;">   Startup Profile</span></div>
             <div class="card-body">
                 <div class="container">
                 <form>
@@ -189,7 +195,15 @@
             </div>
             <div class="container col-lg-6">   
                 <div class="card" style="width: 35rem; margin-bottom: 30px; margin-top: 30px;">
-                    <div class="card-header"><img src="{% static 'virtusa.jpg'%}" alt="wipro.com" width="100" height="100" />  <span style="font-size:40px; margin-left: 35px;;  padding-top: 20px; text-align: center;"> {% if user.mentor.person == 1 %}
+                    <div class="card-header">
+                      {% if user.mentor.profile_pic %}
+                      <img src="{{user.mentor.profile_pic.url}}" alt="wipro.com" width="100" height="100" />
+                        {% else %}
+                        <img src="{% static 'user.png'%}" alt="wipro.com" width="100" height="100" />
+                        {% endif %}
+                       <span style="font-size:40px; margin-left: 35px;;  padding-top: 20px; text-align: center;"> {% if user.mentor.person == 1 %}
+                        
+                      
 Mentor
 {% elif user.mentor.person == 2 %}
 INDIVIDUAL PROFILE

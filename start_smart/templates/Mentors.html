@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="{% static 'Mentor.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+	<style>
+		.pageTitle{
+			background-color: black;
+		}
+		.leftBox{
+			margin-right: 0px;
+			width: 10%!important;
+			background-color: white;
+			border-color: black;
+		}
+		.rightBox{
+			padding: 20px;
+			width: 90%!important;
+			background-color: rgb(220,220,220);
+		}
+		.btn-primary {
+			font-weight: bold;
+			width: 30%;
+			margin-left: 30%!important;
+			border-radius: 20px!important;
+		  	transition-duration: 0.4s;
+		}
+
+		.btn-primary:hover {
+		  	background-color: white; 
+		  	color: blue;
+		}
+
+		.card{
+			margin-bottom: 20px;
+			margin: 20px;
+			box-shadow: rgb(240,240,240);
+		}
+		#education:hover{
+              transition: all 0.4s ease-out;
+              box-shadow: 0px 4px 8px rgba(255, 56, 85,0.75);
+              top: -4px;  
+        }
+
+        #occupation:hover{
+              transition: all 0.4s ease-out;
+              box-shadow: 0px 4px 8px rgba(255, 219, 88,0.75);
+              top: -4px;
+        }
+
+        #income:hover{
+              transition: all 0.4s ease-out;
+              box-shadow: 0px 4px 8px rgba(0, 123, 224,0.75);
+              top: -4px;              
+        }
+
+		.btn-sm{
+			margin-left: 35%!important;
+			border-radius: 20px!important;
+			width: 35%;
+		}
+/*		* {box-sizing: border-box}
+		body {font-family: Verdana, sans-serif; margin:0}
+		.mySlides {display: none}
+		img {vertical-align: middle;}*/
+
+		/* Slideshow container */
+		.slideshow-container {
+		  max-width: 1000px;
+		  position: relative;
+		  margin: auto;
+		}
+
+		/* Next & previous buttons */
+		.prev, .next {
+		  cursor: pointer;
+		  position: absolute;
+		  top: 50%;
+		  width: auto;
+		  padding: 16px;
+		  margin-top: -22px;
+		  color: white;
+		  font-weight: bold;
+		  font-size: 18px;
+		  transition: 0.6s ease;
+		  border-radius: 0 3px 3px 0;
+		  user-select: none;
+		}
+
+		/* Position the "next button" to the right */
+		.next {
+		  right: 0;
+		  border-radius: 3px 0 0 3px;
+		}
+
+		/* On hover, add a black background color with a little bit see-through */
+		.prev:hover, .next:hover {
+		  background-color: rgba(0,0,0,0.8);
+		}
+
+		/* Caption text */
+		.text {
+		  color: #000000;
+		  font-size: 25px;
+		  padding: 8px 12px;
+/*		  position: absolute;*/
+		  bottom: 0px;
+		  width: 100%;
+		  text-align: center;
+		}
+
+		/* Number text (1/3 etc) */
+		.numbertext {
+		  color: #f2f2f2;
+		  font-size: 12px;
+		  padding: 8px 12px;
+		  position: absolute;
+		  top: 0;
+		}
+
+		/* The dots/bullets/indicators */
+		.dot {
+		  cursor: pointer;
+		  height: 15px;
+		  width: 15px;
+		  margin: 0 2px;
+		  background-color: #bbb;
+		  border-radius: 50%;
+		  display: inline-block;
+		  transition: background-color 0.6s ease;
+		}
+
+		.active, .dot:hover {
+		  background-color: #717171;
+		}
+
+		/* Fading animation */
+		.fade {
+		  /*-webkit-animation-name: fade;
+		  -webkit-animation-duration: 1.5s;
+		  animation-name: fade;
+		  animation-duration: 1.5s;*/
+		}
+
+		@-webkit-keyframes fade {
+		  from {opacity: .4} 
+		  to {opacity: 1}
+		}
+
+		@keyframes fade {
+		  from {opacity: .4} 
+		  to {opacity: 1}
+		}
+
+		/* On smaller screens, decrease text size */
+		@media only screen and (max-width: 300px) {
+		  .prev, .next,.text {font-size: 11px}
+		}
+
+		#Visit li{
+			list-style: none;
+			margin-left: 0px;
+			letter-spacing: 2px;
+			font-weight: bold;
+		}
+
+		#Visit li:not(:last-child){
+			margin-bottom: 10px;
+		}
+
+		#Visit li:before{
+			content: "\1F4D8";
+			margin-right: 5px;
+		}
+
+		#Timeline li{
+			list-style: none;
+			margin-left: 0px;
+			letter-spacing: 2px;
+			font-weight: bold;
+		}
+
+		#Timeline li:not(:last-child){
+			margin-bottom: 10px;
+		}
+
+		#Timeline li:before{
+			content: "\2B55";
+			margin-right: 5px;
+		}
+
+</style>
+	<script>
+		$('#myModal').on('shown.bs.modal', function () {
+  		$('#myInput').trigger('focus')
+		})
+		$('#myModal1').on('shown.bs.modal', function () {
+  		$('#myInput').trigger('focus')
+		})
+	</script>
+</head>
+<body>
+<div class="pageTitle">
+	<div class="row">
+		<div class="col-2">
+			<img src="{% static 'revenueYTD.png' %}" height="150px" style="box-shadow: 0px 4px 8px rgba(255,223,0,0.5);margin-left: 25px;margin-top: 10px;">
+		</div>
+		<div class="col-7">
+			<p style="font-size: 35px; font-weight: bold;color: white;margin-top: 20px;">Mentor Dashboard</p>
+			<p style="color: rgb(240,240,240);">This is a dashboard of a Mentor</p>
+		</div>
+		<div class="col-3">
+			<div class="card mb-3">
+				<div class="card-header" style="font-size: 40px; text-align:center; background-color: rgb(255, 194, 41)!important;"><p style="font-weight: bold;font-family: 'Fugaz One', cursive;margin-bottom: 0px;">RATING<img src="{% static 'star.png' %}" height=50px width=50px></p>
+				</div>
+				<div class="card-body" style="background-color: #ffa700; ; text-align:center">
+					<span style="font-size:100%;color:yellow;">&starf;</span>
+					<span style="font-size:100%;color:yellow;">&starf;</span>
+					&star;
+					&star;
+					&star;
+        		</div>
+        	</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<!-- <div class="leftBox col-2">
+		<p>hi</p>
+	</div> -->
+	<div class="rightBox col-12">
+		<div class="container">
+		    <div class="row">
+		    	<div class="col-4">
+		    		<div id="education" class="card" style="border-bottom-color: rgb(255, 56, 85); border-bottom-width: 5px;">
+		    			<img src="{% static 'education.png' %}" height="100px" style="align-self: center;margin-top:10px;">
+	    				<p style="color: grey; margin-bottom: 2px;font-size: 40px;text-align: center;">Education</p>
+	    				<p style="font-weight: bold;font-size: 15px;margin-bottom: 25px;color: rgb(121,205,139);text-align: center;">B.Tech, IIT Hyderabad</p>    	
+		    		</div>
+		    	</div>
+		    	<div class="col-4">
+		    		<div id="occupation" class="card" style="border-bottom-color: rgb(255, 219, 88); border-bottom-width: 5px;">
+		    			<img src="{% static 'Occupation.png' %}" height="100px" style="align-self: center;margin-top:10px; ">
+	    				<p style="color: grey; margin-bottom: 2px;font-size: 40px;text-align: center;">Occupation</p>
+	    				<p style="font-weight: bold;font-size: 15px;margin-bottom: 25px;color: rgb(121,205,139);text-align: center;">Senior Software Developer</p>
+		    		</div>
+		    	</div>
+		    	<div class="col-4">
+		    		<div id="income" class="card" style="border-bottom-color: rgb(0, 123, 224); border-bottom-width: 5px;">
+		    			<img src="{% static 'income.png' %}" height="100px" style="align-self: center;margin-top:10px;">
+	    				<p style="color: grey; margin-bottom: 2px;font-size: 40px;text-align: center;">Experience</p>
+	    				<p style="font-weight: bold;font-size: 15px;margin-bottom: 25px;color: rgb(121,205,139);text-align: center;">25 startups over 5 years</p>	    	
+		    		</div>
+		    	</div>
+		    </div>
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="mb-3 card" style="border-radius: 0px!important;">
+					  <div class="card-header" style="background-color: white!important">
+					    <img src="{% static 'Timeline.png' %}" style="margin-right: 15px;" />Timeline
+					  </div>
+					  <div class="card-body">
+					  	<div class="overflow-auto">
+						    <!-- <h5 class="card-title">Special title treatment</h5> -->
+						    <div class="card-text" style="max-height: 300px!important;">
+						    	<div id="Timeline">
+							    	<ul>
+							    		<li>All Hands Meeting</li>
+							    		<li>Build the production release</li>
+							    		<li>Meeting with the client</li>
+							    		<li>Product release meeting</li>
+							    		<li>Team allocation</li>
+							    		<li>Budget planning meeting</li>
+							    		<li>Meeting with the client</li>
+							    		<li>All hands meeting</li>
+							    		<li>Build the production release</li>
+							    		<li>Meeting with the client</li>
+							    		<li>Product release meeting</li>
+							    		<li>Team allocation</li>
+							    		<li>Budget planning meeting</li>
+							    		<li>Meeting with the client</li>
+							    		<li>All hands meeting</li>
+							    	</ul>
+						    	</div>
+						    </div>
+						</div>
+						<hr>
+						<button id="myModal1" type="button" class="btn btn-dark btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter1">View all messages</button>
+						<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+							  <div class="modal-header">
+							    <h5 class="modal-title" id="exampleModalLongTitle">All Meassages</h5>
+							    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							      <span aria-hidden="true">&times;</span>
+							    </button>
+							  </div>
+							  <div class="modal-body">
+							    	<div id="Timeline">
+								    	<ul>
+								    		<li>All Hands Meeting</li>
+								    		<li>Build the production release</li>
+								    		<li>Meeting with the client</li>
+								    		<li>Product release meeting</li>
+								    		<li>Team allocation</li>
+								    		<li>Budget planning meeting</li>
+								    		<li>Meeting with the client</li>
+								    		<li>All hands meeting</li>
+								    		<li>Build the production release</li>
+								    		<li>Meeting with the client</li>
+								    		<li>Product release meeting</li>
+								    		<li>Team allocation</li>
+								    		<li>Budget planning meeting</li>
+								    		<li>Meeting with the client</li>
+								    		<li>All hands meeting</li>
+								    	</ul>
+						    		</div>
+							  </div>
+							  <div class="modal-footer">
+							    <button type="button" class="btn btn-secondary btn-danger" data-dismiss="modal" style="align-self: center;margin-right: 200px;"><img src="{% static 'like.png' %}"></button>
+							  </div>
+							</div>
+							</div>
+						</div>
+					  </div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="mb-3 card" style="border-radius: 0px!important;">
+					  <div class="card-header" style="background-color: white!important">
+					    <img src="{% static 'visit.png' %}" style="margin-right: 15px;" />Visited Profiles
+					  </div>
+					  <div class="card-body">
+					  	<div class="overflow-auto">
+						    <!-- <h5 class="card-title">Special title treatment</h5> -->
+						    <div class="card-text" style="max-height: 300px!important;">
+						    	<div id="Visit">
+							    	<ul>
+							    		<li>Virtusa</li>
+							    		<li>HP</li>
+							    		<li>Eenadu</li>
+							    		<li>Start Smart</li>
+							    		<li>Visitalon</li>
+							    		<li>Hibridera</li>
+							    		<li>Start Smart</li>
+							    		<li>HP</li>
+							    		<li>Eenadu</li>
+							    		<li>Start Smart</li>
+							    		<li>Visitalon</li>
+							    	</ul>
+						    	</div>
+						    </div>
+						</div>
+						<hr>
+						<button id="myModal" type="button" class="btn btn-dark btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">View all profiles</button>
+						<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+							  <div class="modal-header">
+							    <h5 class="modal-title" id="exampleModalLongTitle">All Profiles</h5>
+							    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							      <span aria-hidden="true">&times;</span>
+							    </button>
+							  </div>
+							  <div class="modal-body">
+							  		<div id="Visit">
+								    	<ul>
+								    		<li>Virtusa</li>
+								    		<li>HP</li>
+								    		<li>Eenadu</li>
+								    		<li>Start Smart</li>
+								    		<li>Visitalon</li>
+								    		<li>Hibridera</li>
+								    		<li>Start Smart</li>
+								    		<li>HP</li>
+								    		<li>Eenadu</li>
+								    		<li>Start Smart</li>
+								    		<li>Visitalon</li>
+								    	</ul>
+						    		</div>
+							  </div>
+							  <div class="modal-footer">
+							    <button type="button" class="btn btn-secondary btn-info" data-dismiss="modal" style="align-self: center;margin-right: 200px;"><img src="{% static 'like.png' %}"></button>
+							  </div>
+							</div>
+							</div>
+						</div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+</body>
+</html>

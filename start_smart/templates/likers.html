@@ -1,194 +1,383 @@
-
 <!doctype html>
-{% load static %}
-<html>
-<head>
-	<link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
-	<title>Interested People</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body style="background-image: url({% static 'intback.jpg'%}); background-repeat: no-repeat;background-attachment: fixed;
-background-size: 100% 100%;">
-<style>
-	.card{
-		background-color: rgb(255,255,255);
-		box-shadow: 0px 4px 8px rgba(20,20,20,1); 
-		border-radius: 20px;
-		display: block;
-		margin-left: auto;
-		margin-top: 20px;
-		margin-bottom: 10px;
-		margin-right: auto;
-	}
-	.card:hover{
-		transition: all 0.5s ease-out;
-		box-shadow: 0px 4px 8px rgba(0,0,0,1);
-		top: -4px;
-		border: 1px solid #cccccc;
-	}
-	#rcorners2{
-		margin-left: 10px;
-	}
-</style>
-<div class="container">
-	<div class="row" style="margin-top: 30px; margin-bottom: 20px;">
-		<div class="col-lg-6 col-md-6 col-xs-12 boxy">
-			<h1 style="font-size: 60px; color: black;">INTERESTED PEOPLE</h1>
-		</div>
-		<div class="col-lg-6 col-md-6 col-xs-12 boxy">
-			<div class="input-group md-form form-sm form-2 pl-0" style="margin-top: 20px;">
-				<input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
-				<div class="input-group-append">
-					<span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
-						aria-hidden="true"></i></span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<hr>
-		{% for user in like %}
-		<div class="row">
+  {% load static %}
+  <html lang="en">
+    <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+      
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+      
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
+  
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+  
+  
+  
+  
+  <style>
+  
+
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+body {
+	background-color: #4ca1af;
+    background-image: linear-gradient(135deg, #4ca1af 0%, #c4e0e5 100%);
+
+    min-height: 100vh;
+}
+
+.text-gray {
+    color: #999;
+}
+
+
+header
+{
+    overflow-x : hidden;
+ 
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSE
+* ==========================================
+*
+*/
+
+body {
+ 
+  min-height: 100vh;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+  
+  .navbar {
+      transition: all 0.4s;
+  }
+  
+  .navbar .nav-link {
+      color: #fff;
+  }
+  
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus {
+      color: #fff;
+      text-decoration: none;
+  }
+  
+  .navbar .navbar-brand {
+      color: #fff;
+  }
+  
+  
+  
+  .navbar.active {
+      background: white;
+      box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar.active .nav-link {
+      color: #555;
+  }
+  
+  .navbar.active .nav-link:hover,
+  .navbar.active .nav-link:focus {
+      color: #555;
+      text-decoration: none;
+  }
+  
+  .navbar.active .navbar-brand {
+      color: #555;
+  }
+  
+  
+  
+  @media (max-width: 991.98px) {
+      .navbar {
+          background: #fff;
+      }
+  
+      .navbar .navbar-brand, .navbar .nav-link {
+          color: #555;
+      }
+  }
+  
+  
+  .text-small {
+      font-size: 0.9rem !important;
+  }
+  
+  
+  
+  
+  #button-addon1 {
+    color: #ffc371;
+  }
+  
+  i {
+    color: #ffc371;
+  }
+  
+ 
+  html { font-size: 0.5rem; }
+  
+  @media (min-width: 576px) {
+      html { font-size: 0.75rem; }
+  }
+  @media (min-width: 768px) {
+      html { font-size: 1rem; }
+  }
+  @media (min-width: 992px) {
+      html { font-size: 1.10rem; }
+  }
+  @media (min-width: 1200px) {
+      html { font-size: 1.10rem; }
+  }
+  
+  
+  
+  
+          </style>
+      <title>Start_smart</title>
+    </head>
+    <body>
+			
+  
+  
+      <header >
+      <nav class="navbar navbar-expand-lg fixed-top py-3" >
+          <div class="container"><a href="{% url 'index' %}" class="navbar-brand text-uppercase font-weight-bold">StartSmart</a>
+              <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+  
+              <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item active">
+                          <a class="nav-link scroll-link" href="{% url 'forum' %}">Forum <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link scroll-link" href="{% url 'finance' %}">Finances</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link scroll-link" href="#three">Networking</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link scroll-link" href="#four">Dashboard</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+     
+  
+  
+  
+  
+  
+</header>
+  
+  
+  
+  
+ 
+ 
+      
+        <div class="container py-5">
+
+				<!-- For demo purpose -->
+				<br>
+				<br>
+                <div class="row text-center text-white mb-5">
+                    <div class="col-lg-12 mx-auto">
+                        <h1 class="display-4">Blogs</h1>
+                        <p class="lead mb-0">Interested people for your blogs</p>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                   
+                        <div class="col-lg-3" style="float:right">
+                          
+                          <div class="bg-white rounded">
+                    
+                            <!-- Custom rounded search bars with input group -->
+                            <form class="form-inline " id="searchbar"  action="{% url 'blogsearch' %}" method="get">
+                              <div class="bg-light rounded ">
+                                <div class="input-group">
+                                  <input name="q" type="search" id="searchblog"  placeholder="Search blogs?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                                  <div class="input-group-append">
+                                    <button id="button-addon1" type="submit"   class="btn btn-link text-primary"><i class="fa fa-search"  ></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                             
+                            </form>
+       </div>
+                        </div>
+       
+            
+    
+                        
+
+    
+            <!-- End -->
+    <br>
+    <br>
+    <br>
+   <div class="container py-2">
+
+    <!-- For demo purpose -->
+    
+	{% for user in like %}
+		
+	<div class="row">
 			{% if user.1 %}
-			<div class="col s12 l6">
-				<div class="card">
-					<div class="card-header">
-						<div class="row">
-							<div class="wrapper-image person"><img src="{% static 'user.png' %}" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
-							<div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">Startup</span>
+			<div class="col-lg-8 mx-auto">
+				
+				<!-- Timeline -->
+			
+					<div class="timeline-item bg-white rounded ml-3 p-4 shadow">
+						<div class="timeline-arrow"></div>
+						
+						<p><b>Username:</b><span id="rcorners2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.0.username}}</span></p>
 
-							</div>
-						</div>
-					</div>
-					<div class="card-body">  
-						<div class="container">
-							<form>
+								<p><b>Email address:</b><span id="rcorners2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.0.email}}</span></p>
 
-								<p><b>Username:</b><span id="rcorners2">{{user.0.username}}</span></p>
+								<p><b>Company name:</b><span id="rcorners2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.0.startup.company_name}}</span></p>
 
-								<p><b>Email address:</b><span id="rcorners2">{{user.0.email}}</span></p>
-
-								<p><b>Company name:</b><span id="rcorners2">{{user.0.startup.company_name}}</span></p>
-
-								<p><b>Headquarters:</b><span id="rcorners2">{% if user.0.startup.head_quarters != '' %}
+								<p><b>Headquarters:</b><span id="rcorners2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% if user.0.startup.head_quarters != '' %}
 									{{user.0.startup.head_quarters}}
 									{% endif %}
 								</span></p>
 
-							</form>
-						</div>
-					</div>
-				</div>
+								
+										
+									</div>
+					
+			
+
 			</div>
-			{% else%}
-			<div class="col s12 m6 l3">
-				<div class="card">
-					<div class="card-header">
-						<div class="row">
-							<div class="wrapper-image person"><img src="user.png" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
-							<div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">User
-							</div>
-						</div>
-					</div>
-					<div class="card-body"> 
-						<form>
-							<p><b>Username:</b><span id="rcorners2">{{user.0.username}}</span></p>
+			{% else %}
+			<div class="col-lg-8 mx-auto">
+				
+				<!-- Timeline -->
+			
+					<div class="timeline-item bg-white rounded ml-3 p-4 shadow">
+						<div class="timeline-arrow"></div>
+						<p><b>Username :</b><span id="rcorners2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.0.username}}</span></p>
 
-							<p><b>First Name:</b><span id="rcorners2">{{user.0.first_name}}</span></p>
+							<p><b>First Name :</b><span id="rcorners2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.0.first_name}}</span></p>
 
-							<p><b>Last Name:</b><span id="rcorners2">{{user.0.last_name}}</span></p>
+							<p><b>Last Name :</b><span id="rcorners2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.0.last_name}}</span></p>
 
-							<p><b>email:</b><span id="rcorners2">{{user.0.email}}</span></p>
+							<p><b>email :</b><span id="rcorners2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.0.email}}</span></p>
 
-						</form>                        
-					</div>
-				</div>
+								
+										
+									</div>
+					
+			
+
 			</div>
-			{% endif %}
 		</div>
-		
+		<br>
+										<br>
+										{% endif %}							
 		{% endfor %}
-	</div> 
+		<br>
 
-</body>
-</html>
+</div>
+    
+     <footer  style="
+     background: linear-gradient(to bottom left ,#19181A ,#2F4454 );
+   ">
+       <div class="container py-1">
+         <div class="row py-4">
+           <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3">
+             <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+             <ul class="list-inline mt-4">
+               <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
+               <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
+               <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
+               <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+               <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+             </ul>
+           </div>
+           
+       <!-- Copyrights -->
+       <div >
+         <div class="container text-center">
+           <p class="text-muted mb-0 py-2">© 2019 StartSmart All rights reserved.</p>
+         </div>
+       </div>
+     </footer>
 
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+            $(function () {
+        $(window).on('scroll', function () {
+            if ( $(window).scrollTop() > 10 ) {
+                $('.navbar').addClass('active');
+            } else {
+                $('.navbar').removeClass('active');
+            }
+        });
+    });
+    
+        </script>
+      </body>
+    </html>
+    
+     
 
-
-
-
-<!-- 
-<h2>details of likers of your blog</h2>
-<br>
-{% for user in like %}
-
-{% if user.1 %}
-
-<h2>Startup</h2>
-<b>First Name:</b>
-{{user.0.first_name}}
-<br>
-<b>Last Name:</b>
-{{user.0.last_name}}
-<br>
-<b>Email:</b>
-{{user.0.email}}
-<br>
-<b>Username:</b>
-{{user.0.username}}
-<br>
-<br>
-<b>Company Name:</b>
-{{user.0.startup.company_name}}
-<br>
-{% if user.0.startup.emp_no != 0 %}
-	<br>
-	<b>Number of Employees:</b>
-	{{user.0.startup.emp_no}}
-	<br>
-{% endif %}
-{% if  user.0.startup.Founder is not None %}
-	<br>
-	<b>Founder:</b>
-	{{user.0.startup.Founder}}
-	<br>
-{% endif %}
-<br>
-{% if  user.0.startup.company_desc != '' %}
-	<b>Company Description:</b>
-	{{user.0.startup.company_desc}}
-	<br>
-{% endif %}
-<br>
-
-{% if  user.0.startup.head_quarters != '' %}
-	<b>Company Headquarters:</b>
-	{{user.0.startup.head_quarters}}
-	<br>
-{% endif %}
+  
+ 
 
 
 
-{% else%}
-
-<h2>Financer</h2>
-
-<b>First Name:</b>
-{{user.0.first_name}}
-<br>
-<b>Last Name:</b>
-{{user.0.last_name}}
-<br>
-
-<b>Email:</b>
-{{user.0.email}}
-<br>
-<b>Username:</b>
-{{user.0.username}}
-<br>
-
-{% endif %}
+	   
+  
+	
+   
+  
+  
+  
+		
+				
 
 
-{% endfor %}
-
- -->
+	

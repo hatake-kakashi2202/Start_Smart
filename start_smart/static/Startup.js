@@ -1,0 +1,1 @@
+alert("Hi, we are a Startup");

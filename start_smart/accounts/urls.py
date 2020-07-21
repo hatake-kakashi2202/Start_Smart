@@ -16,6 +16,8 @@ urlpatterns = [
     path('update_user/', views.update_user, name = 'update_user'),
     path('email_auth/', views.email_auth, name = 'email_auth'),
     path('forget_pass/', views.forget_pass, name = 'forget_pass'),
+    path('email_verification/', views.email_verification, name = 'email_verification'),
     url(r'verify_pass/(?P<username>\w+?)/(?P<time_lim>\w+?)/(?P<rand>\w+?)/$', views.verify_pass, name = 'verify_pass'),
     url(r'new_pass/(?P<username>\w+?)/(?P<password>\w+?)/$', views.new_pass, name='new_pass'),
+    url(r'verify_email/(?P<username>\w+?)/(?P<time_lim>\w+?)/(?P<rand>\w+?)/$', views.verify_email, name = 'verify_email'),
 ]

@@ -15,7 +15,8 @@ from copy import deepcopy
 from django.contrib import messages
 
 # Create your views here.
-
+def aboutus(request):
+    return render(request,'aboutus.html',{})
 
 def index(request):
 	return render(request,'index.html',{})
@@ -58,7 +59,7 @@ def forum_details(request,forum_id):
         mod1 = forum_text.objects.get(id=forum_id)
         mod1.views = mod1.views+1
         mod1.save()
-        pic = User.objects.all()
+        pic = User.objects.get(username = mod1.user.username)
         num=deepcopy(forum_id)
         mode = Comment.objects.all()
         if request.method == 'POST':
@@ -74,6 +75,11 @@ def forum_details(request,forum_id):
                 messages.error(request,"User details not found,please login")
                 return HttpResponseRedirectreverse(forum_details,args=(post_id,))
         else:
+            try:
+                if pic.startup is not None:
+                    pic = pic.startup.profile_pic
+            except:
+                pic = pic.mentor.profile_pic
             return render(request, 'forum_details.html', {'forum_id': forum_id, 'form': form, 'model': mod, 'pic': pic,'mode':mode})
     else:
         return render(request,'login.html',{})

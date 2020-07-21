@@ -309,7 +309,11 @@ body {
                     <div class="col-lg-10 forum-body" style="padding-right: 0px;">
                         <div class="card-header">
                           <a href="#" class="pull-left">
-                              <img src="{{ data.user.profile_pic.url }}"  alt="" class="img-fluid img-thumbnail rounded-circle" style="width:50px;height:50px;">
+                              {% if pic.startup is None %}
+                              <img src="{{ data.user.mentor.profile_pic.url }}"  alt="" class="img-fluid img-thumbnail rounded-circle" style="width:50px;height:50px;">
+                              {% else %}
+                              <img src="{{ data.user.startup.profile_pic.url }}"  alt="" class="img-fluid img-thumbnail rounded-circle" style="width:50px;height:50px;">
+                              {% endif %}
                           </a>
                           <strong class="text-success float-left" style="padding-left:1vw;padding-top:1vw;">{{data.user}}</strong>
                           <span class="text-muted pull-right">

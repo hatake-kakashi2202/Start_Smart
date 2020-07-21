@@ -2,7 +2,6 @@
 {% load static %}
 <html>
   <head>
-    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,21 +15,72 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
-<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/chomsky" type="text/css"/>            <style>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/chomsky" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">            <style>
+
+            #blogs .tooltiptext {
+            visibility: hidden;
+            width: 40px;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+           
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+          }
+
+          /* Show the tooltip text when you mouse over the tooltip container */
+          #blogs:hover .tooltiptext {
+            visibility: visible;
+          }
+
+        #fin{
+                
+                font-size: 70px;
+                font-family: 'Oswald', sans-serif;
+                /*background-image: url(textback.jpg);
+                background-size: 100% 100%;
+                color: transparent;
+                margin-left: 0px;
+                -webkit-background-clip:text;*/
+                margin-right:320px; 
+            }
        .card{
         background-color: rgb(255,255,255);
         box-shadow: 0px 4px 8px rgba(50,50,50,0.25); 
-        border-radius: 20px;
         margin-top: 10px;
         margin-bottom: 10px;
+        border-bottom-color: rgb(255, 56, 85);
+        border-bottom-width: 5px;
       }
       .card:hover{
         transition: all 0.5s ease-out;
-        box-shadow: 0px 4px 8px rgba(0,0,0,1);
+        box-shadow: 0px 4px 8px rgba(255, 56, 85,1);
         top: -4px;
-        border: 1px solid #cccccc;
+        border: 0px 0px 10px 0px solid rgba(255, 56, 85,1);
   
       }
+
+      .card-text{
+        color: grey;
+        font-size: 15px;
+        
+      }
+
+
+
+      .card-header{
+        background-color: rgb(250,250,250);
+      }
+
+      .card-body{
+        background-color: rgb(250,250,250);
+      }
+
+      .car
       .wrapper-image {
         width: auto;
         float: left;
@@ -85,8 +135,8 @@
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {color: #ff0000;}
 
-#im{
-  background-image: url({% static 'network.jpg' %});
+/*#im{
+  background-image: url(network.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 100%;
@@ -98,21 +148,22 @@
                 padding-right: 10%;
                 padding-top: 17.5%;
                 padding-bottom: 17.5%;
-                /*color: #d4af37;*/
+                color: #d4af37;
                 font-family: 'ChomskyRegular';
                  font-weight: normal;
                  font-style: normal;
                 font-size: 150px;
-                background-image: url({% static 'btaf.jpg' %});
+                background-image: url(btaf.jpg);
                 background-size: 100% 100%;
                 color: transparent;
                 -webkit-background-clip:text;
 
-            }
+            }*/
 body{
-  background-image: url({% static 'conback.jpg' %});
+  background-image: url({% static 'background.png' %});
   background-repeat: no-repeat;
     background-size: 100% 100%;
+    /*background-color: rgb(200,200,200);*/
 
 }
 .btn-primary{ 
@@ -137,7 +188,7 @@ a:hover, a:active, a:focus {
   font-size: 22px;
   
 }
-@media only screen and (max-width: 600px) {
+/*@media only screen and (max-width: 600px) {
   #im{
       width: 100%;
       height: 60%;
@@ -145,7 +196,7 @@ a:hover, a:active, a:focus {
   #fin {
     font-size: 30px;
   }
-}
+}*/
 
     </style>
     <title>Start_smart</title>
@@ -153,177 +204,108 @@ a:hover, a:active, a:focus {
   </head>
   <body>
 
-    <div id="im">
+    <!-- <div id="im">
     <p id="fin">NETWORKING</p>
-    </div>
+    </div> -->
+        <nav class="navbar navbar-light bg-light" style="background-color: rgb(200,200,200)">
+      <div class="row">
+        <div class="col-1">
+          <img src="{% static 'team.png' %}" style="margin-right: 5px;margin-top: 25px;">
+        </div>
+        <div class="col-4">
+        <p id="fin">NETWORKING</p>
+        </div>
+        <div class="col-3" style="margin-top: 30px;">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01"><b>Sort By</b></label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+              <option selected>Choose...</option>
+              <option value="1">Name</option>
+              <option value="2">Rating</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-3 boxy" style="margin-top: 30px;" >
+          <div class="input-group md-form form-sm form-2 pl-0">
+            <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+              <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+              aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-1">
+          <button type="button" onclick="location.href='{% url 'allblogs' %}'" class="btn btn-dark" id="blogs" style="margin-top: 28px;"><img src="{% static 'blogger.png' %}"/><span class="tooltiptext">Blogs</span></button>
+        </div>
+
+        
+      </div>
+    </nav>
       <div class="container" style="margin-top: 40px;">
     <div class="row">
-      <div class="col s12 m6 l4">
-    <p><span style="font-family: 'Abel', sans-serif; font-size: 25px; color: white;">I am looking for </span></p>
+      <div class="col s12 m6 l6">
+    <p><span style="font-family: 'Abel', sans-serif; font-size: 25px; color: black;">I am looking for </span></p>
     <div class="row">
-    <p> <span style="font-family: 'Anton', sans-serif; font-size: 50px; margin-left: 10px; color: white;">Incubators</span></p>
+    <p> <span style="font-family: 'Anton', sans-serif; font-size: 50px; margin-left: 10px; color: rgba(255, 56, 85,1);">Corporates</span></p>
     <div class="dropdown">
   <button class="dropbtn">˅</button>
   <div class="dropdown-content">
-     <a href="{% url 'student' %}">Students</a>
-    <a href="{% url 'incubators' %}">Incubators</a>
+    <a href="{% url 'student' %}">Startups</a>
+    <a href="{% url 'incubators' %}">Corporate</a>
     <a href="{% url 'mentor' %}">Mentors</a>
   </div>
 </div>
 </div>
       </div>
-      <div class="col s12 m6 l4">
-  <div class="col-lg-12 col-md-12 col-xs-12 boxy">
-    <div class="input-group md-form form-sm form-2 pl-0">
-    <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
-    <div class="input-group-append">
-      <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
-          aria-hidden="true"></i></span>
-    </div>
-  </div>
-  </div>
 </div>
 
-<div class="col s12 m6 l4">
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="inputGroupSelect01"><b>Select City</b></label>
-  </div>
-  <select class="custom-select" id="inputGroupSelect01">
-    <option selected>Choose...</option>
-    <option value="1">Vizag</option>
-    <option value="2">Hyderabad</option>
-    <option value="3">Guntur</option>
-  </select>
-</div>
-  </div>
-  <div class="col s12 m6 l4">
- <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="inputGroupSelect01"><b>Sort By</b></label>
-  </div>
-  <select class="custom-select" id="inputGroupSelect01">
-    <option selected>Choose...</option>
-    <option value="1">Name</option>
-    <option value="2">Rating</option>
-  </select>
-</div>
-  </div>
-</div>
-<hr>
+<hr style="height: 5px;background-color:#555555;opcaity: 0.5;">
+<br>
+      {% for x in corps %}
+      {% for y in x %}
+        {% if y == 1 or y == 2 or y == 3 %}
+          {% if y == 1 %}
+            <div class="row">
+          {% elif y == 2 %}
+            </div>
+          {% endif %}
+        
+        {% else %}
+        <div class="col s12 m6 l3">
+          <div class="card" onclick="myFunction()" id="dash2">
+            <div class="card-header">
+              <div class="row">
+                <div class="wrapper-image person">
+                  {% if y.mentor.profile_pic %}
+                  <img src="{{y.mentor.profile_pic.url}}" alt="wipro.com" width="80" height="80"
+                    style="border-radius:50%">
+                  {% else %}
+                  <img src="{% static 'user.png' %}" alt="wipro.com" width="80" height="80" style="border-radius:50%">
+                  {% endif %}
+                </div>
+                <div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">{{y.username}}</span><br><span
+                    style="font-size:20px;color: grey;">{{y.last_name}}  {{y.first_name}}</span>
+                  <br>
+                  <br>
+                  <img src="{% static 'star.jpg' %}" alt="wipro.com" width="25" height="25"
+                    style="margin-right: 10px;" /><span>0</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">I am a mentor.</p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
 
-     <div class="row">
-     <div class="col s12 m6 l3">
-      <div class="card" onclick="myFunction()" id="dash2">
-        <div class="card-header">
-          <div class="row">
-          <div class="wrapper-image person"><img src="{% static 'user.png' %}" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
-        <div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">PUNEETH</span><br><span style="font-size:20px;color: grey;">Hyderabad, Telangana</span>
-         <br>
-         <br>
-          <img src="{% static 'star.jpg' %}" alt="wipro.com" width="25" height="25" style="margin-right: 10px;"/><span>0</span>
-        </div>
-        </div>
-    </div>
-          <div class="card-body">  
-            <p class="card-text">Some quick example text to build on the card title.</p>
-          </div>
-      </div>
-      </div>
-    <div class="col s12 m6 l3">
-      <div class="card" onclick="myFunction()" id="dash2">
-        <div class="card-header">
-          <div class="row">
-          <div class="wrapper-image person"><img src="{% static 'user.png' %}" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
-        <div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">PUNEETH</span><br><span style="font-size:20px;color: grey;">Hyderabad, Telangana</span>
-         <br>
-         <br>
-          <img src="{% static 'star.jpg' %}" alt="wipro.com" width="25" height="25" style="margin-right: 10px;"/><span>0</span>
-        </div>
-        </div>
-    </div>
-          <div class="card-body">  
-            <p class="card-text">Some quick example text to build on the card title.</p>
-          </div>
-      </div>
-      </div>
-    <div class="col s12 m6 l3">
-      <div class="card" onclick="myFunction()" id="dash2">
-        <div class="card-header">
-          <div class="row">
-          <div class="wrapper-image person"><img src="{% static 'user.png' %}" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
-        <div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">PUNEETH</span><br><span style="font-size:20px;color: grey;">Hyderabad, Telangana</span>
-         <br>
-         <br>
-          <img src="{% static 'star.jpg' %}" alt="wipro.com" width="25" height="25" style="margin-right: 10px;"/><span>0</span>
-        </div>
-        </div>
-    </div>
-          <div class="card-body">  
-            <p class="card-text">Some quick example text to build on the card title.</p>
-          </div>
-      </div>
-      </div> 
-    </div> 
-  <div class="row">
-       <div class="col s12 m6 l3">
-      <div class="card" onclick="myFunction()" id="dash2">
-        <div class="card-header">
-          <div class="row">
-          <div class="wrapper-image person"><img src="{% static 'user.png' %}" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
-        <div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">PUNEETH</span><br><span style="font-size:20px;color: grey;">Hyderabad, Telangana</span>
-         <br>
-         <br>
-          <img src="{% static 'star.jpg' %}" alt="wipro.com" width="25" height="25" style="margin-right: 10px;"/><span>0</span>
-        </div>
-        </div>
-    </div>
-          <div class="card-body">  
-            <p class="card-text">Some quick example text to build on the card title.</p>
-          </div>
-      </div>
-      </div>
-       <div class="col s12 m6 l3">
-      <div class="card" onclick="myFunction()" id="dash2">
-        <div class="card-header">
-          <div class="row">
-          <div class="wrapper-image person"><img src="{% static 'user.png' %}" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
-        <div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">PUNEETH</span><br><span style="font-size:20px;color: grey;">Hyderabad, Telangana</span>
-         <br>
-         <br>
-          <img src="{% static 'star.jpg' %}" alt="wipro.com" width="25" height="25" style="margin-right: 10px;"/><span>0</span>
-        </div>
-        </div>
-    </div>
-          <div class="card-body">  
-            <p class="card-text">Some quick example text to build on the card title.</p>
-          </div>
-      </div>
-      </div>
-       <div class="col s12 m6 l3">
-      <div class="card" onclick="myFunction()" id="dash2">
-        <div class="card-header">
-          <div class="row">
-          <div class="wrapper-image person"><img src="{% static 'user.png' %}" alt="wipro.com" width="80" height="80" style="border-radius:50%">  </div>
-        <div class="col s8 m8 l8"><span style="font-size:30px; text-align: right;">PUNEETH</span><br><span style="font-size:20px;color: grey;">Hyderabad, Telangana</span>
-         <br>
-         <br>
-          <img src="{% static 'star.jpg' %}" alt="wipro.com" width="25" height="25" style="margin-right: 10px;"/><span>0</span>
-        </div>
-        </div>
-    </div>
-          <div class="card-body">  
-            <p class="card-text">Some quick example text to build on the card title.</p>
-          </div>
-      </div>
-      </div>
-  </div>  
-  <div>       
-    <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="margin-top: 20px; margin-bottom: 30px; align-self: center; display:block;">LOAD MORE</a>
+      {% endfor %}     
+    {% endfor %}
+     
+    <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="margin-top: 20px; margin-bottom: 30px; margin-left: 400px; margin-right: 400px; border-radius: 50px; align-self: center; display:block;">LOAD MORE</a>
   </div>
-     <div id="blogs">
-      <a href="{% url 'allblogs' %}"><p><u><i><b>Blogs</b></i></u></p></a>
-    </div>
     </div>
   
   </body>

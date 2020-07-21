@@ -51,7 +51,9 @@ urlpatterns = [
     path('advice/',v.graph,name='advice'),
     path('upfin/',v.update_fin,name='upfin'),
     path('update/',v.update,name='update'),
-    path('soon/',views.soon,name='comingsoon')
+    path('soon/',views.soon,name='comingsoon'),
+    path('contacts/',include('contacts.urls')),
+   path('aboutus/',views.aboutus,name="aboutus"),
 
    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

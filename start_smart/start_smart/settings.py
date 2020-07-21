@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'poll.apps.PollConfig',
     'forum',
     'crispy_forms',
+    'contacts.apps.ContactsConfig',
     ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -144,7 +145,7 @@ MAILER_EMAIL_BACKEND = EMAIL_BACKEND
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'startsmart.iiits@gmail.com'
+EMAIL_HOST_USER = 'iiits.startsmart@gmail.com'
 EMAIL_HOST_PASSWORD = 'iiits@123'
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True

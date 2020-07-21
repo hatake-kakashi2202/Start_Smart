@@ -22,3 +22,7 @@ class Mentor(models.Model):
 	# 1 - Mentor , 2 - indivudal, 3 - Corporate
 	person = models.IntegerField(default = 0)
 	profile_pic = models.ImageField(upload_to='profile_pics',blank=True)
+
+class Fields(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	is_email_verified = models.BooleanField(default=False)

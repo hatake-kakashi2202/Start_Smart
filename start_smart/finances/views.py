@@ -63,8 +63,14 @@ def graph(request):
 			temp2 = mod.income[:-1]
 			exp = temp1.split("+")
 			tran = temp2.split("+")
-			exp =[0]+[int(i) for i in exp]
-			tran =[0]+[int(i) for i in tran]
+			print(exp,tran)
+			if exp[0]=="":
+				exp[0]=0
+			if tran[0]=="":
+				tran[0]=0
+			else:
+				exp =[0]+[int(i) for i in exp]
+				tran =[0]+[int(i) for i in tran]
 			sum=0
 			flag1=0
 			flag2=0
@@ -131,11 +137,19 @@ def update_fin(request):
 				mod.save()
 			return redirect(graph)
 		elif request.POST.get('budget') and request.POST.get('threshold'):
-			mod = finances.objects.get(user=request.user)
-			mod.threshold = request.POST.get('threshold')
-			mod.Budget = request.POST.get('budget')
-			mod.save()
-			return redirect(graph)
+			try:
+				mod = finances.objects.get(user=request.user)
+				mod.threshold = request.POST.get('threshold')
+				mod.Budget = request.POST.get('budget')
+				mod.save()
+				return redirect(graph)
+			except finances.DoesNotExist:
+				mod = finances()
+				mod.user = request.user
+				mod.threshold = request.POST.get('threshold')
+				mod.Budget = request.POST.get('budget')
+				mod.save()
+				return redirect(graph)
 		else:
 			messages.error(request,"Please fill all the fields correctly")
 			return redirect(graph)

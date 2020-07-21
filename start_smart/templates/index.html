@@ -325,6 +325,9 @@ p{
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
+                        <a class="nav-link scroll-link" href="{% url 'comment' %}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link scroll-link" href="{% url 'profile' %}">Profile</a>
                     </li>
                     <li class="nav-item">
@@ -589,13 +592,7 @@ typingEffect();
 </section>
 </div>
 
-<div class="mb_parallax_container" id="mb_parallax_one" data-aos="fade-up"  data-aos-duration="1000">
-  <div class="mb_parallax_overlay">
-    <h1 style="color:yellow">ABOUT US:</h1>
-    <p  style="color:white">
-Start smart, a website made to cater all the needs for your startup. We help you manage your finances so that you can skip all the laborious and tedious work. We also display your dashboard and project ideas to bring in potential investors. Moreover, getting advice from mentors is now easier than ever before. Connect with mentors, corporates and incubators who provide you help and support. Discuss with fellow corporate members to share new ideas, get practical suggestions and innovate through brainstorming. Students can also find internship oppurtunities here. In short, start smart is a one stop destination for your startup.</p>
-  </div>
-</div>  
+ 
 
 <div style="background: url({% static 'a20.jpg' %})">
                 <div class="container">
@@ -732,7 +729,7 @@ Start smart, a website made to cater all the needs for your startup. We help you
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-          <h6 class="text-uppercase font-weight-bold mb-4">Website</h6>
+          <h6 class="text-uppercase font-weight-bold mb-4" style="color:yellowgreen">Website</h6>
           <ul class="list-unstyled mb-0">
             <li class="mb-2"><a href="#" class="text-muted">For Startups</a></li>
             <li class="mb-2"><a href="#" class="text-muted">For Corporates</a></li>
@@ -741,16 +738,16 @@ Start smart, a website made to cater all the needs for your startup. We help you
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-          <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
+          <h6 class="text-uppercase font-weight-bold mb-4" style="color:yellowgreen">Company</h6>
           <ul class="list-unstyled mb-0">
             <li class="mb-2"><a href="{% url 'login' %}" class="text-muted">Login</a></li>
             <li class="mb-2"><a href="{% url 'signup' %}" class="text-muted">Register</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">About</a></li>
+            <li class="mb-2"><a href="{% url 'aboutus' %}" class="text-muted">About</a></li>
             <li class="mb-2"><a href="#" class="text-muted">Our Team</a></li>
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-          <h6 class="text-uppercase font-weight-bold mb-4" style="color:lightorange">Survey</h6>
+          <h6 class="text-uppercase font-weight-bold mb-4" style="color:yellowgreen">Survey</h6>
           <ul class="list-unstyled mb-0">
             <li class="mb-2"><p class="text-muted">Please give 5 minutes to give survey</p></li>
            <a  href="{% url 'home' %}"><button type="button" class="btn btn-outline-warning">Click Here</button></a>

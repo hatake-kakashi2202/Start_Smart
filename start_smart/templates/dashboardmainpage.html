@@ -1,0 +1,288 @@
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+
+    <script>
+    function myFunctionStartup() {
+    window.open("{% url 'startupandCoorporate' %}");
+    }
+    function myFunctionCorporate() {
+    window.open("{% url 'startupandCoorporate' %}");
+    }
+    function myFunctionIndividual() {
+    window.open("{% url 'Individual' %}");
+    }
+    function myFunctionMentor() {
+    window.open("{% url 'Mentors' %}");
+    }
+  `</script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/377fe889c9.js" crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+        <style>
+            #startup{
+              border-bottom-color: rgb(255, 56, 85); 
+              border-bottom-width: 5px;
+            }
+
+            #startup:hover{
+              box-shadow: 0px 4px 8px rgba(255, 56, 85,1)!important;
+            }
+
+            #corporate{
+              border-bottom-color: rgb(255, 219, 88); 
+              border-bottom-width: 5px;
+            }
+
+            #corporate:hover{
+              box-shadow: 0px 4px 8px rgba(255, 219, 88,1)!important;
+            }
+
+            #individual{
+              border-bottom-color: rgb(0, 123, 224); 
+              border-bottom-width: 5px;
+            }
+
+            #individual:hover{
+              box-shadow: 0px 4px 8px rgba(0, 123, 224,1)!important;
+            }
+
+            #mentor{
+              border-bottom-color: rgb(121,205,139); 
+              border-bottom-width: 5px;
+            }
+
+            #mentor:hover{
+              box-shadow: 0px 4px 8px rgba(121,205,139,1)!important;
+            }
+
+            .card{
+              background-color: #ffffff;
+              box-shadow: 0px 4px 8px rgba(50,50,50,0.5);
+              color: black !important;
+              
+            }
+            .card:hover{
+              transition: all 0.2s ease-out;
+              box-shadow: 0px 4px 8px rgba(150,150,150,1);
+              top: -2px;
+              color:black!important;
+              border: 1px solid #cccccc; 
+            }
+/*            #im{
+              background-image: url(dashboard.jpg);
+              background-size: 100% 100%;
+              background-repeat: no-repeat;
+             
+            }*/
+            #fin{
+                
+                font-size: 70px;
+                font-family: 'Oswald', sans-serif;
+                /*background-image: url(textback.jpg);
+                background-size: 100% 100%;
+                color: transparent;
+                margin-left: 0px;
+                -webkit-background-clip:text;*/
+                margin-right:320px; 
+            }
+            body{
+                background-image: url(dashmainback.jpg);
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+
+                }
+                @media only screen and (max-width: 600px) {
+             /* #im{
+                  width: 100%;
+                  height: 60%;
+              }*/
+              #fin {
+                font-size: 30px;
+              }
+            }
+        </style>
+    <title>Start_smart</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light" style="background-color: rgb(200,200,200)">
+      <div class="row">
+        <div class="col-1">
+          <img src="{% static 'computer.png' %}" style="margin-right: 5px;margin-top: 25px;">
+        </div>
+        <div class="col-5">
+        <p id="fin">DASHBOARD</p>
+        </div>
+        <div class="col-3" style="margin-top: 30px;">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01"><b>Sort By</b></label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+              <option selected>Choose...</option>
+              <option value="1">Name</option>
+              <option value="2">Rating</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-3 boxy" style="margin-top: 30px;" >
+          <div class="input-group md-form form-sm form-2 pl-0">
+            <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+              <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+              aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </nav>
+<div class="container">
+<br>
+<div class="row">
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="startup" onclick="window.open('{% url 'startupandCoorporate' %}');">
+        <div class="card-header"><img src="{% static 'revenueYTD.png' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">  YTD</span></div>
+          <div class="card-body">
+            <h5 class="card-title">E cart services</h5>
+            <p class="card-text">We Deliver the groceries and domestic items to our costumers. They don't need to step out.</p>
+          </div>
+        </div>
+    </div>
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="corporate" onclick="window.open('{% url 'startupandCoorporate' %}')" id="dash2">
+        <div class="card-header"><img src="{% static 'hp.png' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   HP</span></div>
+          <div class="card-body">
+            <h5 class="card-title">Laptops and Accessories</h5>
+            <p class="card-text">We manfactures laptops and their accessories such as printers, speakers, phones,etc.</p>
+          </div>
+      </div>
+      </div>
+      <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="corporate" onclick="window.open('{% url 'startupandCoorporate' %}')">
+        <div class="card-header"><img src="{% static 'kcp.jpg' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   KCP</span></div>
+          <div class="card-body">
+            <h5 class="card-title">KCP cement</h5>
+            <p class="card-text">We are the popular builders of the year 2019. We manfacture cement used for large constructions</p>
+          </div>
+      </div>
+    </div> 
+    </div> 
+  <div class="row">
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="individual" onclick="window.open('{% url 'Individual' %}')">
+        <div class="card-header"><img src="{% static 'p1.webp' %}" alt="man.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   JAMES</span></div>
+          <div class="card-body">
+            <h5 class="card-title">Dark card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="mentor" onclick="window.open('{% url 'Mentors' %}')">
+        <div class="card-header"><img src="{% static 'p3.jpg' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   LEVY</span></div>
+          <div class="card-body">
+            <h5 class="card-title">Mentor</h5>
+            <p class="card-text">I have been a mentor for the past 5 years and amny startup have benifitted from my advice.</p>
+          </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="mentor" onclick="window.open('{% url 'Mentors' %}')">
+        <div class="card-header"><img src="{% static 'p5.jpg' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   ALICE</span></div>
+          <div class="card-body">
+            <h5 class="card-title">Mentor</h5>
+            <p class="card-text">I have been a mentor for the past 5 years and amny startup have benifitted from my advice.</p>
+          </div>
+      </div>
+    </div>  
+  </div>
+    <div class="row">
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="individual" onclick="window.open('{% url 'Individual' %}')">
+        <div class="card-header"><img src="{% static 'p1.webp' %}" alt="man.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   JAMES</span></div>
+          <div class="card-body">
+            <h5 class="card-title">Dark card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="mentor" onclick="window.open('{% url 'Mentors' %}')">
+        <div class="card-header"><img src="{% static 'p3.jpg' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   LEVY</span></div>
+          <div class="card-body">
+            <h5 class="card-title">Mentor</h5>
+            <p class="card-text">I have been a mentor for the past 5 years and amny startup have benifitted from my advice.</p>
+          </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="mentor" onclick="window.open('{% url 'Mentors' %}')">
+        <div class="card-header"><img src="{% static 'p5.jpg' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   ALICE</span></div>
+          <div class="card-body">
+            <h5 class="card-title">Mentor</h5>
+            <p class="card-text">I have been a mentor for the past 5 years and amny startup have benifitted from my advice.</p>
+          </div>
+      </div>
+    </div>  
+  </div>
+  <div class="row">
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="startup" onclick="window.open('{% url 'startupandCoorporate' %}');">
+        <div class="card-header"><img src="{% static 'revenueYTD.png' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">  YTD</span></div>
+          <div class="card-body">
+            <h5 class="card-title">E cart services</h5>
+            <p class="card-text">We Deliver the groceries and domestic items to our costumers. They don't need to step out.</p>
+          </div>
+        </div>
+    </div>
+    <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="corporate" onclick="window.open('{% url 'startupandCoorporate' %}')" id="dash2">
+        <div class="card-header"><img src="{% static 'hp.png' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   HP</span></div>
+          <div class="card-body">
+            <h5 class="card-title">Laptops and Accessories</h5>
+            <p class="card-text">We manfactures laptops and their accessories such as printers, speakers, phones,etc.</p>
+          </div>
+      </div>
+      </div>
+      <div class="col s12 m6 l4">
+      <div class="card text-white mb-3" id="corporate" onclick="window.open('{% url 'startupandCoorporate' %}')">
+        <div class="card-header"><img src="{% static 'kcp.jpg' %}" alt="wipro.com" width="100" height="100" />  <span style="font-size:50px;  padding-top: 20px;">   KCP</span></div>
+          <div class="card-body">
+            <h5 class="card-title">KCP cement</h5>
+            <p class="card-text">We are the popular builders of the year 2019. We manfacture cement used for large constructions</p>
+          </div>
+      </div>
+    </div> 
+    </div> 
+  <br>
+  <br>
+
+  <br>
+<div id="but" style="margin-bottom: 30px;">
+<button type="button" class="btn btn-primary" disabled="disabled"><--Previous</button>
+<a href="#"><button type="button" class="btn btn-primary">1</button></a>
+<a href="#"><button type="button" class="btn btn-primary">2</button></a>
+<a href="#"><button type="button" class="btn btn-primary">3</button></a>
+<a href="#"><button type="button" class="btn btn-primary">4</button></a>
+<a href="#"><button type="button" class="btn btn-primary">5</button></a>
+<a href="#"><button type="button" class="btn btn-primary">6</button></a>
+<a href="new.html"><button type="button" class="btn btn-primary">Next--></button></a>
+</div>
+</div>
+</div>
+  </body>
+</html>

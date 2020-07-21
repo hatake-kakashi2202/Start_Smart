@@ -1,43 +1,443 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
-	<title>Creating blog</title>
-</head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<body>
-	<br>
-<h1 class="container">Creating Blog</h1>
-<div class="container" style="color: red">
-{% if error %}
-{{error}}
-<br>
-<br>
-{% endif %}</div>
-<form method="POST" action="{% url 'create' %}">
-	{% csrf_token %}
-	<br>
-	<br>
-	<div class="container" style="background-color: rgba(70,70,70,0.1); border-radius: 25px;padding: 30px">
-	<div class="form-group">
-    <label for="exampleFormControlInput1"><b>Title</b></label>
-    <input type="text" name = "title" class="form-control" id="exampleFormControlInput1" placeholder="Title of your blog">
-  </div>
+<!doctype html>
+  {% load static %}
+  <html lang="en">
+    <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1"><b>Describe</b></label>
-    <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="4" placeholder="Describe your Blog"></textarea>
-  </div>
-	<input class="btn btn-primary" type="submit" value="Add Blog" >
-</div>
-</form>
-</body>
-</html>
+      
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+      
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
+  
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+  
+  
+  
+  
+  <style>
+  
+
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+body {
+	background-color: #4ca1af;
+    background-image: linear-gradient(135deg, #4ca1af 0%, #c4e0e5 100%);
+    min-height: 100vh;
+}
+
+.text-gray {
+    color: #999;
+}
+
+
+header
+{
+    overflow-x : hidden;
+ 
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+body {
+	margin:  0;
+}
+.page-content {
+	width: 100%;
+	margin:  0 auto;
+	background: #5eb2b3;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	-o-justify-content: center;
+	-ms-justify-content: center;
+	-moz-justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-o-align-items: center;
+	-ms-align-items: center;
+	-moz-align-items: center;
+	-webkit-align-items: center;
+}
+.form-v5-content  {
+	background: #fff;
+	width: 670px;
+	border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	margin: 175px 0;
+	font-family: 'Roboto', sans-serif;
+	color: #333;
+	font-weight: 400;
+	position: relative;
+	font-size: 18px;
+}
+.form-v5-content .form-detail {
+	padding: 30px 45px 30px 45px;
+	position: relative;
+}
+.form-detail h2 {
+	font-weight: 700;
+	font-size: 25px;
+	text-align: center;
+	position: relative;
+	padding: 3px 0 20px;
+	margin-bottom: 40px;
+}
+.form-detail h2::after {
+	background: #3786bd;
+	width: 50px;
+	height: 2px;
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+    transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+}
+.form-detail .form-row {
+	position: relative;
+}
+.form-detail .form-row-last {
+	text-align: center;
+}
+.form-detail label {
+	display: block;
+	font-size: 18px;
+	padding-bottom: 10px;
+}
+.form-detail .input-text {
+	margin-bottom: 26px;
+}
+.form-detail input {
+	width: 94.5%;
+    padding: 10.5px 15px;
+    border: 1px solid #e5e5e5;
+    appearance: unset;
+    -moz-appearance: unset;
+    -webkit-appearance: unset;
+    -o-appearance: unset;
+    -ms-appearance: unset;
+    outline: none;
+    -moz-outline: none;
+    -webkit-outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    border-radius: 4px;
+	-o-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+}
+.form-detail input:focus {
+	border: 1px solid #b3b3b3;
+}
+.form-detail .register {
+	font-size: 18px;
+	color: #fff;
+	background: #3786bd;
+	border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	width: 180px;
+	box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+	-o-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+	-ms-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+	border: none;
+	margin: 19px 0 40px;
+	cursor: pointer;
+}
+.form-detail .register:hover {
+	background: #2f73a3;
+}
+.form-detail .form-row-last input {
+	padding: 14px;
+}
+.form-detail i {
+	font-size: 14px;
+	color: #999;
+	right: 15px;
+	top: 50%;
+	transform: translateX(-50%);
+	position: absolute;
+}
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #999;
+  font-size: 16px;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  color: #999;
+  font-size: 16px;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  color: #999;
+  font-size: 16px;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  color: #999;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media screen and (max-width: 767px) {
+	.form-v5-content {
+	    margin: 175px 20px;
+	}
+}
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSE
+* ==========================================
+*
+*/
+
+  
+  .navbar {
+      transition: all 0.4s;
+  }
+  
+  .navbar .nav-link {
+      color: #fff;
+  }
+  
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus {
+      color: #fff;
+      text-decoration: none;
+  }
+  
+  .navbar .navbar-brand {
+      color: #fff;
+  }
+  
+  
+  
+  .navbar.active {
+      background: white;
+      box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar.active .nav-link {
+      color: #555;
+  }
+  
+  .navbar.active .nav-link:hover,
+  .navbar.active .nav-link:focus {
+      color: #555;
+      text-decoration: none;
+  }
+  
+  .navbar.active .navbar-brand {
+      color: #555;
+  }
+  
+  
+  
+  @media (max-width: 991.98px) {
+      .navbar {
+          background: #fff;
+      }
+  
+      .navbar .navbar-brand, .navbar .nav-link {
+          color: #555;
+      }
+  }
+  
+  
+  .text-small {
+      font-size: 0.9rem !important;
+  }
+  
+  
+  
+  
+  #button-addon1 {
+    color: #ffc371;
+  }
+  
+  i {
+    color: #ffc371;
+  }
+  
+ 
+  html { font-size: 0.5rem; }
+  
+  @media (min-width: 576px) {
+      html { font-size: 0.75rem; }
+  }
+  @media (min-width: 768px) {
+      html { font-size: 1rem; }
+  }
+  @media (min-width: 992px) {
+      html { font-size: 1.10rem; }
+  }
+  @media (min-width: 1200px) {
+      html { font-size: 1.10rem; }
+  }
+ 
+  
+  
+          </style>
+      <title>Start_smart</title>
+    </head>
+    <body class="form-v5 ">
+			
+  
+  
+      <header >
+      <nav class="navbar navbar-expand-lg fixed-top py-3" >
+          <div class="container"><a href="{% url 'index' %}" class="navbar-brand text-uppercase font-weight-bold">StartSmart</a>
+              <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+  
+              <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item active">
+                          <a class="nav-link scroll-link" href="{% url 'forum' %}">Forum <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link scroll-link" href="{% url 'finance' %}">Finances</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link scroll-link" href="#three">Networking</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link scroll-link" href="#four">Dashboard</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+	</header>
+  
+
+  
+  {% if error %}
+  {{error}}
+  <br>
+  <br>
+  {% endif %}
+  <div class="page-content">
+		  <div class="form-v5-content">
+				  <form method="POST" action="{% url 'create' %}" class="form-detail">
+						{% csrf_token %}
+				  <h2>Creating a Blog</h2>
+				  <div class="form-row">
+					  <label for="full-name">Title of the blog</label>
+					  <input type="text" name="title" id="full-name" class="form-control" placeholder="Your Name" required>
+					  
+				  </div>
+				  <br>
+				  
+				  <div class="form-row">
+						  <label for="exampleFormControlTextarea1">Description of the blog</label>
+						  <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="4" placeholder="Describe your Blog"></textarea>
+					  </div>
+					  <div class="form-row-last">
+							<input type="submit" name="register" class="register" value="Add Blog">
+						</div>
+			  </form>
+		  </div>
+	  </div>
+ 
+ 
+      
+    
+     <footer  style="
+     background: linear-gradient(to bottom left ,#19181A ,#2F4454 );
+   ">
+       <div class="container py-1">
+         <div class="row py-4">
+           <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3">
+             <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+             <ul class="list-inline mt-4">
+               <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
+               <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
+               <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
+               <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+               <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+             </ul>
+           </div>
+           
+       <!-- Copyrights -->
+       <div >
+         <div class="container text-center">
+           <p class="text-muted mb-0 py-2">© 2019 StartSmart All rights reserved.</p>
+         </div>
+       </div>
+     </footer>
+
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+            $(function () {
+        $(window).on('scroll', function () {
+            if ( $(window).scrollTop() > 10 ) {
+                $('.navbar').addClass('active');
+            } else {
+                $('.navbar').removeClass('active');
+            }
+        });
+    });
+    
+		</script>
+		
+      </body>
+    </html>
+    
+     
+
+  
+ 
 
 
 
+	   
+  
+	
+   
+  
+  
+  
+		
+				
 
 
+	
