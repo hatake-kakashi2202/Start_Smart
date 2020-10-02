@@ -37,6 +37,7 @@ def allblogs(request):
 		users = paginator.page(paginator.num_pages)
 	return render(request, 'allblogs.html', {'all_blogs':users})
 
+@login_required
 def create(request):
 	if not request.user.is_authenticated:
 		return render(request, 'login.html')
@@ -55,11 +56,12 @@ def create(request):
 	else:
 		return render(request, 'create.html')
 
-
+@login_required
 def detail(request, blog_id):
 	curr_blog = get_object_or_404(blog, pk = blog_id)
 	return render(request, 'detail.html', {'curr_blog':curr_blog})
 
+@login_required
 def myblogs(request):
 	blog_list = []
 	data = serializers.serialize('python', blog.objects.all(), fields=('pk'))
@@ -70,7 +72,7 @@ def myblogs(request):
 	return render(request, 'myblogs.html', {'blog_list':blog_list})
 
 
-
+@login_required
 def interest(request, blog_id):
 	
 
@@ -82,7 +84,6 @@ def interest(request, blog_id):
 	
 	return redirect('allblogs')
 	
-
 def likers(request, blog_id):
 	curr_blog = get_object_or_404(blog, pk = blog_id)
 	interest = curr_blog.inter
